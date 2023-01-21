@@ -217,7 +217,7 @@ header .navbar ul li a:hover{
 }
 
 .about .row .counter .box span{
-    font-size: 4rem;
+    font-size: 2rem;
     color:var(--yellow);
 }
 
