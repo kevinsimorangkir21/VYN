@@ -6,8 +6,8 @@
 [![Github Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#)
 </div>
 
-## Deskripsi Singkat
-Portofolio ini dibuat untuk memberikan sebuah informasi kepada orang tentang diri saya mengenai skill, Asal, ataupun identitas diri. Untuk deskripsi akan diupdate secara berkala dan diinputkan didalamnya
+## **Deskripsi Singkat**
+This portfolio was created to provide information to people about myself regarding skills, origins, or identity. The description will be updated regularly and included in it.
 
 <br>
 
