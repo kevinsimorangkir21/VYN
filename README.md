@@ -9,9 +9,9 @@
 ## **Description**
 This portfolio was created to provide information to people about myself regarding skills, origins, or identity. The description will be updated regularly and included in it.
 
-## Fitur Utama Aplikasi :
-- Home : Tampilan awal menampilkan deskripsi singkat tentang diri
+## **Fitur Utama Aplikasi** :
+<!-- - Home : Tampilan awal menampilkan deskripsi singkat tentang diri
 - About : Menampilkan identitas diri saya yang dimulai dari umur dll
 - Education : Menampilkan riwayat pendidikan
 - Experience : Menampilkan riwayat pengalaman
-- Contact : Menampilkan nomor telepon, email, dan alamat diri
+- Contact : Menampilkan nomor telepon, email, dan alamat diri -->
