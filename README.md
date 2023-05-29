@@ -1,5 +1,5 @@
 <div align="center">
-# MY PORTOFOLIO BY : KEVIN SIMORANGKIR
+<h1> Portofolio</h1>
 
 ## Deskripsi Singkat
 Portofolio ini dibuat untuk memberikan sebuah informasi kepada orang tentang diri saya mengenai skill, Asal, ataupun identitas diri. Untuk deskripsi akan diupdate secara berkala dan diinputkan didalamnya
