@@ -1,6 +1,11 @@
 <div align="center">
 <h1> Portofolio</h1>
 
+[![Library](https://img.shields.io/badge/pygame-orange)](#)
+[![Github Commit](https://img.shields.io/github/commit-activity/m/kevinsimorangkir21/VYN)](#)
+[![Github Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#)
+</div>
+
 ## Deskripsi Singkat
 Portofolio ini dibuat untuk memberikan sebuah informasi kepada orang tentang diri saya mengenai skill, Asal, ataupun identitas diri. Untuk deskripsi akan diupdate secara berkala dan diinputkan didalamnya
 
