@@ -14,4 +14,4 @@ This portfolio was created to provide information to people about myself regardi
 - About : Menampilkan identitas diri saya yang dimulai dari umur dll
 - Education : Menampilkan riwayat pendidikan
 - Experience : Menampilkan riwayat pengalaman
-- Contact : Menampilkan nomor telepon, email, dan alamat diri --> -->
+- Contact : Menampilkan nomor telepon, email, dan alamat diri --> 
