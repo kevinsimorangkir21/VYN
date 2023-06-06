@@ -63,7 +63,7 @@ section{
 }
 
 .btn:hover{
-    background:#FFEAAA;
+    background:#ffd65b;
 }
 
 .heading{
@@ -76,7 +76,7 @@ section{
 }
 
 .heading span{
-    color:#FFEAAA;
+    color:#ffd65b;
 }
 
 header{
@@ -96,15 +96,17 @@ header{
 header .user img{
     height:17rem;
     width:17rem;
+    box-shadow: #ffd65b;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1rem;
-    border:.7rem solid #FFEAAA;
+    border:.7rem solid #ffd65b;
 }
 
 header .user .name{
     font-size: 3.5rem;
-    color:#FFEAAA;
+    font-weight: bold;
+    color:#ffd65b;
 }
 
 header .user .post{
@@ -133,7 +135,7 @@ header .navbar ul li a{
 }
 
 header .navbar ul li a:hover{
-    background:var(--yellow);
+    background:#ffd65b;
 }
 
 #menu{
