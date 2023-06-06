@@ -16,7 +16,7 @@
 
 *::selection{
     background:#FFEAAA;
-    color:#333;
+    color:#ffffff;
 }
 
 html{
@@ -37,7 +37,7 @@ html::-webkit-scrollbar-thumb{
 }
 
 body{
-    background:#111;
+    background:#222;
     overflow-x: hidden;
     padding-left: 35rem;
 }
@@ -131,7 +131,7 @@ header .navbar ul li a{
     background:#333;
     color:#fff;
     font-size: 2rem;
-    border-radius: 5rem;
+    border-radius: 2rem;
 }
 
 header .navbar ul li a:hover{
@@ -168,7 +168,8 @@ header .navbar ul li a:hover{
 }
 
 .home h1 span{
-    color:var(--yellow);
+    color:#ffd65b;
+    font-weight: bold;
 }
 
 .home p{
