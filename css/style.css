@@ -290,7 +290,8 @@ header .navbar ul li a:hover{
     margin: 0.5rem 2.5rem;
     background: #333;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: bold;
     border-radius: 1rem;
 }
 
@@ -304,7 +305,13 @@ header .navbar ul li a:hover{
     text-align: center;
     font-size: 2rem;
     color:#000000;
-    background:#FFEAAA;
+    background:#ffd65b;
+}
+
+.education .box-container .box p1:hover{
+    background-color: #ffd65b;
+    color: #000000;
+    font
 }
 
 .portfolio .box-container{
