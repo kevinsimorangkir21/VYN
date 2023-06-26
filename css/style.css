@@ -369,6 +369,7 @@ header .navbar ul li a:hover{
     color:#eee;
     padding:1rem 0;
     font-weight: normal;
+    text-transform: none;
 }
 
 .contact .row .content .info h3 i{
