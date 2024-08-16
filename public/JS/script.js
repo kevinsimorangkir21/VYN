@@ -12,21 +12,21 @@ let dayValue = localStorage.getItem("dayValue") ? parseInt(localStorage.getItem(
 const timeFunction = setInterval(() => {
   secValue--;
 
-  if (secValue === 0) {
+  if (secValue < 0) {
+    secValue = 59;
     minValue--;
-    secValue = 60;
-  }
-  if (minValue === 0) {
-    hourValue--;
-    minValue = 60;
-  }
-  if (hourValue === 0) {
-    dayValue--;
-    hourValue = 24;
-  }
-
-  if (dayValue === 0) {
-    clearInterval(timeFunction);
+    if (minValue < 0) {
+      minValue = 59;
+      hourValue--;
+      if (hourValue < 0) {
+        hourValue = 23;
+        dayValue--;
+        if (dayValue < 0) {
+          clearInterval(timeFunction);
+          dayValue = 0; // Pastikan hari tidak menjadi negatif
+        }
+      }
+    }
   }
 
   // Update tampilan waktu
