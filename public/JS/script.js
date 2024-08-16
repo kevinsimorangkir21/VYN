@@ -6,8 +6,8 @@ const seconds = document.querySelector(".seconds .number"),
 // Inisialisasi nilai default jika tidak ada di localStorage
 let secValue = localStorage.getItem("secValue") ? parseInt(localStorage.getItem("secValue")) : 11;
 let minValue = localStorage.getItem("minValue") ? parseInt(localStorage.getItem("minValue")) : 2;
-let hourValue = localStorage.getItem("hourValue") ? parseInt(localStorage.getItem("hourValue")) : 2;
-let dayValue = localStorage.getItem("dayValue") ? parseInt(localStorage.getItem("dayValue")) : 1;
+let hourValue = localStorage.getItem("hourValue") ? parseInt(localStorage.getItem("hourValue")) : 7;
+let dayValue = localStorage.getItem("dayValue") ? parseInt(localStorage.getItem("dayValue")) : 0;
 
 const timeFunction = setInterval(() => {
   secValue--;
