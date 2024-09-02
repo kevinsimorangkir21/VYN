@@ -2,7 +2,7 @@ export const personalData = {
   name: "Kevin Simorangkir",
   profile: '/gweh.png',
   designation: "UI/UX Designer",
-  description: "Informatics Engineering students with some experience in my field. Having the ability to create a website in various communities / organizations and create UI (User Interface) and UX (User Experience) development. Currently wanting to return to develop website capabilities and UI/UX.",
+  description: "I am a student majoring in Informatics Engineering with various relevant experiences according to my interests. I have expertise in creating a website in a community and organization. I also have expertise in creating a UI and UX design both desktop and mobile visuals. And currently working in the world of UI / UX.",
   email: 'kevinsimorangkir777@gmail.com',
   phone: '+6282282512619',
   address: 'Bandar Lampung, Lampung, Indonesia',
