@@ -11,7 +11,7 @@ export const personalData = {
   linkedIn: 'https://www.linkedin.com/in/kevinsimorangkir/',
   twitter: 'https://x.com/vinsch01',
   stackOverflow: '#',
-  devUsername: "kevinsimorangkir",
+  devUsername: "vinsch01",
   resume: "https://drive.google.com/file/d/1CeL9q9pbpK75oaWCYlGKM0X77nYybrei/view?usp=sharing",
   portfolio: "https://drive.google.com/file/d/1neyj-TjNXvRz1LjA79g3r2at8qaWcISz/view?usp=sharing"
 }

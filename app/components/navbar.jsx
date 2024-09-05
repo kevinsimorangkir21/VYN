@@ -1,7 +1,6 @@
 // @flow strict
 import Link from "next/link";
 
-
 function Navbar() {
   return (
     <nav className="bg-transparent">
@@ -36,6 +35,11 @@ function Navbar() {
             <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#projects"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">Project</div></Link>
           </li>
         </ul>
+
+        {/* Menambahkan tulisan V.1.0 di dalam kotak */}
+        <div className="text-white border border-white px-2 py-1 ml-4">
+          V.1.0
+        </div>
       </div>
     </nav>
   );
