@@ -59,11 +59,15 @@ function Experience() {
                           <BsPersonWorkspace size={36} />
                         </div>
                         <div>
-                          <p className="text-base sm:text-xl mb-2 font-medium uppercase">
-                            {experience.title}
+                          <p className="text-base sm:text-base mb-2 font-medium uppercase">
+                            {experience.title} - <b>{experience.company}</b>
                           </p>
                           <p className="text-sm sm:text-base">
-                            {experience.company}
+                            {experience.description1}
+                            <br/>
+                            {experience.description2}
+                            <br/>
+                            {experience.description3}
                           </p>
                         </div>
                       </div>
