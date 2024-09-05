@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="./KVN.ico" />
+        <link rel="icon" type="image/png" href="./KVNS.png" />
       </head>
       <body className={inter.className}>
         <ToastContainer />

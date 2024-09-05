@@ -12,7 +12,7 @@ export const experiences = [
   {
     id: 2,
     title: "Event Planner",
-    company: "UXID Indonesia Regional Lampung",
+    company: "UXID Lampung",
     duration: "(Feb 2024 - Present)",
     description1:"1. Creating a design and developing an event concept that is in line with the Goals and Vision of UXID Lampung",
     description2:"2. Creating an event schedule and managing the future schedule in detail to ensure that every aspect can run according to the initial plan",
@@ -39,7 +39,7 @@ export const experiences = [
   },
   {
     id: 5,
-    title: "Competition Staff",
+    title: "Competition Division",
     company: "Swarnafest ITERA",
     duration: "(Oct 2022 - Dec 2022)",
     // description1:"1. Establish an efficient and effective communication flow and objectives in the design of the PIEC 2023 event",
@@ -48,7 +48,7 @@ export const experiences = [
   },
   {
     id: 6,
-    title: "Back End",
+    title: "Back End Developer",
     company: "PPLK ITERA 2022",
     duration: "(Jun 2022 - Aug 2022)",
     description1:"1. Design and develop efficient and scalable RESTful APIs.",

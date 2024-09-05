@@ -36,10 +36,10 @@ function Navbar() {
           </li>
         </ul>
 
-        {/* Menambahkan tulisan V.1.0 di dalam kotak */}
+        {/* Menambahkan tulisan V.1.0 di dalam kotak
         <div className="text-white border border-white px-2 py-1 ml-4">
           V.1.0
-        </div>
+        </div> */}
       </div>
     </nav>
   );
