@@ -12,7 +12,7 @@ export default defineConfig({
     tailwind(),
     robotsTxt(),
     maintenance({
-      enabled: true,
+      enabled: false,
       template: "/maintenance", // ✅ gunakan route, bukan path file
       allow: ["127.0.0.1"], // IP yg diizinkan bypass
     }),
