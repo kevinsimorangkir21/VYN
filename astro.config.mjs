@@ -7,14 +7,14 @@ import netlify from "@astrojs/netlify/functions";
 
 export default defineConfig({
   output: "server", // 🚨 tetap SSR
-  adapter: netlify(), // ✅ tambahkan ini
+  adapter: netlify(), // ✅ Netlify adapter
   integrations: [
     tailwind(),
     robotsTxt(),
     maintenance({
       enabled: true,
-      page: "/maintenance",
-      allow: ["127.0.0.1"],
+      page: "/maintenance", // ✅ gunakan route, bukan path file
+      allow: ["127.0.0.1"], // IP yg diizinkan bypass
     }),
   ],
 });
