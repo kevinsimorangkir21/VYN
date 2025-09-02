@@ -1,17 +1,20 @@
-import { defineConfig } from 'astro/config'
-import tailwind from "@astrojs/tailwind"
-import robotsTxt from "astro-robots-txt"
-import maintenance from "astro-maintenance"
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import robotsTxt from "astro-robots-txt";
+import maintenance from "astro-maintenance";
+import netlify from "@astrojs/netlify/functions"; 
+// kalau mau edge functions, pakai: "@astrojs/netlify/edge"
 
 export default defineConfig({
-  output: "server", // 🚨 wajib SSR supaya astro-maintenance bisa jalan
+  output: "server", // 🚨 tetap SSR
+  adapter: netlify(), // ✅ tambahkan ini
   integrations: [
     tailwind(),
     robotsTxt(),
     maintenance({
       enabled: true,
-      page: "/maintenance",   // arahkan ke halaman custom
-      allow: ["127.0.0.1"],   // whitelist localhost
-    })
-  ]
-})
+      page: "/maintenance",
+      allow: ["127.0.0.1"],
+    }),
+  ],
+});
