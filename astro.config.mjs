@@ -13,7 +13,7 @@ export default defineConfig({
     robotsTxt(),
     maintenance({
       enabled: true,
-      page: "/maintenance", // ✅ gunakan route, bukan path file
+      template: "/maintenance", // ✅ gunakan route, bukan path file
       allow: ["127.0.0.1"], // IP yg diizinkan bypass
     }),
   ],
