@@ -13,7 +13,7 @@ export default defineConfig({
     robotsTxt(),
     maintenance({
       enabled: true,
-      page: "/maintenance",
+      page: "src/pages/maintenance.astro",
       allow: ["127.0.0.1"],
     }),
   ],
