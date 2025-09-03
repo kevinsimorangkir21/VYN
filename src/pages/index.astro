@@ -1,51 +1,59 @@
 ---
-import Layout from "@/layouts/Layout.astro"
+import Layout from "@/layouts/Layout.astro";
 
-import AboutMe from "@/components/AboutMe.astro"
-import Briefcase from "@/components/icons/Briefcase.astro"
-import CodeIcon from "@/components/icons/Code.astro"
-import Experience from "@/components/Experience.astro"
-import ProfileCheck from "@/components/icons/ProfileCheck.astro"
-import Projects from "@/components/Projects.astro"
-import SectionContainer from "@/components/SectionContainer.astro"
-import Hero from "@/components/Hero.astro"
-import TitleSection from "@/components/TitleSection.astro"
+import AboutMe from "@/components/AboutMe.astro";
+import Briefcase from "@/components/icons/Briefcase.astro";
+import CodeIcon from "@/components/icons/Code.astro";
+import Experience from "@/components/Experience.astro";
+import ProfileCheck from "@/components/icons/ProfileCheck.astro";
+import Projects from "@/components/Projects.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import Hero from "@/components/Hero.astro";
+import TitleSection from "@/components/TitleSection.astro";
+
+import Popup from "@/components/Popup.astro";
 ---
 
 <Layout
   title="Portfolio KVNS 2025"
-  description="#"
+  description="Portfolio website by KVNS"
 >
   <main class="px-4">
+    <!-- Popup Maintenance Notice -->
+    <Popup 
+      show={true} 
+      once={true} 
+      message="⚠️ Scheduled Maintenance: kvn-tech.xyz will be under maintenance starting Friday, September 5, 2025 at 19:00 until Sunday, September 7, 2025 at 19:00. We apologize for the inconvenience."
+    />
+
     <SectionContainer class="py-16 md:py-36">
-      <Hero>
-      </slot>
-    </Hero>
+      <Hero />
     </SectionContainer>
+
     <div class="space-y-24">
-    <SectionContainer id="experience">
-      <TitleSection>
-        <Briefcase class="size-8" />
-        Journey Experience
-      </TitleSection>
-      <Experience />
-    </SectionContainer>
+      <SectionContainer id="experience">
+        <TitleSection>
+          <Briefcase class="size-8" />
+          Journey Experience
+        </TitleSection>
+        <Experience />
+      </SectionContainer>
 
-    <SectionContainer id="project">
-      <TitleSection>
-        <CodeIcon class="size-7" />
-        Project
-      </TitleSection>
-      <Projects />
-    </SectionContainer>
+      <SectionContainer id="project">
+        <TitleSection>
+          <CodeIcon class="size-7" />
+          Project
+        </TitleSection>
+        <Projects />
+      </SectionContainer>
 
-    <SectionContainer id="about-me">
-      <TitleSection>
-        <ProfileCheck class="size-8" />
-        About Me
-      </TitleSection>
-      <AboutMe />
-    </SectionContainer>
-  </div>
+      <SectionContainer id="about-me">
+        <TitleSection>
+          <ProfileCheck class="size-8" />
+          About Me
+        </TitleSection>
+        <AboutMe />
+      </SectionContainer>
+    </div>
   </main>
 </Layout>
