@@ -3,7 +3,11 @@ import tailwind from "@astrojs/tailwind";
 import robotsTxt from "astro-robots-txt";
 import maintenance from "astro-maintenance";
 import netlify from "@astrojs/netlify/functions"; 
-// kalau mau edge functions, pakai: "@astrojs/netlify/edge"
+
+// 🚨 Atur waktu maintenance
+const start = new Date("2025-09-05T19:00:00+07:00").getTime();
+const end   = new Date("2025-09-07T19:00:00+07:00").getTime();
+const now   = Date.now();
 
 export default defineConfig({
   output: "server", // 🚨 tetap SSR
@@ -12,9 +16,9 @@ export default defineConfig({
     tailwind(),
     robotsTxt(),
     maintenance({
-      enabled: false,
-      template: "/maintenance", // ✅ gunakan route, bukan path file
-      allow: ["127.0.0.1"], // IP yg diizinkan bypass
+      enabled: now >= start && now <= end, // ✅ otomatis aktif hanya di rentang waktu
+      template: "/maintenance", // 🚧 halaman maintenance custom
+      allow: ["127.0.0.1"], // ✅ IP yg boleh bypass
     }),
   ],
 });
