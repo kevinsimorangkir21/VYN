@@ -11,20 +11,17 @@ import SectionContainer from "@/components/SectionContainer.astro";
 import Hero from "@/components/Hero.astro";
 import TitleSection from "@/components/TitleSection.astro";
 
-import Popup from "@/components/Popup.astro";
+import BookIcon from "@/components/icons/Book.astro"; // 📚 icon baru
+
+const year = new Date().getFullYear();
 ---
 
 <Layout
-  title="Portfolio KVNS 2025"
+  title={`Portfolio of KEVINS ${year}`}
   description="Portfolio website by KVNS"
 >
   <main class="px-4">
-    <!-- Popup Maintenance Notice -->
-    <Popup 
-      show={true} 
-      once={true} 
-      message="⚠️ Scheduled Maintenance: kvn-tech.xyz will be under maintenance starting Friday, September 5, 2025 at 19:00 until Sunday, September 7, 2025 at 19:00. We apologize for the inconvenience."
-    />
+    <!-- Popup Maintenance Notice dihapus -->
 
     <SectionContainer class="py-16 md:py-36">
       <Hero />
@@ -34,7 +31,7 @@ import Popup from "@/components/Popup.astro";
       <SectionContainer id="experience">
         <TitleSection>
           <Briefcase class="size-8" />
-          Journey Experience
+          Work Experience
         </TitleSection>
         <Experience />
       </SectionContainer>
@@ -45,6 +42,57 @@ import Popup from "@/components/Popup.astro";
           Project
         </TitleSection>
         <Projects />
+      </SectionContainer>
+
+      <!-- 🔥 New Articles Section -->
+      <SectionContainer id="articles">
+        <TitleSection>
+          <BookIcon class="size-7" />
+          Articles
+        </TitleSection>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+          <a
+            href="/articles/pengalaman-kp-telkom"
+            class="group p-6 rounded-2xl shadow-md 
+                   bg-white/70 dark:bg-black/40 
+                   backdrop-blur-lg transition-transform hover:scale-[1.02]"
+          >
+            <h2 class="text-xl font-semibold mb-2 group-hover:text-pink-500">
+              Pengalaman Kerja Praktik (KP) / Magang di Telkom Witel Lampung
+            </h2>
+            <p class="text-sm opacity-80 mb-2">2025-09-01</p>
+            <p class="opacity-90">
+              During my internship at Telkom Witel Lampung under the BGES MBB...
+            </p>
+          </a>
+
+          <a
+            href="/articles/tips-seo-astro"
+            class="group p-6 rounded-2xl shadow-md 
+                   bg-white/70 dark:bg-black/40 
+                   backdrop-blur-lg transition-transform hover:scale-[1.02]"
+          >
+            <h2 class="text-xl font-semibold mb-2 group-hover:text-pink-500">
+              Tips Optimasi SEO di Astro
+            </h2>
+            <p class="text-sm opacity-80 mb-2">2025-09-03</p>
+            <p class="opacity-90">
+              Cara memanfaatkan Astro untuk SEO yang lebih baik dan performa maksimal.
+            </p>
+          </a>
+        </div>
+
+        <div class="mt-6 text-center">
+          <a 
+            href="/articles" 
+            class="inline-block px-5 py-2 rounded-xl font-medium
+                   bg-gradient-to-r from-pink-500 to-purple-600 
+                   text-white shadow-md hover:opacity-90 transition"
+          >
+            View All Articles →
+          </a>
+        </div>
       </SectionContainer>
 
       <SectionContainer id="about-me">

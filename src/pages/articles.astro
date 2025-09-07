@@ -1,0 +1,91 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+interface Article {
+  title: string
+  description: string
+  date: string
+  slug: string
+}
+
+const articles: Article[] = [
+  {
+    title: "Pengalaman Kerja Praktik (KP) / Magang di Telkom Witel Lampung",
+    description: "Pengenalan dasar tentang Astro, framework modern untuk membangun website cepat dan ringan.",
+    date: "2024-07-01",
+    slug: "pengalaman-kp-telkom"
+  },
+  {
+    title: "Tips Optimasi SEO di Astro",
+    description: "Cara memanfaatkan Astro untuk SEO yang lebih baik dan performa maksimal.",
+    date: "2025-09-03",
+    slug: "tips-seo-astro"
+  },
+  {
+    title: "Membuat Portfolio dengan Astro",
+    description: "Step by step membuat portfolio modern dengan integrasi TailwindCSS.",
+    date: "2025-09-05",
+    slug: "membuat-portfolio-astro"
+  }
+]
+---
+
+<Layout title="Articles" description="Daftar artikel terbaru">
+  <main class="flex-1 px-6 py-16">
+    <section class="max-w-5xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-12 text-center 
+                 bg-gradient-to-r from-pink-500 to-purple-600 
+                 bg-clip-text text-transparent">
+        📚 Artikel Terbaru
+      </h1>
+
+      <div class="grid gap-8 sm:grid-cols-2">
+        {articles.map((article, i) => (
+          <a
+            href={`/articles/${article.slug}`}
+            class="article-card group p-6 rounded-2xl shadow-md 
+                   bg-white/70 dark:bg-black/40 
+                   backdrop-blur-lg transition-all duration-300 
+                   hover:scale-[1.03] hover:shadow-xl border border-transparent 
+                   hover:border-pink-400"
+            style={{ animationDelay: `${i * 0.15}s` }}
+          >
+            <h2 class="text-2xl font-semibold mb-3 group-hover:text-pink-500">
+              {article.title}
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              {new Date(article.date).toLocaleDateString("id-ID", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              })}
+            </p>
+            <p class="text-base text-gray-700 dark:text-gray-300">
+              {article.description}
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    min-height: calc(100vh - 120px); /* biar tetap proporsional dengan header/footer */
+  }
+
+  /* Animasi card */
+  .article-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

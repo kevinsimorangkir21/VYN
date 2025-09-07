@@ -3,7 +3,7 @@ import SunIcon from "./icons/Sun.astro"
 import MoonIcon from "./icons/Moon.astro"
 import SystemIcon from "./icons/System.astro"
 
-const THEMES = ["Light", "Dark", "System"]
+const THEMES = ["Light", "Dark", "System", "SeventeenEight"]
 ---
 
 <div class="relative ml-1 mr-1">
@@ -14,15 +14,10 @@ const THEMES = ["Light", "Dark", "System"]
   >
     <span class="sr-only">Elige el tema</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
-    <MoonIcon
-      id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all"
-    />
-    <SystemIcon
-      id="system"
-      class="theme-toggle-icon absolute size-5 transition-all"
-    />
+    <MoonIcon id="dark" class="theme-toggle-icon absolute size-5 transition-all" />
+    <SystemIcon id="system" class="theme-toggle-icon absolute size-5 transition-all" />
   </button>
+
   <div
     transition:persist
     id="themes-menu"
@@ -51,11 +46,31 @@ const THEMES = ["Light", "Dark", "System"]
       transform: scale(0.8);
       opacity: 0;
     }
-
     to {
       transform: scale(1);
       opacity: 1;
     }
+  }
+
+  /* tema SeventeenEight */
+  .seventeen-eight {
+    --bg: linear-gradient(135deg, #F784C5, #1B602F);
+    --text: #f8fafc;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .seventeen-eight button,
+  .seventeen-eight a {
+    background-color: #F784C5;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .seventeen-eight button:hover,
+  .seventeen-eight a:hover {
+    background-color: #1B602F;
   }
 </style>
 
@@ -68,10 +83,7 @@ const THEMES = ["Light", "Dark", "System"]
     if (typeof localStorage !== "undefined") {
       return localStorage.getItem("theme") ?? "system"
     }
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light"
+    return matchMedia.matches ? "dark" : "light"
   }
 
   const updateIcon = (themePreference) => {
@@ -80,22 +92,33 @@ const THEMES = ["Light", "Dark", "System"]
     })
   }
 
+  const applyCustomTheme = (themePreference) => {
+    document.documentElement.classList.remove("seventeen-eight","dark")
+
+    switch (themePreference) {
+      case "seventeeneight": // ← normalisasi ke lowercase
+        document.documentElement.classList.add("seventeen-eight")
+        break
+      case "dark":
+      case "light":
+      case "system":
+        const isDark =
+          themePreference === "dark" ||
+          (themePreference === "system" && matchMedia.matches)
+        updateIcon(themePreference)
+        document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+        break
+    }
+  }
+
   const updateTheme = () => {
-    if (remove != null) {
-      remove()
-    }
+    if (remove != null) remove()
     matchMedia.addEventListener("change", updateTheme)
-    remove = () => {
-      matchMedia.removeEventListener("change", updateTheme)
-    }
+    remove = () => matchMedia.removeEventListener("change", updateTheme)
 
     const themePreference = getThemePreference()
-    const isDark =
-      themePreference === "dark" ||
-      (themePreference === "system" && matchMedia.matches)
-
     updateIcon(themePreference)
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+    applyCustomTheme(themePreference.toLowerCase())
   }
 
   updateTheme()
@@ -110,13 +133,18 @@ const THEMES = ["Light", "Dark", "System"]
 
   document.querySelectorAll(".themes-menu-option").forEach((element) => {
     element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
+      let chosen = e.target.innerText.trim().toLowerCase()
+
+      // normalize SeventeenEight → seventeeneight
+      if (chosen === "seventeeneight") chosen = "seventeeneight"
+
+      localStorage.setItem("theme", chosen)
       updateTheme()
     })
   })
 
   document.addEventListener('astro:after-swap', () => {
-    updateTheme();
-    window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
+    updateTheme()
+    window.scrollTo({ left: 0, top: 0, behavior: 'instant' })
   })
 </script>

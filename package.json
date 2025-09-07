@@ -13,11 +13,15 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/netlify": "^6.5.9",
+    "@astrojs/react": "^4.3.0",
     "@astrojs/tailwind": "^5.1.4",
     "@fontsource-variable/onest": "5.0.2",
+    "@tailwindcss/typography": "^0.5.16",
     "astro-maintenance": "^2.0.0",
     "astro-robots-txt": "1.0.0",
     "lucide-astro": "^0.525.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "react-icons": "^5.4.0",
     "tailwindcss": "3.4.1",
     "typescript": "5.3.3"

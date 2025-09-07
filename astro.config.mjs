@@ -3,6 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import robotsTxt from "astro-robots-txt";
 import maintenance from "astro-maintenance";
 import netlify from "@astrojs/netlify/functions"; 
+import react from "@astrojs/react";
 
 export default defineConfig({
   output: "server",
@@ -11,9 +12,10 @@ export default defineConfig({
     tailwind(),
     robotsTxt(),
     maintenance({
-      enabled: true, // langsung aktif maintenance
+      enabled: false, 
       template: "/maintenance",
-      allow: ["127.0.0.1"], // biar bisa akses lokal tanpa kena block
+      allow: ["127.0.0.1"],
     }),
+    react(), // <- integrasi React
   ],
 });

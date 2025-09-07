@@ -3,16 +3,19 @@ const personalImageAlt = "Miguel Ángel"
 import Badge from "@/components/Badge.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
+import Formulir from "@/components/icons/Formulir.astro"
+import Instagram from "@/components/icons/Instagram.astro"
 import SocialPill from "@/components/SocialPill.astro"
-import { DriveIcon } from 'lucide-react'; //
+import { DriveIcon } from 'lucide-react';
 ---
 
-<div class="max-w-xl">
+<div class="max-w-xl seventeen-eight-container">
   <div class="flex gap-4 mb-4">
     <img
       class="rounded-full shadow-lg size-16"
       src="/midudev.webp"
       alt={personalImageAlt}
+      loading="lazy"
     />
     <a
       href="https://www.linkedin.com/in/kevinsimorangkir/"
@@ -23,16 +26,15 @@ import { DriveIcon } from 'lucide-react'; //
       <Badge>Open To Work - Data Analyst / UI/UX Designer</Badge>
     </a>
   </div>
-  <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
-  >
+
+  <h1 class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white">
     Hello, I'm <b> Kevin Simorangkir </b>
   </h1>
-  <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
-  >
-  I am an informatics graduate with a strong foundation in the field of technology and design. I have solid experience in creating UI/UX prototype designs, designing logos for agencies and companies, and developing website infrastructures within community-based projects. In addition, I possess strong analytical skills in processing and interpreting data to support decision-making and improve user experience. Currently, I am actively involved and continuously exploring the world of UI/UX design, sharpening both my creative and technical skills. At the same time, I am also enhancing my experience in data analysis by working on data-driven tasks that contribute to strategic insights and performance improvement.
+
+  <p class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300">
+    I am a graduate of Informatic Engineering with a strong foundation in data programming and computer interaction design. I have relevant experience in my field, such as data analysis, UI/UX prototype design, database design, and website development. Through my experience, I have gained strong data analysis skills and improved user experience in UI/UX. Currently, I am actively involved and continue to learn and explore technologies in both data analysis and user interface design.
   </p>
+
   <nav class="flex flex-wrap gap-4 mt-8">
     <SocialPill href="mailto:vin.simorangkir81@gmail.com">
       <MailIcon class="size-4" />
@@ -42,8 +44,12 @@ import { DriveIcon } from 'lucide-react'; //
       <LinkedInIcon class="size-4" />
       LinkedIn
     </SocialPill>
-    <SocialPill href="https://drive.google.com/drive/folders/1GODGqGP1YXp2Nr6COsC0dNerA9tUTyDQ?usp=sharing">
-      <MailIcon class="size-4" />
+    <SocialPill href="https://www.instagram.com/vins.ch">
+      <Instagram class="size-4" />
+      Instagram
+    </SocialPill>
+    <SocialPill href="https://drive.google.com/file/d/1F9WT054aWFXBimIBtUKZUarpIro8BQZw/view?usp=sharing">
+      <Formulir class="size-4" />
       CV
     </SocialPill>
     <SocialPill href="https://drive.google.com/file/d/1bL9ht_Zh0IMhR8pXQYuVN-cvziKeppcj/view?usp=sharing">
@@ -56,3 +62,17 @@ import { DriveIcon } from 'lucide-react'; //
     </SocialPill>
   </nav>
 </div>
+
+<style is:global>
+  /* Hanya untuk tema SeventeenEight */
+  html.seventeen-eight .seventeen-eight-container,
+  html.seventeen-eight .seventeen-eight-container * {
+    color: #1b602f !important;
+  }
+
+  /* Opsional: override badge/links agar lebih terlihat */
+  html.seventeen-eight .seventeen-eight-container a,
+  html.seventeen-eight .seventeen-eight-container button {
+    color: #1b602f !important;
+  }
+</style>

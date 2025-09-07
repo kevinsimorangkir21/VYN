@@ -1,16 +1,18 @@
 ---
-import "@fontsource-variable/onest"
+import "@fontsource-variable/onest";
+import "../style/prose.css";
 
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro"
-import { ViewTransitions } from "astro:transitions"
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AccessibilityToolbar from "../components/AccessibilityToolbar.jsx";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
-const { description, title } = Astro.props
+const { description, title } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,15 +28,22 @@ const { description, title } = Astro.props
   </head>
 
   <body class="relative text-black dark:text-white">
+    <!-- background -->
     <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-    >
-    </div>
+      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full
+             bg-gray-50 dark:bg-gray-950
+             bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
+             dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+    ></div>
+
     <Header />
     <slot />
+
+    <!-- ✅ React Accessibility Toolbar -->
+    <AccessibilityToolbar client:load />
+
     <Footer />
+
     <style is:global>
       :root {
         color-scheme: light dark;
@@ -109,6 +118,44 @@ const { description, title } = Astro.props
             border-radius: 9999px;
           }
         }
+      }
+
+      /* -------------------------------
+         🎨 THEME: SeventeenEight
+      -------------------------------- */
+      html.seventeen-eight body > div:first-of-type {
+        background: linear-gradient(135deg, #F784C5, #f85cb5ff);
+      }
+
+      html.seventeen-eight body {
+        color: #fff;
+      }
+
+      html.seventeen-eight header a,
+      html.seventeen-eight header button,
+      html.seventeen-eight #theme-toggle-btn,
+      html.seventeen-eight #themes-menu li {
+        background-color: transparent;
+        color: #1B602F;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.75rem;
+        transition: background-color 0.2s ease;
+      }
+
+      html.seventeen-eight header a:hover,
+      html.seventeen-eight header button:hover,
+      html.seventeen-eight #theme-toggle-btn:hover,
+      html.seventeen-eight #themes-menu li:hover {
+        background-color: #ffffff22;
+      }
+
+      /* Accessibility Toolbar global */
+      body.large-text {
+        font-size: 1.25em;
+      }
+
+      body.high-contrast {
+        filter: invert(1) hue-rotate(180deg);
       }
     </style>
   </body>

@@ -1,0 +1,23 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import { getCollection } from "astro:content";
+
+const { slug } = Astro.params;
+const articles = await getCollection("articles");
+const article = articles.find((a) => a.slug === slug);
+
+if (!article) {
+  throw new Error(`Artikel dengan slug "${slug}" tidak ditemukan.`);
+}
+
+// Render content untuk mendapatkan komponen Content
+const { Content } = await article.render();
+---
+
+<ArticleLayout
+  title={article.data.title}
+  description={article.data.description}
+  date={article.data.pubDate}
+>
+  <Content />
+</ArticleLayout>

@@ -1,62 +1,43 @@
 ---
+// File yang kamu kasih
 import ExperienceItem from "./ExperienceItem.astro"
+
 const EXPERIENCE = [
   {
-    date: "August 2024 - December 2024",
-    title: "Project Manager",
-    company: "Yayasan Media Selaras",
+    date: "January 2025 - September 2025",
+    title: "Creative",
+    company: "PT. Yayasan Media Selaras Cendekiawan",
+    status: "Freelance", // ⬅️ tambahin status di sini
     description:
-      "Leading a Media Aligned Website Project Design Team, Implementing project planning and scheduling, Conducting regular monitoring and reporting of progress throughout the project flow, and Conducting evaluation of project design and implementation",
+      "Design social media feeds and stories in line with the specified color palette. During the period, use 3 different themes to provide interesting variety; Designing logos for six departments: Founder, Secretary, Treasurer, Project Management, Partnership, and Creative. The six logos were designed using six different colors; Work with the partnership team to design a partner guidebook based on the specifications provided; Designing OBS layouts, certificates, and posters for webinars/seminars requested by the Project Management department.",
     link: "#",
   },
   {
-    date: "August 2024 -  October 2024",
-    title: "Class Manager",
-    company: "Telkom Indonesia",
+    date: "August 2024 - October 2024",
+    title: "Project Manager",
+    company: "PT. Yayasan Media Selaras Cendekiawan",
+    status: "Freelance", // ⬅️ tambahin status di sini
     description:
-      "Manage both Soft Skill and Hard Skill classes, Become a communication bridge from mentees to the Digistar Team, Conduct assessments, evaluations, and feedback to the mentees they manage, and Guide and pay attention to mentees so that they are always on the right path/track",
+      "Overseeing a team with three divisions, namely UI/UX, Front End, and Back End, to complete projects properly and in a structured manner with a target of 85%–95% by the end of September; Monitoring the project budget appropriately so that it is in line with the initial objectives of the project; Conduct weekly evaluations twice a week with a target of 5%–7% for each division every week; Submit weekly reports to superiors detailing the workflow, appropriate budget, weekly progress, and development targets.",
+    link: "#",
   },
   {
     date: "July 2024 - August 2024",
-    title: "Business Government Enterprise Service Intern",
+    title: "BGES MBB",
     company: "Telkom Witel Lampung",
+    status: "Internship", // ⬅️ tambahin status di sini
     description:
-      "Learning the flow of internet customer data management from the initial installation stage to installation, Creating a website-based customer data management system, and Learning network engineering at PT Telkom Indonesia Learning the history, information, and definition of PT Telkom Indonesia",
+      "Performing data analysis on Indibiz installations in Lampung in the period from January 2023 to June 2024 using SQL combined with PHP; Developing the Indibiz customer data analysis dashboard website called ‘Kedaton Connect’ for the Telkom Akses Kedaton sector using the Waterfall method workflow with two divisions of work, namely Front End and Back End; Conducting in-depth learning about Telkom Indonesia from top to bottom with several related parent companies.",
+    link: "#",
   },
   {
     date: "February 2024 - July 2024",
     title: "Web Development",
-    company: "Baparekraf Digital Talent (BDT)",
+    company: "Baparekraf Digital Talent",
+    status: "Internship", // ⬅️ tambahin status di sini
     description:
-      "Designing an attractive and efficient User Interface (UI) according to user needs, Building and developing systems using HTML, CSS, Java Script, and several other frameworks, Ensuring cross-browser and device capabilities and functions, Building and designing logic on the back server, Designing database systems and APIs that can be integrated with other device systems, Performing troubleshooting and bug fixes that are carried out periodically for the sake of a capable, good system function, and being able to follow the latest technological developments, and Performing good, efficient, and effective cooperation in creating a system from design to publication of the system in one team goal",
-  },
-  {
-    date: "April 2024 - September 2024",
-    title: "Human Resource Development",
-    company: "Duta Potensi Pemuda Indonesia",
-    description:
-      "Create a design, identify, and compile a program based on the needs for the development of Human Resources that are growing and comprehensive based on the analysis, objectives, and feedback of the organization, Create an Ambassador training in developing the potential of the individual to interpret as an Ambassador, Provide support and build a network of cooperation in developing each potential that exists, and Ensure compliance with organizational policies and procedures in line with Human Resources development.",
-  },
-  {
-    date: "October 2023 - December 2023",
-    title: "Event Division",
-    company: "Lampung Leadership Forum",
-    description:
-      "Assist in preparing event logistics including setting up the venue, equipment and materials for the event, Assist in organizing participant registration including preparing materials and managing data on participants who attend, Ensure all equipment and event materials are available and ready to use, and Coordinating with vendors and suppliers regarding event needs",
-  },
-  {
-    date: "October 2023 - December 2023",
-    title: "Head of Public Relation Division",
-    company: "PMK ITERA Easter Celebration 2024",
-    description:
-      "Establish an efficient and effective communication flow and objectives in the design of the PIEC 2023 event, Determine and develop a measurable strategy that is aligned with the objectives of the PIEC 2023 event, Identify and channel communication with the target audience effectively in the sustainability of the event, Build and maintain good and effective internal and external relationships, and Ensure that the targets carried out are in accordance with the event scheme and objectives",
-  },
-  {
-    date: "March 2023 - December 2023",
-    title: "Competition Division",
-    company: "Swarnafest ITERA",
-    description:
-      "Determine the assessment criteria and mechanisms in the competition, Prepare the timeline, technical implementation, and promotional materials and publications for the competition, and Create an ITERA 2022 Swarnafest Competition information system with a UI/UX concept that has been prepared and arranged in such a way.",
+      "Study the website development process thoroughly in order to meet client expectations; Developing a website with the theme of agriculture with the aim of solving these problems. The website was developed under the name ‘Harvesty’ using the PHP programming language and combined with the CSS framework Bootstrap; Creating a workflow using the Waterfall method, from UI/UX design execution to back-end development on the website, with a target completion date of mid-June 2024, is now 100% complete, based on weekly progress of 4%–7%; Collaborate with the development team with communication skills, leadership, and high enthusiasm, and prioritize goals with the team.",
+    link: "#",
   },
 ]
 ---
@@ -64,7 +45,7 @@ const EXPERIENCE = [
 <ol class="relative mt-16">
   {
     EXPERIENCE.map((experience) => (
-      <li class="">
+      <li>
         <ExperienceItem {...experience} />
       </li>
     ))
