@@ -5,43 +5,64 @@ const { show = true, once = false } = Astro.props;
 <div
   id="popup"
   data-once={once ? "true" : "false"}
-  class={`fixed inset-0 bg-gradient-to-br from-black/60 to-slate-900/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-300 ${
+  class={`fixed inset-0 bg-gradient-to-br from-black/70 to-slate-900/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-300 ${
     show ? "opacity-100" : "hidden opacity-0 pointer-events-none"
   }`}
 >
   <div
     id="popupContent"
-    class="bg-white/90 backdrop-blur-sm text-black rounded-2xl shadow-2xl max-w-lg w-full p-6 space-y-4 relative transform transition-all duration-300 scale-95"
+    class="bg-white/95 dark:bg-gray-900/90 backdrop-blur-xl text-black dark:text-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden transform transition-all duration-300 scale-95"
   >
-    <!-- Close button -->
+    <!-- Header dengan versi -->
+    <div class="bg-gradient-to-r from-pink-500 to-purple-600 p-4 flex justify-between items-center">
+      <h2 class="text-xl font-bold text-white">🌐 Domain Update</h2>
+      <span class="bg-white/20 text-white text-xs font-semibold px-2 py-1 rounded-full">
+        V.2.0
+      </span>
+    </div>
+
+    <div class="p-6 space-y-4">
+      <p>
+        Kami informasikan bahwa domain lama <strong>kvn-tech.xyz</strong> akan
+        <span class="text-green-600 font-semibold">berpindah</span> ke domain baru mulai:
+      </p>
+
+      <div class="text-center">
+        <p class="text-sm opacity-70">Mulai Tanggal</p>
+        <p class="text-2xl font-extrabold text-pink-600">📅 12 Oktober 2025</p>
+      </div>
+
+      <div class="text-center">
+        <p class="text-lg font-bold text-sky-600">
+          👉 <a href="https://kvn-code.asia" target="_blank" class="underline hover:text-sky-700">
+            kvn-code.asia
+          </a>
+        </p>
+      </div>
+
+      <p class="text-center opacity-80">
+        Harap gunakan alamat baru ini untuk mengakses layanan kami mulai tanggal tersebut.  
+        Terima kasih atas dukungan Anda 🙏
+      </p>
+
+      <div class="flex justify-center pt-2">
+        <button
+          id="okPopup"
+          class="px-5 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold shadow-md hover:opacity-90 transition"
+        >
+          OK, Mengerti
+        </button>
+      </div>
+    </div>
+
+    <!-- Tombol Close -->
     <button
       id="closePopup"
-      class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl"
+      class="absolute top-2 right-2 text-white bg-black/40 hover:bg-black/60 rounded-full w-8 h-8 flex items-center justify-center text-lg"
       aria-label="Close"
     >
       ✖
     </button>
-
-    <!-- Content -->
-    <h2 class="text-2xl font-bold">⚠️ Maintenance Notice</h2>
-    <div class="space-y-2">
-      <p>
-        The website <strong>kvn-tech.xyz</strong> will undergo maintenance from:<br />
-        📅 <strong>Friday, September 5, 2025</strong> at <strong>19:00 WIB</strong><br />
-        until<br />
-        📅 <strong>Sunday, September 7, 2025</strong> at <strong>19:00 WIB</strong>.
-      </p>
-      <p class="text-red-500">We apologize for the inconvenience 🙏</p>
-    </div>
-
-    <div class="flex justify-end pt-4">
-      <button
-        id="okPopup"
-        class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium shadow-md transition"
-      >
-        OK
-      </button>
-    </div>
   </div>
 </div>
 
@@ -54,7 +75,6 @@ const { show = true, once = false } = Astro.props;
 
     const once = popup?.dataset.once === "true";
 
-    // Hide immediately if once=true and already dismissed this session
     if (once && sessionStorage.getItem("popupDismissed")) {
       popup.classList.add("hidden", "opacity-0", "pointer-events-none");
       return;
@@ -69,12 +89,10 @@ const { show = true, once = false } = Astro.props;
     closeBtn?.addEventListener("click", closePopup);
     okBtn?.addEventListener("click", closePopup);
 
-    // Close on outside click
     popup?.addEventListener("click", (e) => {
       if (!content.contains(e.target)) closePopup();
     });
 
-    // Close on Escape
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closePopup();
     });

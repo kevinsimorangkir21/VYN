@@ -10,8 +10,10 @@ import Projects from "@/components/Projects.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import Hero from "@/components/Hero.astro";
 import TitleSection from "@/components/TitleSection.astro";
+import BookIcon from "@/components/icons/Book.astro";
 
-import BookIcon from "@/components/icons/Book.astro"; // 📚 icon baru
+// 🔥 import popup
+import Popup from "@/components/Popup.astro";
 
 const year = new Date().getFullYear();
 ---
@@ -21,7 +23,8 @@ const year = new Date().getFullYear();
   description="Portfolio website by KVNS"
 >
   <main class="px-4">
-    <!-- Popup Maintenance Notice dihapus -->
+    <!-- 🔥 Popup aktif -->
+    <Popup show={true} once={false} />
 
     <SectionContainer class="py-16 md:py-36">
       <Hero />
