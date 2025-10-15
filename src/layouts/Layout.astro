@@ -31,17 +31,15 @@ const { description, title } = Astro.props;
     <!-- background -->
     <div
       class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full
-             bg-gray-50 dark:bg-gray-950
-             bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-             dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+             bg-gray-50 dark:bg-[#161616]
+             bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(240,223,170,0.35),rgba(255,255,255,0.9))]
+             dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(196,176,115,0.15),rgba(22,22,22,1))]"
     ></div>
 
     <Header />
     <slot />
 
-    <!-- ✅ React Accessibility Toolbar -->
     <AccessibilityToolbar client:load />
-
     <Footer />
 
     <style is:global>
@@ -71,9 +69,11 @@ const { description, title } = Astro.props;
       @media (prefers-color-scheme: dark) {
         body {
           color: rgba(255, 255, 255, 0.9);
+          background-color: #161616;
         }
       }
 
+      /* 🔸 Header blur effect */
       #header-nav {
         animation: blur linear both 0.5s;
         animation-timeline: scroll();
@@ -89,42 +89,38 @@ const { description, title } = Astro.props;
           display: flex;
           flex-direction: row;
           align-items: center;
-          background-color: rgb(229, 229, 229);
+          background-color: rgb(240, 230, 200);
           border-radius: 9999px;
+          box-shadow:
+            0 0 20px rgba(212, 175, 55, 0.2),
+            inset 0 0 5px rgba(196, 176, 115, 0.5);
         }
       }
 
       @media (prefers-color-scheme: dark) {
         @keyframes blur {
-          from {
-            border: 0px;
-          }
           to {
             box-shadow:
-              0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-              0px 0px 0 1px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.3);
+              0px 5px 50px -5px rgba(0, 0, 0, 0.4),
+              0px 0px 10px 1px rgba(212, 175, 55, 0.2);
+            background: rgba(22, 22, 22, 0.85);
             backdrop-filter: blur(20px);
             border-width: 1px;
-            border-color: rgba(0, 0, 0);
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
+            border-color: rgba(212, 175, 55, 0.3);
+            padding: 0.25rem 0.75rem;
             display: flex;
             flex-direction: row;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.3);
             border-radius: 9999px;
           }
         }
       }
 
       /* -------------------------------
-         🎨 THEME: SeventeenEight
+         ✨ THEME: Gold Edition
       -------------------------------- */
       html.seventeen-eight body > div:first-of-type {
-        background: linear-gradient(135deg, #F784C5, #f85cb5ff);
+        background: linear-gradient(135deg, #C4B073, #D4AF37);
       }
 
       html.seventeen-eight body {
@@ -136,20 +132,21 @@ const { description, title } = Astro.props;
       html.seventeen-eight #theme-toggle-btn,
       html.seventeen-eight #themes-menu li {
         background-color: transparent;
-        color: #1B602F;
+        color: #D4AF37;
         border-radius: 0.5rem;
         padding: 0.25rem 0.75rem;
-        transition: background-color 0.2s ease;
+        transition: color 0.2s ease, background-color 0.2s ease;
       }
 
       html.seventeen-eight header a:hover,
       html.seventeen-eight header button:hover,
       html.seventeen-eight #theme-toggle-btn:hover,
       html.seventeen-eight #themes-menu li:hover {
-        background-color: #ffffff22;
+        color: #fff;
+        background-color: rgba(212, 175, 55, 0.2);
       }
 
-      /* Accessibility Toolbar global */
+      /* Accessibility Toolbar */
       body.large-text {
         font-size: 1.25em;
       }

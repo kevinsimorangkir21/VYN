@@ -8,93 +8,35 @@ import SQL from "./icons/SQL.astro"
 import Figma from "./icons/Figma.astro"
 import Tableau from "./icons/Tableau.astro"
 import Excel from "./icons/Excel.astro"
-import Looker from "./icons/Looker.astro"
-import TypeScript from "./icons/TypeScript.astro"
 import Prototype from "./icons/Pro.astro"
 
 const TAGS = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
-    iconSize: "w-4 h-4",
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
-    iconSize: "w-4 h-4",
-  },
-  GITHUB: {
-    name: "GitHub",
-    class: "bg-gray-800 text-white",
-    icon: GitHub,
-    iconSize: "w-4 h-4",
-  },
-  LINK: {
-    name: "Link",
-    class: "bg-blue-600 text-white",
-    icon: Link,
-    iconSize: "w-4 h-4",
-  },
-  SQL: {
-    name: "SQL",
-    class: "bg-indigo-600 text-white",
-    icon: SQL,
-    iconSize: "w-4 h-4",
-  },
-  FIGMA: {
-    name: "Figma",
-    class: "bg-pink-500 text-white",
-    icon: Figma,
-    iconSize: "w-4 h-4",
-  },
-  TABLEAU: {
-    name: "Tableau",
-    class: "bg-[#E97627] text-white",
-    icon: Tableau,
-    iconSize: "w-4 h-4",
-  },
-  EXCEL: {
-    name: "Excel",
-    class: "bg-green-600 text-white",
-    icon: Excel,
-    iconSize: "w-3.5 h-3.5", // lebih kecil biar proporsional
-  },
-  PROTOTYPE: {
-    name: "Prototype",
-    class: "bg-black text-white",
-    icon: Prototype,
-    iconSize: "w-4 h-4",
-  },
+  NEXT: { name: "Next.js", class: "bg-[#111111] text-white", icon: NextJS, iconSize: "w-4 h-4" },
+  TAILWIND: { name: "Tailwind CSS", class: "bg-[#0A2540] text-white", icon: Tailwind, iconSize: "w-4 h-4" },
+  GITHUB: { name: "GitHub", class: "bg-[#1A1A1A] text-white", icon: GitHub, iconSize: "w-4 h-4" },
+  LINK: { name: "Link", class: "bg-[#1E3A8A] text-white", icon: Link, iconSize: "w-4 h-4" },
+  SQL: { name: "SQL", class: "bg-[#312E81] text-white", icon: SQL, iconSize: "w-4 h-4" },
+  FIGMA: { name: "Figma", class: "bg-[#9D174D] text-white", icon: Figma, iconSize: "w-4 h-4" },
+  TABLEAU: { name: "Tableau", class: "bg-[#9A4E1C] text-white", icon: Tableau, iconSize: "w-4 h-4" },
+  EXCEL: { name: "Excel", class: "bg-[#14532D] text-white", icon: Excel, iconSize: "w-3.5 h-3.5" },
+  PROTOTYPE: { name: "Prototype", class: "bg-[#0D0D0D] text-white", icon: Prototype, iconSize: "w-4 h-4" },
 }
 
 const CATEGORIES = {
-  WEB_DEV: {
-    name: "Web Development",
-    class: "bg-blue-600 text-white",
-  },
-  DATA_ANALYST: {
-    name: "Data Analyst",
-    class: "bg-green-600 text-white",
-  },
-  UIUX: {
-    name: "UI/UX Designer",
-    class: "bg-purple-600 text-white",
-  },
-  GRAPHIC: {
-    name: "Graphic Design",
-    class: "bg-pink-600 text-white",
-  },
+  WEB_DEV: { name: "Web Development", class: "bg-[#1E3A8A] text-white" },
+  DATA_ANALYST: { name: "Data Analyst", class: "bg-[#14532D] text-white" },
+  UIUX: { name: "UI/UX Designer", class: "bg-[#4C1D95] text-white" },
+  GRAPHIC: { name: "Graphic Design", class: "bg-[#831843] text-white" },
 }
 
 const PROJECTS = [
   {
     title: "Harvesty - Sustainable Farming For A Healthier Future",
     description:
-      "An information system related to agriculture. This information system is called ‘Harvesty’, which comes from the English word ‘harvest’, closely related to agriculture. This information system was created with the aim of facilitating the management of agricultural product sales.",
+      "An information system related to agriculture. This system, ‘Harvesty’, helps manage agricultural product sales efficiently.",
     link: "https://idlaesy.github.io/harvesty/",
-    prototype: "https://www.figma.com/design/SiRm4zOGvOHXEVt8pz7dyZ/Harvesty---Capstone-Project-2024?node-id=19-125&t=GfnVlIsMf4TjDT5K-1",
+    prototype:
+      "https://www.figma.com/design/SiRm4zOGvOHXEVt8pz7dyZ/Harvesty---Capstone-Project-2024?node-id=19-125&t=GfnVlIsMf4TjDT5K-1",
     github: "https://github.com/idlaesy/harvesty.git",
     image: "/harvesty.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
@@ -103,9 +45,10 @@ const PROJECTS = [
   {
     title: "SIPAD (Data Analysis Monitoring Information System)",
     description:
-      "This prototype was created with the aim of facilitating the analysis of disaster data in Bandar Lampung. The prototype is called ‘SIPAD’, which stands for Data Analysis Monitoring Information System. The data is also processed using Excel, which is refined by performing a cleaning stage.",
-    prototype: "https://www.figma.com/design/u5ZzqxZfjYboeGLYgSiIoT/Sistem-Kebencanaan-Kota-Bandar-Lampung?node-id=0-1&t=SSSPvh0B42fkFlIA-1",
-    link: "https://www.figma.com/proto/u5ZzqxZfjYboeGLYgSiIoT/Sistem-Kebencanaan-Kota-Bandar-Lampung?page-id=2%3A5&node-id=499-13187&viewport=533%2C465%2C0.1&t=wvvjt4GvfgyAa9Bp-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=499%3A13187&show-proto-sidebar=1", // contoh link figma prototype
+      "A disaster data analysis prototype called ‘SIPAD’. The project utilizes Excel for data cleaning and visualization.",
+    prototype:
+      "https://www.figma.com/design/u5ZzqxZfjYboeGLYgSiIoT/Sistem-Kebencanaan-Kota-Bandar-Lampung?node-id=0-1&t=SSSPvh0B42fkFlIA-1",
+    link: "https://www.figma.com/proto/u5ZzqxZfjYboeGLYgSiIoT/Sistem-Kebencanaan-Kota-Bandar-Lampung?page-id=2%3A5&node-id=499-13187&viewport=533%2C465%2C0.1&t=wvvjt4GvfgyAa9Bp-1&scaling=scale-down",
     image: "/SIPAD.webp",
     tags: [TAGS.EXCEL, TAGS.FIGMA, TAGS.PROTOTYPE],
     categories: [CATEGORIES.DATA_ANALYST, CATEGORIES.UIUX],
@@ -113,9 +56,10 @@ const PROJECTS = [
   {
     title: "REFORA (Reservation Food of ITERA)",
     description:
-      "This prototype was created with the aim of facilitating the analysis of disaster data in Bandar Lampung. The prototype is called ‘SIPAD’, which stands for Data Analysis Monitoring Information System. The data is also processed using Excel, which is refined by performing a cleaning stage.",
-    prototype: "https://www.figma.com/design/98IOkbRcQo6lRO0oRG0rnj/Design-Aplikasi-Kantin-ITERA?node-id=0-1&t=Eji0Ln7EmTipN38T-1",
-    link: "https://www.figma.com/proto/98IOkbRcQo6lRO0oRG0rnj/Design-Aplikasi-Kantin-ITERA?page-id=0%3A1&node-id=121-4276&p=f&viewport=483%2C518%2C0.04&t=u8h8ymUQVqwwp1aT-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=121%3A4306&show-proto-sidebar=1", // contoh link figma prototype
+      "‘REFORA’ is a canteen food reservation prototype designed for ITERA students to streamline food ordering.",
+    prototype:
+      "https://www.figma.com/design/98IOkbRcQo6lRO0oRG0rnj/Design-Aplikasi-Kantin-ITERA?node-id=0-1&t=Eji0Ln7EmTipN38T-1",
+    link: "https://www.figma.com/proto/98IOkbRcQo6lRO0oRG0rnj/Design-Aplikasi-Kantin-ITERA?page-id=0%3A1&node-id=121-4276&p=f&viewport=483%2C518%2C0.04&t=u8h8ymUQVqwwp1aT-1&scaling=scale-down",
     image: "/REFORA.webp",
     tags: [TAGS.FIGMA, TAGS.PROTOTYPE],
     categories: [CATEGORIES.UIUX],
@@ -123,68 +67,82 @@ const PROJECTS = [
 ]
 ---
 
-<div class="flex flex-col gap-y-16 seventeen-eight-projects">
-  {
-    PROJECTS.map(({ image, title, description, tags, categories, link, github, prototype }) => (
-    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-      <div class="w-full md:w-1/2">
-        <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-          <img alt="Not Found Image" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+<div class="flex flex-col gap-y-16">
+  {PROJECTS.map((project) => {
+    const { image, title, description, tags, categories, link, github, prototype } = project
+
+    return (
+      <article class="group flex flex-col md:flex-row space-x-8 space-y-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center gap-8 overflow-clip rounded-xl shadow-xl transform transition duration-500 ease-in-out md:group-hover:-translate-y-1 md:group-hover:shadow-2xl border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 bg-white/70 dark:bg-gray-900/60">
+            <img
+              alt="Project image"
+              class="object-cover w-full h-56 md:h-full md:scale-110 md:group-hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
+          </div>
         </div>
-      </div>
 
-      <div class="w-full md:w-1/2 md:max-w-lg">
-        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-          {title}
-        </h3>
-        
-        {/* Categories */}
-        <ul class="flex flex-row mt-2 mb-2 gap-x-2 flex-wrap">
-          {categories.map((cat) => (
-            <li>
-              <span class={`rounded-full text-xs ${cat.class} py-1 px-3`}>
-                {cat.name}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
 
-        {/* Tags */}
-        <ul class="flex flex-row mb-2 gap-x-2 flex-wrap">
-          {tags.map((tag) => (
-            <li>
-              <span class={`flex items-center gap-1.5 rounded-full text-xs ${tag.class} py-1 px-3`}>
-                <tag.icon class={tag.iconSize} />
-                {tag.name}
-              </span>
-            </li>
-          ))}
-        </ul>
+          <!-- Categories -->
+          <ul class="flex flex-wrap mt-2 gap-x-2 mb-2">
+            {categories.map((cat) => (
+              <li key={cat.name}>
+                <span class={`rounded-full text-xs ${cat.class} py-1 px-3`}>{cat.name}</span>
+              </li>
+            ))}
+          </ul>
 
-        <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
-        
-        <footer class="flex items-end justify-start mt-4 gap-x-4">
-          {github && (
-            <LinkButton href={github}>
-              <GitHub class="size-6" />
-              Code
-            </LinkButton>
-          )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
-          )}
-          {prototype && (
-            <LinkButton href={prototype}>
-              <Prototype class="size-4" />
-              Prototype
-            </LinkButton>
-          )}
-        </footer>
-      </div>
-    </article>
-    ))
-  }
+          <!-- Tags -->
+          <ul class="flex flex-wrap mb-2 gap-x-2">
+            {tags.map((tag) => (
+              <li key={tag.name}>
+                <span class={`flex items-center gap-1.5 rounded-full text-xs ${tag.class} py-1 px-3`}>
+                  <tag.icon class={tag.iconSize} />
+                  {tag.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="mt-2 text-gray-700 dark:text-gray-400">{description}</p>
+
+          <footer class="flex items-end justify-start mt-4 gap-x-4">
+            {github && (
+              <LinkButton
+                href={github}
+                class="border-2 border-[#C4B073] text-gray-900 dark:text-white bg-transparent hover:bg-[#C4B073]/10 dark:hover:bg-[#C4B073]/30 transition-all px-4 py-2 rounded-md flex items-center gap-2"
+              >
+                <GitHub class="w-5 h-5" />
+                Code
+              </LinkButton>
+            )}
+
+            {link && (
+              <LinkButton
+                href={link}
+                class="border-2 border-[#C4B073] text-gray-900 dark:text-white bg-transparent hover:bg-[#C4B073]/10 dark:hover:bg-[#C4B073]/30 transition-all px-4 py-2 rounded-md flex items-center gap-2"
+              >
+                <Link class="w-5 h-5" />
+                Preview
+              </LinkButton>
+            )}
+
+            {prototype && (
+              <LinkButton
+                href={prototype}
+                class="border-2 border-[#C4B073] text-gray-900 dark:text-white bg-transparent hover:bg-[#C4B073] hover:text-white dark:hover:bg-[#A89B64] transition-all px-4 py-2 rounded-md flex items-center gap-2"
+              >
+                <Prototype class="w-5 h-5" />
+                Prototype
+              </LinkButton>
+            )}
+          </footer>
+        </div>
+      </article>
+    )
+  })}
 </div>

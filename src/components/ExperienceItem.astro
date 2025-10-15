@@ -7,51 +7,147 @@ interface Props {
   description: string;
   link?: string;
   date: string;
-  status: string; // ⬅️ Tambahkan status
+  status: string;
+  index?: number;
+  isLast?: boolean; // ➕ tambahkan properti untuk tahu apakah ini item terakhir
 }
 
-const { title, company, description, link, date, status } = Astro.props as Props;
+const { title, company, description, link, date, status, index = 0, isLast = false } =
+  Astro.props as Props;
+
+const statusColors = {
+  Ongoing: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+  Completed: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+  Planned: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+};
+
+const badgeClass =
+  statusColors[status] ||
+  "bg-gray-100 text-gray-800 dark:bg-gray-800/30 dark:text-gray-300";
 ---
 
 <div
-  class="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4"
+  class={`timeline-item relative mx-6 md:mx-12 pb-12 grid opacity-0 translate-y-6 transition-all duration-700 ease-out
+  before:absolute before:left-[-27px] before:top-0 before:block 
+  before:w-[2px] before:bg-[#C4B073]/50 dark:before:bg-[#C4B073]/30 before:content-['']
+  md:grid-cols-5 md:gap-10 md:space-x-4
+  ${index % 2 === 0 ? "slide-left" : "slide-right"}
+  ${isLast ? "before:h-[1.5rem]" : "before:h-full"}`}
 >
   <div class="relative pb-12 md:col-span-2">
     <div class="sticky top-0">
-      <span class="text-yellow-400 -left-[42px] absolute rounded-full text-5xl">&bull;</span>
-      <h3 class="text-xl font-bold text-yellow-400">{title}</h3>
-      <h4 class="font-semibold text-xl text-gray-600 dark:text-white">{company}</h4>
+      <!-- Titik timeline -->
+      <span
+        class="absolute -left-[31px] top-1 z-10 rounded-full w-3.5 h-3.5 bg-[#C4B073] 
+        shadow-[0_0_6px_rgba(196,176,115,0.6)]"
+      ></span>
+
+      <h3 class="text-xl font-bold text-[#C4B073]">{title}</h3>
+      <h4 class="font-semibold text-lg text-gray-700 dark:text-gray-200">{company}</h4>
 
       <!-- Status badge -->
       <span
-        class="inline-block mt-1 px-2 py-0.5 text-xs font-medium rounded-full
-        bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-300"
+        class={`inline-block mt-1 px-2.5 py-0.5 text-xs font-medium rounded-full shadow-sm ${badgeClass}`}
       >
         {status}
       </span>
 
-      <time class="block mt-1 text-sm text-gray-600/80 dark:text-white/80">{date}</time>
+      <time class="block mt-1 text-sm text-gray-500 dark:text-gray-400">{date}</time>
     </div>
   </div>
-  <div class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3">
+
+  <div
+    class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3 leading-relaxed"
+  >
     {description}
-    {link && (
-      <LinkInline href={link}>
-      </LinkInline>
-    )}
+    {link && <LinkInline href={link} />}
   </div>
 </div>
 
 <style is:global>
-  /* Hanya untuk tema SeventeenEight */
-  html.seventeen-eight h3.text-yellow-400,
-  html.seventeen-eight span.text-yellow-400 {
-    color: #000072 !important; /* kuning jadi biru */
+  /* ===============================
+     ✨ Garis Penghubung Timeline
+     =============================== */
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -26px;
+    top: 0;
+    width: 2px;
+    background-color: #C4B073;
+    opacity: 0.4;
+  }
+
+  /* ===============================
+     🎞️ ANIMASI SCROLL
+     =============================== */
+  @keyframes fadeSlideLeft {
+    from {
+      opacity: 0;
+      transform: translate(-40px, 20px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes fadeSlideRight {
+    from {
+      opacity: 0;
+      transform: translate(40px, 20px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  .timeline-item.show.slide-left {
+    animation: fadeSlideLeft 0.9s ease-out forwards;
+  }
+
+  .timeline-item.show.slide-right {
+    animation: fadeSlideRight 0.9s ease-out forwards;
+  }
+
+  /* ===============================
+     🌿 Tema SeventeenEight
+     =============================== */
+  html.seventeen-eight .timeline-item::before {
+    background-color: #00007260 !important;
+  }
+
+  html.seventeen-eight span.w-3\.5 {
+    background-color: #000072 !important;
+  }
+
+  html.seventeen-eight h3 {
+    color: #000072 !important;
   }
 
   html.seventeen-eight h4,
   html.seventeen-eight time,
   html.seventeen-eight .relative.flex {
-    color: #1B602F !important; /* semua teks jadi hijau */
+    color: #1b602f !important;
   }
 </style>
+
+<script>
+  if (typeof window !== "undefined") {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = `${i * 0.15}s`;
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll(".timeline-item").forEach((el) => observer.observe(el));
+  }
+</script>

@@ -1,10 +1,26 @@
+---
+const { size = 24, class: className = "" } = Astro.props;
+---
+
 <svg
-  {...Astro.props}
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 256 256"
-  class="w-4 h-4"
+  width={size}
+  height={size}
+  fill="none"
+  stroke="white"
+  stroke-width="12"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={`icon icon-excel-white ${className}`}
 >
-  <rect width="256" height="256" fill="#217346" rx="32" />
-  <path d="M64 64h128v128H64z" fill="#fff"/>
-  <path d="M96 176L72 128l24-48h20l-20 48 20 48H96zM156 176l-20-48 20-48h20l-20 48 20 48h-20z" fill="#217346"/>
+  <!-- Border / outer frame -->
+  <rect x="32" y="32" width="192" height="192" rx="24" />
+
+  <!-- Inner panel -->
+  <rect x="64" y="64" width="128" height="128" rx="8" />
+
+  <!-- Letter X -->
+  <path d="M100 176L76 128l24-48" />
+  <path d="M156 176l-20-48 20-48" />
 </svg>

@@ -4,44 +4,82 @@ const defaultImage = "/VINS.png";
 const seventeeneightImage = "/VINSSS.png";
 ---
 
-<article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row seventeen-eight-profile">
+<article
+  class="flex flex-col items-center justify-center gap-8 
+         text-gray-700 dark:text-gray-300 
+         md:flex-row 
+         transition-all duration-500 seventeen-eight-profile"
+>
+  <!-- 🧩 Text -->
   <div
-    class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
+    class="[&>p]:mb-4 [&>p>strong]:text-yellow-600 
+           dark:[&>p>strong]:text-yellow-300 
+           [&>p>strong]:font-medium 
+           [&>p>strong]:font-mono 
+           leading-relaxed order-2 md:order-1 
+           max-w-xl text-justify"
   >
     <p>
-      My name is Kevin Simorangkir, and I began learning programming in high school, driven by my interest in creating computer games and mobile applications.  I have contributed to several communities/companies, producing projects such as <strong
-        >REFORA ITERA, Harvesty, SIPAD, and other feed designs.</strong
-      >
+      My name is <strong>Kevin Simorangkir</strong>, and I began learning programming in high school,
+      driven by my interest in creating computer games and mobile applications.
+      I have contributed to several communities and companies, producing projects such as
+      <strong>REFORA ITERA, Harvesty, SIPAD,</strong> and other feed designs.
     </p>
 
     <p>
       These include
-      <strong>Telkom Witel Lampung, Telkom Indonesia, Yayasan Media Selaras, Baparekraf Digital Talent.</strong
-      > Throughout my contributions, I have enjoyed each experience and strive to improve and continue growing in the future.
+      <strong>Telkom Witel Lampung, Telkom Indonesia, Yayasan Media Selaras,</strong>
+      and <strong>Baparekraf Digital Talent</strong>.
+      Throughout my journey, I’ve enjoyed each experience and continue striving
+      to learn, grow, and innovate further.
     </p>
   </div>
 
-  <img width="200" height="200" 
-       src={defaultImage} 
-       alt={personalImageAlt} 
-       class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20 profile-image"
-       style="object-position: 50% 50%">
+  <!-- 🧩 Profile Image -->
+  <div
+    class="relative order-1 md:order-2 group"
+  >
+    <img
+      width="240"
+      height="240"
+      src={defaultImage}
+      alt={personalImageAlt}
+      class="object-cover aspect-square rounded-2xl
+             p-2 w-64 h-64
+             bg-black/10 dark:bg-yellow-500/5
+             ring-1 ring-black/60 dark:ring-white/20
+             transition-all duration-500 ease-in-out
+             group-hover:rotate-0 rotate-3 
+             group-hover:scale-105 profile-image"
+      style="object-position: 50% 50%"
+    />
+    <div
+      class="absolute inset-0 rounded-2xl 
+             bg-gradient-to-tr from-transparent to-yellow-200/20
+             dark:to-yellow-400/10 opacity-0 group-hover:opacity-100 
+             transition-opacity duration-500"
+    ></div>
+  </div>
 </article>
 
+<!-- 🎨 Custom Style for SeventeenEight Theme -->
 <style is:global>
-  /* Tema SeventeenEight khusus profile */
   html.seventeen-eight .seventeen-eight-profile,
   html.seventeen-eight .seventeen-eight-profile * {
-    color: #1B602F !important; /* semua teks hijau */
+    color: #1B602F !important; /* text hijau alami */
   }
 
-  /* strong yang sebelumnya kuning menjadi biru */
   html.seventeen-eight .seventeen-eight-profile strong {
-    color: #000072 !important;
+    color: #000072 !important; /* strong biru tua */
   }
 
-  /* Ganti gambar untuk tema SeventeenEight */
   html.seventeen-eight .seventeen-eight-profile .profile-image {
-    content: url('/VINSSS.png') !important;
+    content: url("/VINSSS.png") !important;
+    background-color: #EAF4ED !important;
+    ring-color: #1B602F !important;
+  }
+
+  html.seventeen-eight .seventeen-eight-profile .profile-image:hover {
+    transform: scale(1.05) rotate(0deg);
   }
 </style>

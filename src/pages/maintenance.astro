@@ -2,93 +2,147 @@
 export const prerender = true;
 ---
 
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio KVNS - Maintenance</title>
+    <title>Portfolio KVNS — Maintenance</title>
   </head>
-  <body class="relative h-screen w-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-50 overflow-hidden">
-    <!-- Background blur circles -->
-    <div class="absolute -top-40 -left-40 w-80 h-80 bg-sky-500/20 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl animate-pulse"></div>
+  <body
+    class="relative h-screen w-screen flex items-center justify-center 
+           bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 
+           text-zinc-50 overflow-hidden"
+  >
+    <!-- Background golden glow -->
+    <div class="absolute -top-40 -left-40 w-80 h-80 bg-[#C4B073]/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-[#D8C690]/20 rounded-full blur-3xl animate-pulse"></div>
 
     <!-- Card -->
-    <main class="relative z-10 backdrop-blur-xl bg-slate-800/40 p-8 rounded-2xl shadow-2xl border border-slate-700 max-w-lg w-full text-center space-y-6">
-
-      <!-- Switcher -->
+    <main
+      class="relative z-10 backdrop-blur-xl bg-zinc-800/40 p-8 rounded-3xl 
+             shadow-[0_0_40px_-10px_rgba(196,176,115,0.3)] border border-zinc-700 
+             max-w-lg w-full text-center space-y-6"
+    >
+      <!-- Language Switcher -->
       <div class="flex justify-center gap-2 mb-4">
-        <button data-lang="id" class="lang-btn px-3 py-1 rounded bg-slate-700/80 hover:bg-slate-600 transition">🇮🇩 ID</button>
-        <button data-lang="en" class="lang-btn px-3 py-1 rounded bg-slate-700/80 hover:bg-slate-600 transition">🇬🇧 EN</button>
-        <button data-lang="jp" class="lang-btn px-3 py-1 rounded bg-slate-700/80 hover:bg-slate-600 transition">🇯🇵 JP</button>
+        <button data-lang="id" class="lang-btn px-3 py-1 rounded bg-zinc-700/80 hover:bg-zinc-600 transition">
+          🇮🇩 ID
+        </button>
+        <button data-lang="en" class="lang-btn px-3 py-1 rounded bg-zinc-700/80 hover:bg-zinc-600 transition">
+          🇬🇧 EN
+        </button>
+        <button data-lang="jp" class="lang-btn px-3 py-1 rounded bg-zinc-700/80 hover:bg-zinc-600 transition">
+          🇯🇵 JP
+        </button>
       </div>
 
-      <!-- Ikon -->
+      <!-- Icon -->
       <div class="flex justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" 
-             viewBox="0 0 24 24" stroke="currentColor"
-             class="w-16 h-16 text-sky-400 animate-spin drop-shadow-lg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 6V4m0 16v-2m8-6h2M4 12H2m15.364 6.364l1.414 1.414M6.222 6.222L4.808 4.808m12.728 0l1.414 1.414M6.222 17.778l-1.414 1.414"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-16 h-16 text-[#C4B073] drop-shadow-[0_0_8px_rgba(196,176,115,0.5)] animate-spin-slow"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 6V4m0 16v-2m8-6h2M4 12H2m15.364 6.364l1.414 1.414M6.222 
+               6.222L4.808 4.808m12.728 0l1.414 1.414M6.222 17.778l-1.414 1.414"
+          />
         </svg>
       </div>
 
-      <!-- Judul -->
-      <h1 id="title" class="text-3xl md:text-4xl font-bold leading-snug"></h1>
+      <!-- Title -->
+      <h1 id="title" class="text-3xl md:text-4xl font-bold text-[#D8C690] leading-snug"></h1>
 
-      <!-- Deskripsi -->
-      <p id="desc" class="text-base md:text-lg text-slate-300"></p>
+      <!-- Description -->
+      <p id="desc" class="text-base md:text-lg text-zinc-300"></p>
 
       <!-- Countdown -->
-      <div id="countdown" class="text-2xl font-mono text-sky-400 font-semibold">Loading...</div>
+      <div id="countdown" class="text-2xl font-mono text-[#C4B073] font-semibold">Loading...</div>
 
-      <!-- Progress -->
-      <div class="w-full bg-slate-700/60 rounded-full h-3 overflow-hidden">
-        <div class="bg-gradient-to-r from-sky-400 to-indigo-400 h-3 rounded-full animate-progress"></div>
+      <!-- Progress bar -->
+      <div class="w-full bg-zinc-700/60 rounded-full h-3 overflow-hidden">
+        <div class="bg-gradient-to-r from-[#C4B073] to-[#D8C690] h-3 rounded-full animate-progress"></div>
       </div>
 
-      <!-- Link -->
+      <!-- Links -->
       <div class="flex justify-center gap-4">
-        <a id="contactBtn" href="mailto:vin.simorangkir81@gmail.com"
-           class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-medium transition shadow-lg hover:shadow-sky-500/30"></a>
-        <a id="instagramBtn" href="https://instagram.com/vins.ch"
-           class="px-4 py-2 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-100 font-medium transition shadow-lg hover:shadow-slate-500/30"></a>
+        <a
+          id="contactBtn"
+          href="mailto:vin.simorangkir81@gmail.com"
+          class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#C4B073] to-[#D8C690]
+                 text-white font-medium shadow-md hover:scale-[1.03] active:scale-[0.97]
+                 transition-transform duration-150"
+        ></a>
+        <a
+          id="instagramBtn"
+          href="https://instagram.com/vins.ch"
+          class="px-4 py-2 rounded-xl bg-zinc-700 hover:bg-zinc-600 
+                 text-zinc-100 font-medium transition shadow-md"
+        ></a>
       </div>
     </main>
 
-    <!-- Animasi -->
+    <!-- Styles -->
     <style is:global>
-      @keyframes progress { 0%{width:0%}50%{width:70%}100%{width:100%} }
-      .animate-progress { animation: progress 3s infinite alternate; }
+      @keyframes progress {
+        0% {
+          width: 0%;
+        }
+        50% {
+          width: 70%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+      .animate-progress {
+        animation: progress 3s infinite alternate;
+      }
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .animate-spin-slow {
+        animation: spin-slow 5s linear infinite;
+      }
     </style>
 
     <!-- Script -->
     <script>
       const translations = {
         id: {
-          title: "🚧 Website Sedang Perbaikan",
-          desc: "Kami sedang melakukan maintenance sistem untuk meningkatkan layanan.<br/>Silakan kembali lagi nanti 🙏",
+          title: "🚧 Situs Sedang Dalam Pemeliharaan",
+          desc: "Kami sedang meningkatkan sistem untuk memberikan layanan yang lebih baik.<br/>Silakan kembali lagi nanti 🙏",
           contact: "Hubungi Kami",
           instagram: "Instagram",
-          done: "✅ Maintenance selesai!",
+          done: "✅ Pemeliharaan selesai!",
         },
         en: {
           title: "🚧 Website Under Maintenance",
-          desc: "We are performing system maintenance to improve our service.<br/>Please check back later 🙏",
+          desc: "We’re improving our system for a better experience.<br/>Please check back later 🙏",
           contact: "Contact Us",
           instagram: "Instagram",
           done: "✅ Maintenance Completed!",
         },
         jp: {
           title: "🚧 ウェブサイトはメンテナンス中です",
-          desc: "システムのメンテナンスを行っております。<br/>しばらくしてから再度アクセスしてください 🙏",
+          desc: "より良い体験のためにシステムを改善しています。<br/>しばらくしてから再度お試しください 🙏",
           contact: "お問い合わせ",
           instagram: "インスタグラム",
           done: "✅ メンテナンス完了！",
-        }
+        },
       };
 
-      let currentLang = "id";
+      let currentLang = "en";
 
       function setLang(lang) {
         currentLang = lang;
@@ -98,9 +152,8 @@ export const prerender = true;
         document.getElementById("instagramBtn").innerText = translations[lang].instagram;
       }
 
-      // countdown
       const countdownEl = document.getElementById("countdown");
-      const target = new Date("2025-09-07T19:00:00+07:00").getTime();
+      const target = new Date("2025-10-16T00:00:00+07:00").getTime();
 
       function updateCountdown() {
         const now = new Date().getTime();
@@ -113,21 +166,15 @@ export const prerender = true;
         const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-        countdownEl.innerHTML =
-          currentLang === "jp"
-            ? `${d}日 : ${h}時間 : ${m}分 : ${s}秒`
-            : `${d}d : ${h}h : ${m}m : ${s}s`;
+        countdownEl.innerHTML = `${d}d : ${h}h : ${m}m : ${s}s`;
       }
 
-      // init
-      setLang("id");
+      setLang("en");
       updateCountdown();
       setInterval(updateCountdown, 1000);
 
-      // event listener tombol
-      document.querySelectorAll(".lang-btn").forEach(btn => {
-        btn.addEventListener("click", e => {
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
           setLang(e.target.dataset.lang);
           updateCountdown();
         });

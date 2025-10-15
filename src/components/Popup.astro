@@ -5,96 +5,103 @@ const { show = true, once = false } = Astro.props;
 <div
   id="popup"
   data-once={once ? "true" : "false"}
-  class={`fixed inset-0 bg-gradient-to-br from-black/70 to-slate-900/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-300 ${
-    show ? "opacity-100" : "hidden opacity-0 pointer-events-none"
-  }`}
+  class={`fixed inset-0 z-50 flex items-center justify-center 
+          bg-black/50 backdrop-blur-sm transition-opacity duration-500
+          ${show ? "opacity-100" : "opacity-0 pointer-events-none hidden"}`}
 >
   <div
     id="popupContent"
-    class="bg-white/95 dark:bg-gray-900/90 backdrop-blur-xl text-black dark:text-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden transform transition-all duration-300 scale-95"
+    class="relative bg-white dark:bg-zinc-900 text-black dark:text-white 
+           rounded-3xl shadow-2xl max-w-sm w-full mx-4 overflow-hidden 
+           transform transition-all duration-300 scale-95 opacity-0 translate-y-4 p-8 text-center"
   >
-    <!-- Header dengan versi -->
-    <div class="bg-gradient-to-r from-pink-500 to-purple-600 p-4 flex justify-between items-center">
-      <h2 class="text-xl font-bold text-white">🌐 Domain Update</h2>
-      <span class="bg-white/20 text-white text-xs font-semibold px-2 py-1 rounded-full">
-        V.2.0
-      </span>
+    <!-- Icon -->
+    <div class="flex justify-center mb-4">
+      <div class="text-5xl animate-bounce">✌️</div>
     </div>
 
-    <div class="p-6 space-y-4">
-      <p>
-        Kami informasikan bahwa domain lama <strong>kvn-tech.xyz</strong> akan
-        <span class="text-green-600 font-semibold">berpindah</span> ke domain baru mulai:
-      </p>
+    <!-- Title -->
+    <h2 class="text-xl font-bold mb-2 text-[#C4B073]">
+      Domain Has Moved!
+    </h2>
 
-      <div class="text-center">
-        <p class="text-sm opacity-70">Mulai Tanggal</p>
-        <p class="text-2xl font-extrabold text-pink-600">📅 12 Oktober 2025</p>
-      </div>
+    <!-- Description -->
+    <p class="text-gray-600 dark:text-gray-300 mb-6">
+      Our website has officially moved to a new domain:  
+      <br />
+      <a 
+        href="https://kvn-code.asia" 
+        target="_blank" 
+        class="font-semibold text-[#C4B073] hover:text-yellow-600 underline transition-colors"
+      >
+        kvn-code.asia
+      </a>
+    </p>
 
-      <div class="text-center">
-        <p class="text-lg font-bold text-sky-600">
-          👉 <a href="https://kvn-code.asia" target="_blank" class="underline hover:text-sky-700">
-            kvn-code.asia
-          </a>
-        </p>
-      </div>
-
-      <p class="text-center opacity-80">
-        Harap gunakan alamat baru ini untuk mengakses layanan kami mulai tanggal tersebut.  
-        Terima kasih atas dukungan Anda 🙏
-      </p>
-
-      <div class="flex justify-center pt-2">
-        <button
-          id="okPopup"
-          class="px-5 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold shadow-md hover:opacity-90 transition"
-        >
-          OK, Mengerti
-        </button>
-      </div>
+    <!-- Button -->
+    <div class="flex justify-center">
+      <button
+        id="okPopup"
+        class="px-6 py-2 rounded-xl bg-gradient-to-r from-[#C4B073] to-[#D8C690]
+               text-white font-medium shadow hover:scale-[1.03] active:scale-[0.97]
+               transition-transform duration-150"
+      >
+        OK
+      </button>
     </div>
-
-    <!-- Tombol Close -->
-    <button
-      id="closePopup"
-      class="absolute top-2 right-2 text-white bg-black/40 hover:bg-black/60 rounded-full w-8 h-8 flex items-center justify-center text-lg"
-      aria-label="Close"
-    >
-      ✖
-    </button>
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+<style>
+  @keyframes popupShow {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>
+
+<script is:inline>
+  function initPopup() {
     const popup = document.getElementById("popup");
     const content = document.getElementById("popupContent");
-    const closeBtn = document.getElementById("closePopup");
+    if (!popup || !content) return;
+
     const okBtn = document.getElementById("okPopup");
+    const once = popup.dataset.once === "true";
 
-    const once = popup?.dataset.once === "true";
-
+    // Prevent popup from showing again if dismissed
     if (once && sessionStorage.getItem("popupDismissed")) {
       popup.classList.add("hidden", "opacity-0", "pointer-events-none");
       return;
     }
 
+    // Show popup with animation
+    setTimeout(() => {
+      content.style.animation = "popupShow 0.3s ease-out forwards";
+    }, 100);
+
     function closePopup() {
+      content.style.opacity = "0";
+      content.style.transform = "scale(0.95) translateY(10px)";
       popup.classList.add("opacity-0", "pointer-events-none");
       setTimeout(() => popup.classList.add("hidden"), 300);
       if (once) sessionStorage.setItem("popupDismissed", "true");
     }
 
-    closeBtn?.addEventListener("click", closePopup);
     okBtn?.addEventListener("click", closePopup);
-
     popup?.addEventListener("click", (e) => {
       if (!content.contains(e.target)) closePopup();
     });
-
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closePopup();
     });
-  });
+  }
+
+  document.addEventListener("astro:page-load", initPopup);
+  document.addEventListener("astro:after-swap", initPopup);
 </script>

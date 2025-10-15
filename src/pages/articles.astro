@@ -31,38 +31,56 @@ const articles: Article[] = [
 ---
 
 <Layout title="Articles" description="Daftar artikel terbaru">
-  <main class="flex-1 px-6 py-16">
-    <section class="max-w-5xl mx-auto">
-      <h1 class="text-4xl sm:text-5xl font-extrabold mb-12 text-center 
-                 bg-gradient-to-r from-pink-500 to-purple-600 
-                 bg-clip-text text-transparent">
-        📚 Artikel Terbaru
+  <main class="flex-1 bg-white dark:bg-[#161616] text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Header -->
+    <section class="text-center py-20 px-6 border-b border-gray-200 dark:border-[#C4B073]/10 transition-colors duration-300">
+      <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
+        The <span class="text-[#C4B073]">Blog</span>
       </h1>
+      <p class="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+        A statically generated blog with news, tutorials, resources, and other
+        interesting content — built with <span class="text-[#C4B073] font-medium">Astro</span>.
+      </p>
+    </section>
 
-      <div class="grid gap-8 sm:grid-cols-2">
+    <!-- Daftar Artikel -->
+    <section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article, i) => (
           <a
             href={`/articles/${article.slug}`}
-            class="article-card group p-6 rounded-2xl shadow-md 
-                   bg-white/70 dark:bg-black/40 
-                   backdrop-blur-lg transition-all duration-300 
-                   hover:scale-[1.03] hover:shadow-xl border border-transparent 
-                   hover:border-pink-400"
+            class="article-card group relative p-6 rounded-2xl border 
+                   border-gray-200 dark:border-[#C4B073]/20 
+                   bg-white dark:bg-[#1c1c1c]
+                   hover:bg-gray-50 dark:hover:bg-[#202020]
+                   shadow-[0_0_10px_rgba(0,0,0,0.05)] dark:shadow-[0_0_10px_rgba(196,176,115,0.08)]
+                   hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_0_20px_rgba(196,176,115,0.25)]
+                   hover:border-[#C4B073]/70 hover:scale-[1.02]
+                   transition-all duration-300"
             style={{ animationDelay: `${i * 0.15}s` }}
           >
-            <h2 class="text-2xl font-semibold mb-3 group-hover:text-pink-500">
+            <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100 group-hover:text-[#C4B073]">
               {article.title}
             </h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 italic">
               {new Date(article.date).toLocaleDateString("id-ID", {
                 year: "numeric",
                 month: "long",
                 day: "numeric"
               })}
             </p>
-            <p class="text-base text-gray-700 dark:text-gray-300">
+
+            <p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
               {article.description}
             </p>
+
+            <div class="mt-auto text-sm font-medium text-[#C4B073] group-hover:underline flex items-center gap-1">
+              Baca Selengkapnya
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-1 transition-transform">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+              </svg>
+            </div>
           </a>
         ))}
       </div>
@@ -72,10 +90,9 @@ const articles: Article[] = [
 
 <style>
   main {
-    min-height: calc(100vh - 120px); /* biar tetap proporsional dengan header/footer */
+    min-height: calc(100vh - 120px);
   }
 
-  /* Animasi card */
   .article-card {
     opacity: 0;
     transform: translateY(20px);

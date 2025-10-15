@@ -1,13 +1,16 @@
 <svg
-  {...Astro.props}
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 256 256"
+  width="30"
+  height="30"
   class="w-4 h-4 rounded"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="16"
+  stroke-linecap="round"
+  stroke-linejoin="round"
 >
-  <!-- Background -->
-  <rect width="256" height="256" rx="32" fill="black" />
-
   <!-- Prototype Symbol (Wireframe box with arrows) -->
-  <rect x="64" y="64" width="128" height="128" rx="12" stroke="white" stroke-width="16" fill="none"/>
-  <path d="M64 128h-24m176 0h-24M128 64v-24m0 176v-24" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <rect x="64" y="64" width="128" height="128" rx="12" />
+  <path d="M64 128h-24m176 0h-24M128 64v-24m0 176v-24" />
 </svg>

@@ -1,78 +1,143 @@
 ---
-const personalImageAlt = "Miguel Ángel"
+// Astro logic
+const personalImageAlt = "Kevin Simorangkir"
 import Badge from "@/components/Badge.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
 import Formulir from "@/components/icons/Formulir.astro"
 import Instagram from "@/components/icons/Instagram.astro"
 import SocialPill from "@/components/SocialPill.astro"
-import { DriveIcon } from 'lucide-react';
 ---
 
-<div class="max-w-xl seventeen-eight-container">
-  <div class="flex gap-4 mb-4">
-    <img
-      class="rounded-full shadow-lg size-16"
-      src="/KVNS.webp"
-      alt={personalImageAlt}
-      loading="lazy"
-    />
-    <a
-      href="https://www.linkedin.com/in/kevinsimorangkir/"
-      target="_blank"
-      rel="noopener"
-      class="flex items-center transition md:justify-center md:hover:scale-105"
-    >
-      <Badge>Open To Work - Data Analyst / UI/UX Designer</Badge>
-    </a>
+<div class="relative max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-12 text-center">
+  <div class="flex flex-col items-center gap-4 mb-6 relative">
+    <!-- Profile Image with rotating border -->
+    <div class="relative w-24 h-24 sm:w-28 sm:h-28">
+      <div class="absolute inset-0 rounded-full p-[3px] animate-spin-slow bg-gradient-conic from-[#C4B073] via-[#A03133] to-[#C4B073]">
+        <div class="absolute inset-[3px] rounded-full bg-white dark:bg-[#161616]"></div>
+      </div>
+      <img
+        class="absolute inset-[6px] w-[calc(100%-12px)] h-[calc(100%-12px)] object-cover rounded-full shadow-xl"
+        src="/KVNS.webp"
+        alt={personalImageAlt}
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Badge with animated shimmer gradient text -->
+    <Badge class="animated-gradient-text mt-3 px-3 py-1 text-xs sm:text-sm sm:px-4 sm:py-2 font-semibold border border-[#C4B073]/40 shadow-md text-center w-full max-w-xs whitespace-normal break-words">
+      Open To Work — Data Analyst / UI/UX Designer
+    </Badge>
   </div>
 
-  <h1 class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white">
-    Hello, I'm <b> Kevin Simorangkir </b>
+  <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+    Hello, I'm <span class="text-[#C4B073]">Kevin Simorangkir</span>
   </h1>
 
-  <p class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300">
-    I am a graduate of Informatic Engineering with a strong foundation in data programming and computer interaction design. I have relevant experience in my field, such as data analysis, UI/UX prototype design, database design, and website development. Through my experience, I have gained strong data analysis skills and improved user experience in UI/UX. Currently, I am actively involved and continue to learn and explore technologies in both data analysis and user interface design.
+  <p class="mt-5 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+    I’m a graduate of <strong>Informatic Engineering</strong> passionate about data analysis and user experience design. 
+    With experience in <strong>data programming</strong>, <strong>UI/UX prototype</strong>, and <strong>web development</strong>, 
+    I aim to create meaningful and efficient digital experiences. 
+    Currently, I’m exploring new technologies in both <strong>data analytics</strong> and <strong>interface design</strong>.
   </p>
 
-  <nav class="flex flex-wrap gap-4 mt-8">
-    <SocialPill href="mailto:vin.simorangkir81@gmail.com">
+  <!-- Responsive Social Buttons -->
+  <nav class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3 mt-10 w-full max-w-2xl mx-auto">
+    <a href="mailto:vin.simorangkir81@gmail.com" class="social-btn">
       <MailIcon class="size-4" />
-      Contact Me
-    </SocialPill>
-    <SocialPill href="https://www.linkedin.com/in/kevinsimorangkir/">
+      <span>Contact Me</span>
+    </a>
+    <a href="https://www.linkedin.com/in/kevinsimorangkir/" class="social-btn">
       <LinkedInIcon class="size-4" />
-      LinkedIn
-    </SocialPill>
-    <SocialPill href="https://www.instagram.com/vins.ch">
+      <span>LinkedIn</span>
+    </a>
+    <a href="https://www.instagram.com/vins.ch" class="social-btn">
       <Instagram class="size-4" />
-      Instagram
-    </SocialPill>
-    <SocialPill href="https://drive.google.com/file/d/1F9WT054aWFXBimIBtUKZUarpIro8BQZw/view?usp=sharing">
+      <span>Instagram</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1F9WT054aWFXBimIBtUKZUarpIro8BQZw/view?usp=sharing" class="social-btn">
       <Formulir class="size-4" />
-      CV
-    </SocialPill>
-    <SocialPill href="https://drive.google.com/file/d/1bL9ht_Zh0IMhR8pXQYuVN-cvziKeppcj/view?usp=sharing">
+      <span>CV</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1bL9ht_Zh0IMhR8pXQYuVN-cvziKeppcj/view?usp=sharing" class="social-btn">
       <MailIcon class="size-4" />
-      My Portfolio (UI/UX Designer)
-    </SocialPill>
-    <SocialPill href="https://drive.google.com/file/d/1p08WIXh4iXn74h3_A0N9yddU89fTXypx/view?usp=drive_link">
+      <span>Portfolio (UI/UX)</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1p08WIXh4iXn74h3_A0N9yddU89fTXypx/view?usp=drive_link" class="social-btn">
       <MailIcon class="size-4" />
-      My Portfolio (Data Analyst)
-    </SocialPill>
+      <span>Portfolio (Data)</span>
+    </a>
   </nav>
 </div>
 
 <style is:global>
-  /* Hanya untuk tema SeventeenEight */
-  html.seventeen-eight .seventeen-eight-container,
-  html.seventeen-eight .seventeen-eight-container * {
-    color: #1b602f !important;
+  /* Tombol sosial */
+  .social-btn {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-[#C4B073]/50
+      text-sm font-medium text-gray-800 dark:text-gray-200;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
 
-  /* Opsional: override badge/links agar lebih terlihat */
-  html.seventeen-eight .seventeen-eight-container a,
-  html.seventeen-eight .seventeen-eight-container button {
-    color: #1b602f !important;
+  .social-btn svg {
+    transition: transform 0.3s ease-out;
+  }
+
+  .social-btn:hover svg {
+    transform: translateY(-4px);
+  }
+
+  .social-btn:hover {
+    @apply bg-[#C4B073] text-white border-[#C4B073];
+  }
+
+  /* Efek spin lingkaran */
+  @keyframes spin-slow {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 6s ease-in-out infinite;
+    mask-image: radial-gradient(circle, transparent 70%, black 72%);
+    -webkit-mask-image: radial-gradient(circle, transparent 70%, black 72%);
+  }
+
+  /* Efek shimmer berjalan untuk teks badge */
+  .animated-gradient-text {
+    background: linear-gradient(270deg, #A03133, #C4B073, #A03133);
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 8s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Background dark mode */
+  html.dark {
+    background-color: #161616;
+  }
+
+  @media (max-width: 640px) {
+    .social-btn {
+      @apply flex-1 text-sm;
+    }
   }
 </style>

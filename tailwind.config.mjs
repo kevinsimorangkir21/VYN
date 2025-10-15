@@ -1,4 +1,3 @@
-// tailwind.config.js
 import typography from '@tailwindcss/typography'
 
 /** @type {import('tailwindcss').Config} */
@@ -10,6 +9,10 @@ export default {
       colors: {
         bravePink: "#F784C5",
         heroGreen: "#1B602F",
+
+        // 🌾 warna custom untuk tombol Harvesty
+        harvesty: "#C4B073",
+        harvestyHover: "#A89B64",
       },
     },
   },

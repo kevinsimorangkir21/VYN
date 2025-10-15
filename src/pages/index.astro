@@ -33,7 +33,7 @@ const year = new Date().getFullYear();
     <div class="space-y-24">
       <SectionContainer id="experience">
         <TitleSection>
-          <Briefcase class="size-8" />
+          <Briefcase class="size-8 text-[#C4B073]" />
           Work Experience
         </TitleSection>
         <Experience />
@@ -41,16 +41,16 @@ const year = new Date().getFullYear();
 
       <SectionContainer id="project">
         <TitleSection>
-          <CodeIcon class="size-7" />
+          <CodeIcon class="size-7 text-[#C4B073]" />
           Project
         </TitleSection>
         <Projects />
       </SectionContainer>
 
-      <!-- 🔥 New Articles Section -->
+      <!-- ✨ Articles Section (Gold Theme) -->
       <SectionContainer id="articles">
         <TitleSection>
-          <BookIcon class="size-7" />
+          <BookIcon class="size-7 text-[#C4B073]" />
           Articles
         </TitleSection>
 
@@ -61,7 +61,10 @@ const year = new Date().getFullYear();
                    bg-white/70 dark:bg-black/40 
                    backdrop-blur-lg transition-transform hover:scale-[1.02]"
           >
-            <h2 class="text-xl font-semibold mb-2 group-hover:text-pink-500">
+            <h2
+              class="text-xl font-semibold mb-2 
+                     group-hover:text-[#C4B073] transition-colors duration-200"
+            >
               Pengalaman Kerja Praktik (KP) / Magang di Telkom Witel Lampung
             </h2>
             <p class="text-sm opacity-80 mb-2">2025-09-01</p>
@@ -76,7 +79,10 @@ const year = new Date().getFullYear();
                    bg-white/70 dark:bg-black/40 
                    backdrop-blur-lg transition-transform hover:scale-[1.02]"
           >
-            <h2 class="text-xl font-semibold mb-2 group-hover:text-pink-500">
+            <h2
+              class="text-xl font-semibold mb-2 
+                     group-hover:text-[#C4B073] transition-colors duration-200"
+            >
               Tips Optimasi SEO di Astro
             </h2>
             <p class="text-sm opacity-80 mb-2">2025-09-03</p>
@@ -90,7 +96,7 @@ const year = new Date().getFullYear();
           <a 
             href="/articles" 
             class="inline-block px-5 py-2 rounded-xl font-medium
-                   bg-gradient-to-r from-pink-500 to-purple-600 
+                   bg-gradient-to-r from-[#C4B073] to-[#D4AF37]
                    text-white shadow-md hover:opacity-90 transition"
           >
             View All Articles →
@@ -100,7 +106,7 @@ const year = new Date().getFullYear();
 
       <SectionContainer id="about-me">
         <TitleSection>
-          <ProfileCheck class="size-8" />
+          <ProfileCheck class="size-8 text-[#C4B073]" />
           About Me
         </TitleSection>
         <AboutMe />
