@@ -1,10 +1,44 @@
-<div class="flex items-center ">
-<span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
-  <span
-    class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
-  ></span>
-  <div class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap">
-    <slot />
-  </div>
-</span>
+<div class="flex items-center justify-center">
+  <span class="relative inline-flex overflow-hidden rounded-full p-[1.5px]">
+    <!-- 🌈 Border Gradasi Berputar -->
+    <span
+      class="absolute inset-[-150%] animate-[spin_3s_linear_infinite] 
+             bg-[conic-gradient(from_0deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]
+             opacity-90 dark:opacity-70"
+    ></span>
+
+    <!-- 💫 Isi Badge -->
+    <div
+      class="inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium 
+             text-green-900 dark:text-emerald-200
+             bg-green-50 dark:bg-gray-900/70
+             rounded-full cursor-pointer whitespace-nowrap
+             backdrop-blur-xl
+             ring-1 ring-green-200/50 dark:ring-emerald-400/20
+             transition-all duration-300
+             hover:scale-105 hover:ring-green-300/70 hover:text-green-800
+             dark:hover:ring-emerald-400/50 dark:hover:text-emerald-100"
+    >
+      <slot />
+    </div>
+  </span>
 </div>
+
+<style is:global>
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Responsif: badge mengecil di layar kecil */
+  @media (max-width: 640px) {
+    .flex span div {
+      font-size: 0.85rem;
+      padding: 0.25rem 0.75rem;
+    }
+  }
+</style>

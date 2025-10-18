@@ -1,59 +1,111 @@
-/* 🌸 Custom Prose Theme */
+/* ✨ Custom Prose Theme v2 — KVNS Portfolio Style */
 
+/* Layout dasar */
 .prose {
-    max-width: 750px;
-    line-height: 1.8;
+    max-width: 780px;
+    line-height: 1.85;
+    color: #1e1e1e;
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
-/* src/style/prose.css */
+.dark .prose {
+    color: #e5e5e5;
+}
 
-.prose h1 {
-    background: linear-gradient(to right, #ec4899, #8b5cf6);
+/* Judul utama dengan gradasi emas */
+.prose h1,
+.prose h2,
+.prose h3 {
+    background: linear-gradient(to right, #c4b073, #d9c98b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
 }
 
+/* Gambar: clean, soft shadow, responsif */
 .prose img {
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     margin: 2rem auto;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
 }
 
+.prose img:hover {
+    transform: scale(1.02);
+}
+
+/* Kode block: modern look */
 .prose pre {
-    background-color: #1f2937;
+    background-color: #111827;
     color: #f3f4f6;
-    border-radius: 12px;
-    padding: 1rem;
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
     overflow-x: auto;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    font-size: 0.95rem;
 }
 
+/* Inline code */
 .prose code {
-    background: rgba(0, 0, 0, 0.05);
-    padding: 0.2em 0.4em;
+    background: rgba(196, 176, 115, 0.15);
+    padding: 0.25em 0.45em;
     border-radius: 6px;
     font-size: 0.9em;
+    color: #bca96c;
 }
 
+/* Kutipan */
 .prose blockquote {
-    border-left: 4px solid #ec4899;
-    padding-left: 1rem;
+    border-left: 4px solid #c4b073;
+    padding-left: 1.25rem;
     font-style: italic;
     color: #6b7280;
+    background: rgba(196, 176, 115, 0.05);
+    border-radius: 6px;
+    margin: 1.5rem 0;
 }
 
+.dark .prose blockquote {
+    color: #d1d5db;
+    background: rgba(196, 176, 115, 0.08);
+}
+
+/* Tombol kembali / Back link */
 .back-link {
     display: inline-block;
     margin-top: 3rem;
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 1.75rem;
     border-radius: 12px;
-    font-weight: 500;
-    background: linear-gradient(to right, #ec4899, #8b5cf6);
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: opacity 0.3s;
+    font-weight: 600;
     text-decoration: none;
+    background: linear-gradient(to right, #c4b073, #d9c98b);
+    color: #1f1f1f;
+    box-shadow: 0 6px 18px rgba(196, 176, 115, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .back-link:hover {
-    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(196, 176, 115, 0.45);
+}
+
+/* Responsif tambahan */
+@media (max-width: 768px) {
+    .prose {
+        padding: 0 1rem;
+        line-height: 1.75;
+    }
+
+    .prose h1 {
+        font-size: 1.85rem;
+    }
+
+    .prose img {
+        margin: 1.5rem auto;
+    }
 }

@@ -1,5 +1,33 @@
 <h2
-	class={`flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white ${Astro.props.className}`}
+  class={`flex items-center mb-6 gap-x-3 font-semibold 
+          text-[1.75rem] sm:text-3xl md:text-4xl 
+          text-black/80 dark:text-white 
+          tracking-tight transition-all duration-300 
+          hover:text-[#C4B073] dark:hover:text-[#E6D8A2] 
+          ${Astro.props.className}`}
 >
-    <slot />
+  <slot />
 </h2>
+
+<style is:global>
+  h2 {
+    line-height: 1.2;
+  }
+
+  /* ✨ Efek gradien ringan untuk tampilan premium */
+  @media (prefers-color-scheme: light) {
+    h2 {
+      background: linear-gradient(90deg, #000 0%, #5c4d1a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h2:hover {
+      background: linear-gradient(90deg, #C4B073 0%, #8f7e4b 100%);
+    }
+  }
+
+  /* ✨ Mode gelap tetap solid dengan efek glow lembut */
+  html.dark h2:hover {
+    text-shadow: 0 0 8px rgba(228, 210, 135, 0.4);
+  }
+</style>

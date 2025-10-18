@@ -1,52 +1,51 @@
 ---
-// File yang kamu kasih
-import ExperienceItem from "./ExperienceItem.astro"
+import ExperienceItem from "./ExperienceItem.astro";
 
 const EXPERIENCE = [
   {
     date: "January 2025 - September 2025",
     title: "Creative",
     company: "PT. Yayasan Media Selaras Cendekiawan",
-    status: "Freelance", // ⬅️ tambahin status di sini
+    status: "Freelance",
     description:
-      "Design social media feeds and stories in line with the specified color palette. During the period, use 3 different themes to provide interesting variety; Designing logos for six departments: Founder, Secretary, Treasurer, Project Management, Partnership, and Creative. The six logos were designed using six different colors; Work with the partnership team to design a partner guidebook based on the specifications provided; Designing OBS layouts, certificates, and posters for webinars/seminars requested by the Project Management department.",
+      "Designing social media feeds and stories according to the specified color palette. During this period, I used three different design themes to provide visual variation; Created six logos for the departments: Founder, Secretary, Treasurer, Project Management, Partnership, and Creative — each with unique color identity; Collaborated with the Partnership division to design a partner guidebook; Designed OBS layouts, certificates, and webinar posters requested by the Project Management division.",
     link: "#",
   },
   {
     date: "August 2024 - October 2024",
     title: "Project Manager",
     company: "PT. Yayasan Media Selaras Cendekiawan",
-    status: "Freelance", // ⬅️ tambahin status di sini
+    status: "Freelance",
     description:
-      "Overseeing a team with three divisions, namely UI/UX, Front End, and Back End, to complete projects properly and in a structured manner with a target of 85%–95% by the end of September; Monitoring the project budget appropriately so that it is in line with the initial objectives of the project; Conduct weekly evaluations twice a week with a target of 5%–7% for each division every week; Submit weekly reports to superiors detailing the workflow, appropriate budget, weekly progress, and development targets.",
+      "Supervised UI/UX, Front-End, and Back-End divisions to achieve 85%–95% completion target by September. Managed budget allocations to align with project goals, conducted twice-weekly evaluations, and delivered structured weekly progress and budget reports to upper management.",
     link: "#",
   },
   {
     date: "July 2024 - August 2024",
     title: "BGES MBB",
     company: "Telkom Witel Lampung",
-    status: "Internship", // ⬅️ tambahin status di sini
+    status: "Internship",
     description:
-      "Performing data analysis on Indibiz installations in Lampung in the period from January 2023 to June 2024 using SQL combined with PHP; Developing the Indibiz customer data analysis dashboard website called ‘Kedaton Connect’ for the Telkom Akses Kedaton sector using the Waterfall method workflow with two divisions of work, namely Front End and Back End; Conducting in-depth learning about Telkom Indonesia from top to bottom with several related parent companies.",
+      "Performed data analysis on Indibiz installations across Lampung using SQL integrated with PHP; Developed an internal dashboard called ‘Kedaton Connect’ for Telkom Akses Kedaton using the Waterfall method; Learned the operational hierarchy of Telkom Indonesia and its subsidiaries.",
     link: "#",
   },
   {
     date: "February 2024 - July 2024",
     title: "Web Development",
     company: "Baparekraf Digital Talent",
-    status: "Internship", // ⬅️ tambahin status di sini
+    status: "Internship",
     description:
-      "Study the website development process thoroughly in order to meet client expectations; Developing a website with the theme of agriculture with the aim of solving these problems. The website was developed under the name ‘Harvesty’ using the PHP programming language and combined with the CSS framework Bootstrap; Creating a workflow using the Waterfall method, from UI/UX design execution to back-end development on the website, with a target completion date of mid-June 2024, is now 100% complete, based on weekly progress of 4%–7%; Collaborate with the development team with communication skills, leadership, and high enthusiasm, and prioritize goals with the team.",
+      "Developed an agricultural solution website named ‘Harvesty’ using PHP and Bootstrap; Followed the Waterfall method from UI/UX design to back-end development; Managed team collaboration with clear communication and leadership to ensure full project completion by mid-June 2024.",
     link: "#",
   },
-]
+];
 ---
 
 <ol class="relative mt-16">
   {
-    EXPERIENCE.map((experience) => (
+    EXPERIENCE.map((exp, index) => (
       <li>
-        <ExperienceItem {...experience} />
+        <ExperienceItem {...exp} index={index} isLast={index === EXPERIENCE.length - 1} />
       </li>
     ))
   }

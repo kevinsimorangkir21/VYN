@@ -1,0 +1,36 @@
+---
+import { useState, useEffect } from "react";
+const [visible, setVisible] = useState(false);
+
+useEffect(() => {
+  const accepted = localStorage.getItem("cookieAccepted");
+  if (!accepted) setVisible(true);
+}, []);
+
+const acceptCookies = () => {
+  localStorage.setItem("cookieAccepted", "true");
+  setVisible(false);
+};
+---
+
+{visible && (
+  <div
+    class="fixed bottom-5 left-1/2 -translate-x-1/2 w-[90%] sm:w-auto 
+           bg-[#1C1C1C]/95 backdrop-blur-md border border-[#C4B073]/40 
+           text-gray-100 px-5 py-4 rounded-2xl shadow-lg flex flex-col sm:flex-row 
+           items-center gap-3 sm:gap-6 transition-all duration-300"
+  >
+    <p class="text-sm text-center sm:text-left">
+      This website uses cookies to ensure you get the best experience.
+      <a href="/privacy" class="text-[#C4B073] hover:underline ml-1">Learn more</a>.
+    </p>
+
+    <button
+      onClick={acceptCookies}
+      class="bg-[#C4B073] hover:bg-[#D4BE7A] text-black font-medium 
+             px-5 py-2 rounded-xl transition-colors duration-300"
+    >
+      OK
+    </button>
+  </div>
+)}

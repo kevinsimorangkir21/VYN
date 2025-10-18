@@ -67,40 +67,53 @@ const PROJECTS = [
 ]
 ---
 
-<div class="flex flex-col gap-y-16">
-  {PROJECTS.map((project) => {
+<div class="flex flex-col gap-y-20 md:gap-y-28">
+  {PROJECTS.map((project, index) => {
     const { image, title, description, tags, categories, link, github, prototype } = project
+    const reverse = index % 2 === 1
 
     return (
-      <article class="group flex flex-col md:flex-row space-x-8 space-y-8 md:space-y-0">
+      <article
+        class={`group flex flex-col-reverse md:flex-row items-center gap-10 md:gap-14 ${
+          reverse ? "md:flex-row-reverse" : ""
+        }`}
+      >
+        <!-- Gambar Project -->
         <div class="w-full md:w-1/2">
-          <div class="relative flex flex-col items-center gap-8 overflow-clip rounded-xl shadow-xl transform transition duration-500 ease-in-out md:group-hover:-translate-y-1 md:group-hover:shadow-2xl border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 bg-white/70 dark:bg-gray-900/60">
+          <div
+            class="relative overflow-hidden rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 transition-transform duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl"
+          >
             <img
-              alt="Project image"
-              class="object-cover w-full h-56 md:h-full md:scale-110 md:group-hover:scale-105"
-              loading="lazy"
               src={image}
+              alt={title}
+              class="object-cover w-full h-64 sm:h-72 md:h-[22rem] transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
             />
           </div>
         </div>
 
-        <div class="w-full md:w-1/2 md:max-w-lg">
-          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
+        <!-- Detail Project -->
+        <div class="w-full md:w-1/2 space-y-3">
+          <h3 class="text-2xl sm:text-3xl font-bold text-[#C4B073]">{title}</h3>
 
           <!-- Categories -->
-          <ul class="flex flex-wrap mt-2 gap-x-2 mb-2">
+          <ul class="flex flex-wrap gap-2 mb-2">
             {categories.map((cat) => (
               <li key={cat.name}>
-                <span class={`rounded-full text-xs ${cat.class} py-1 px-3`}>{cat.name}</span>
+                <span class={`rounded-full text-xs ${cat.class} py-1.5 px-3 font-medium shadow-sm`}>
+                  {cat.name}
+                </span>
               </li>
             ))}
           </ul>
 
           <!-- Tags -->
-          <ul class="flex flex-wrap mb-2 gap-x-2">
+          <ul class="flex flex-wrap gap-2">
             {tags.map((tag) => (
               <li key={tag.name}>
-                <span class={`flex items-center gap-1.5 rounded-full text-xs ${tag.class} py-1 px-3`}>
+                <span
+                  class={`flex items-center gap-1.5 rounded-full text-xs ${tag.class} py-1.5 px-3 font-medium shadow-sm`}
+                >
                   <tag.icon class={tag.iconSize} />
                   {tag.name}
                 </span>
@@ -108,33 +121,32 @@ const PROJECTS = [
             ))}
           </ul>
 
-          <p class="mt-2 text-gray-700 dark:text-gray-400">{description}</p>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">{description}</p>
 
-          <footer class="flex items-end justify-start mt-4 gap-x-4">
+          <!-- Tombol Link -->
+          <footer class="flex flex-wrap gap-3 mt-5">
             {github && (
               <LinkButton
                 href={github}
-                class="border-2 border-[#C4B073] text-gray-900 dark:text-white bg-transparent hover:bg-[#C4B073]/10 dark:hover:bg-[#C4B073]/30 transition-all px-4 py-2 rounded-md flex items-center gap-2"
+                class="border-2 border-[#C4B073] text-gray-900 dark:text-white hover:bg-[#C4B073] hover:text-white transition-all px-4 py-2 rounded-lg flex items-center gap-2 font-medium"
               >
                 <GitHub class="w-5 h-5" />
                 Code
               </LinkButton>
             )}
-
             {link && (
               <LinkButton
                 href={link}
-                class="border-2 border-[#C4B073] text-gray-900 dark:text-white bg-transparent hover:bg-[#C4B073]/10 dark:hover:bg-[#C4B073]/30 transition-all px-4 py-2 rounded-md flex items-center gap-2"
+                class="border-2 border-[#C4B073] text-gray-900 dark:text-white hover:bg-[#C4B073] hover:text-white transition-all px-4 py-2 rounded-lg flex items-center gap-2 font-medium"
               >
                 <Link class="w-5 h-5" />
                 Preview
               </LinkButton>
             )}
-
             {prototype && (
               <LinkButton
                 href={prototype}
-                class="border-2 border-[#C4B073] text-gray-900 dark:text-white bg-transparent hover:bg-[#C4B073] hover:text-white dark:hover:bg-[#A89B64] transition-all px-4 py-2 rounded-md flex items-center gap-2"
+                class="bg-[#C4B073] text-white hover:bg-[#bda05f] transition-all px-4 py-2 rounded-lg flex items-center gap-2 font-medium"
               >
                 <Prototype class="w-5 h-5" />
                 Prototype
@@ -146,3 +158,24 @@ const PROJECTS = [
     )
   })}
 </div>
+
+<style is:global>
+  article img {
+    transition: transform 0.7s ease, filter 0.5s ease;
+  }
+  article:hover img {
+    filter: brightness(1.05);
+  }
+
+  @media (max-width: 768px) {
+    article {
+      text-align: center;
+    }
+    article ul {
+      justify-content: center;
+    }
+    footer {
+      justify-content: center;
+    }
+  }
+</style>

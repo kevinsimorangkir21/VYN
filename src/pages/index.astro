@@ -12,7 +12,7 @@ import Hero from "@/components/Hero.astro";
 import TitleSection from "@/components/TitleSection.astro";
 import BookIcon from "@/components/icons/Book.astro";
 
-// 🔥 import popup
+// 🔥 Popup
 import Popup from "@/components/Popup.astro";
 
 const year = new Date().getFullYear();
@@ -22,15 +22,17 @@ const year = new Date().getFullYear();
   title={`Portfolio of KEVINS ${year}`}
   description="Portfolio website by KVNS"
 >
-  <main class="px-4">
+  <main class="px-4 sm:px-6 lg:px-8">
     <!-- 🔥 Popup aktif -->
     <Popup show={true} once={false} />
 
-    <SectionContainer class="py-16 md:py-36">
+    <!-- Hero Section -->
+    <SectionContainer class="py-20 md:py-36">
       <Hero />
     </SectionContainer>
 
-    <div class="space-y-24">
+    <div class="space-y-24 md:space-y-32">
+      <!-- Experience Section -->
       <SectionContainer id="experience">
         <TitleSection>
           <Briefcase class="size-8 text-[#C4B073]" />
@@ -39,10 +41,11 @@ const year = new Date().getFullYear();
         <Experience />
       </SectionContainer>
 
+      <!-- Project Section -->
       <SectionContainer id="project">
         <TitleSection>
           <CodeIcon class="size-7 text-[#C4B073]" />
-          Project
+          Projects
         </TitleSection>
         <Projects />
       </SectionContainer>
@@ -54,12 +57,16 @@ const year = new Date().getFullYear();
           Articles
         </TitleSection>
 
-        <div class="grid gap-6 sm:grid-cols-2">
+        <div
+          class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          <!-- Article Card -->
           <a
             href="/articles/pengalaman-kp-telkom"
             class="group p-6 rounded-2xl shadow-md 
-                   bg-white/70 dark:bg-black/40 
-                   backdrop-blur-lg transition-transform hover:scale-[1.02]"
+                   bg-white/80 dark:bg-black/30 
+                   backdrop-blur-xl border border-gray-200/30 
+                   dark:border-white/10 transition-transform hover:scale-[1.02]"
           >
             <h2
               class="text-xl font-semibold mb-2 
@@ -67,8 +74,8 @@ const year = new Date().getFullYear();
             >
               Pengalaman Kerja Praktik (KP) / Magang di Telkom Witel Lampung
             </h2>
-            <p class="text-sm opacity-80 mb-2">2025-09-01</p>
-            <p class="opacity-90">
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2025-09-01</p>
+            <p class="opacity-90 text-gray-700 dark:text-gray-300">
               During my internship at Telkom Witel Lampung under the BGES MBB...
             </p>
           </a>
@@ -76,8 +83,9 @@ const year = new Date().getFullYear();
           <a
             href="/articles/tips-seo-astro"
             class="group p-6 rounded-2xl shadow-md 
-                   bg-white/70 dark:bg-black/40 
-                   backdrop-blur-lg transition-transform hover:scale-[1.02]"
+                   bg-white/80 dark:bg-black/30 
+                   backdrop-blur-xl border border-gray-200/30 
+                   dark:border-white/10 transition-transform hover:scale-[1.02]"
           >
             <h2
               class="text-xl font-semibold mb-2 
@@ -85,25 +93,46 @@ const year = new Date().getFullYear();
             >
               Tips Optimasi SEO di Astro
             </h2>
-            <p class="text-sm opacity-80 mb-2">2025-09-03</p>
-            <p class="opacity-90">
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2025-09-03</p>
+            <p class="opacity-90 text-gray-700 dark:text-gray-300">
               Cara memanfaatkan Astro untuk SEO yang lebih baik dan performa maksimal.
+            </p>
+          </a>
+
+          <a
+            href="/articles/design-accessibility"
+            class="group p-6 rounded-2xl shadow-md 
+                   bg-white/80 dark:bg-black/30 
+                   backdrop-blur-xl border border-gray-200/30 
+                   dark:border-white/10 transition-transform hover:scale-[1.02]"
+          >
+            <h2
+              class="text-xl font-semibold mb-2 
+                     group-hover:text-[#C4B073] transition-colors duration-200"
+            >
+              Panduan Aksesibilitas untuk Desain Modern
+            </h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2025-09-10</p>
+            <p class="opacity-90 text-gray-700 dark:text-gray-300">
+              Membuat desain yang ramah pengguna dan mudah diakses untuk semua orang.
             </p>
           </a>
         </div>
 
-        <div class="mt-6 text-center">
+        <!-- View All Button -->
+        <div class="mt-10 text-center">
           <a 
             href="/articles" 
-            class="inline-block px-5 py-2 rounded-xl font-medium
+            class="inline-block px-6 py-2.5 rounded-xl font-semibold
                    bg-gradient-to-r from-[#C4B073] to-[#D4AF37]
-                   text-white shadow-md hover:opacity-90 transition"
+                   text-white shadow-md hover:opacity-90 transition-all duration-300"
           >
             View All Articles →
           </a>
         </div>
       </SectionContainer>
 
+      <!-- About Me Section -->
       <SectionContainer id="about-me">
         <TitleSection>
           <ProfileCheck class="size-8 text-[#C4B073]" />

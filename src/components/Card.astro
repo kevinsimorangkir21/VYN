@@ -1,61 +1,75 @@
 ---
 interface Props {
-	title: string;
-	body: string;
-	href: string;
+  title: string;
+  body: string;
+  href: string;
 }
 
 const { href, title, body } = Astro.props;
 ---
 
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
+<li class="link-card group">
+  <a href={href} class="block w-full h-full rounded-xl p-6 transition-all duration-300">
+    <h2 class="flex items-center justify-between text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 transition-colors duration-300">
+      {title}
+      <span class="text-[#C4B073] group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
+    </h2>
+    <p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
+      {body}
+    </p>
+  </a>
 </li>
-<style>
-	.link-card {
-		list-style: none;
-		display: flex;
-		padding: 1px;
-		background-color: #23262d;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 7px;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-	}
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: calc(1.5rem - 1px);
-		border-radius: 8px;
-		color: white;
-		background-color: #23262d;
-		opacity: 0.8;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.25rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	p {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
-	}
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
-	}
-	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent-light));
-	}
+
+<style is:global>
+  .link-card {
+    list-style: none;
+    display: flex;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #C4B073, #D4AF37);
+    padding: 1px;
+    transition: all 0.5s ease;
+  }
+
+  .link-card a {
+    background-color: #fff;
+    color: #222;
+    border-radius: 0.75rem;
+  }
+
+  html.dark .link-card a {
+    background-color: #1b1b1b;
+  }
+
+  .link-card:hover,
+  .link-card:focus-within {
+    transform: translateY(-2px);
+    box-shadow:
+      0 8px 20px rgba(196, 176, 115, 0.3),
+      inset 0 0 0 1px rgba(212, 175, 55, 0.4);
+  }
+
+  .link-card a:hover h2 {
+    color: #C4B073;
+  }
+
+  .link-card a:hover p {
+    color: #3a3a3a;
+  }
+
+  html.dark .link-card a:hover p {
+    color: #dcdcdc;
+  }
+
+  /* ✨ Responsif */
+  @media (max-width: 640px) {
+    .link-card a {
+      padding: 1rem;
+    }
+    .link-card h2 {
+      font-size: 1.1rem;
+    }
+    .link-card p {
+      font-size: 0.95rem;
+    }
+  }
 </style>

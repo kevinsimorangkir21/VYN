@@ -1,81 +1,139 @@
 ---
-// Astro logic
-const personalImageAlt = "Kevin Simorangkir"
 import Badge from "@/components/Badge.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
 import Formulir from "@/components/icons/Formulir.astro"
 import Instagram from "@/components/icons/Instagram.astro"
-import SocialPill from "@/components/SocialPill.astro"
+
+const personalImageAlt = "Kevin Simorangkir"
 ---
 
-<div class="relative max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-12 text-center">
-  <div class="flex flex-col items-center gap-4 mb-6 relative">
-    <!-- Profile Image with rotating border -->
-    <div class="relative w-24 h-24 sm:w-28 sm:h-28">
-      <div class="absolute inset-0 rounded-full p-[3px] animate-spin-slow bg-gradient-conic from-[#C4B073] via-[#A03133] to-[#C4B073]">
-        <div class="absolute inset-[3px] rounded-full bg-white dark:bg-[#161616]"></div>
-      </div>
-      <img
-        class="absolute inset-[6px] w-[calc(100%-12px)] h-[calc(100%-12px)] object-cover rounded-full shadow-xl"
-        src="/KVNS.webp"
-        alt={personalImageAlt}
-        loading="lazy"
-      />
+<div class="relative max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-16 text-center flex flex-col items-center justify-center">
+  <!-- Foto Profil -->
+  <div class="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-3">
+    <div class="absolute inset-0 rounded-full p-[3px] animate-spin-slow bg-gradient-conic from-[#C4B073] via-[#A03133] to-[#C4B073]">
+      <div class="absolute inset-[3px] rounded-full bg-white dark:bg-[#161616]"></div>
     </div>
-
-    <!-- Badge with animated shimmer gradient text -->
-    <Badge class="animated-gradient-text mt-3 px-3 py-1 text-xs sm:text-sm sm:px-4 sm:py-2 font-semibold border border-[#C4B073]/40 shadow-md text-center w-full max-w-xs whitespace-normal break-words">
-      Open To Work — Data Analyst / UI/UX Designer
-    </Badge>
+    <img
+      class="absolute inset-[6px] w-[calc(100%-12px)] h-[calc(100%-12px)] object-cover rounded-full shadow-xl"
+      src="/KVNS.webp"
+      alt={personalImageAlt}
+      loading="lazy"
+    />
   </div>
 
-  <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
-    Hello, I'm <span class="text-[#C4B073]">Kevin Simorangkir</span>
-  </h1>
+  <!-- Badge -->
+  <Badge
+    class="px-4 py-2 text-xs sm:text-sm font-semibold border border-[#C4B073]/40 shadow-md text-[#C4B073] bg-[#C4B073]/10 rounded-full backdrop-blur-sm mb-5 max-w-xs sm:max-w-sm"
+  >
+    Open To Work — Data Analyst / UI/UX Designer
+  </Badge>
 
-  <p class="mt-5 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-    I’m a graduate of <strong>Informatic Engineering</strong> passionate about data analysis and user experience design. 
-    With experience in <strong>data programming</strong>, <strong>UI/UX prototype</strong>, and <strong>web development</strong>, 
-    I aim to create meaningful and efficient digital experiences. 
+  <!-- Typing Heading -->
+  <h1
+    id="typing-text"
+    class="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight"
+  ></h1>
+
+  <!-- Deskripsi -->
+  <p
+    id="hero-desc"
+    class="mt-3 sm:mt-4 opacity-0 text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed transition-all duration-700 px-2"
+  >
+    I’m a graduate of <strong>Informatics Engineering</strong> passionate about data analysis and user experience design.
+    With experience in <strong>data programming</strong>, <strong>UI/UX prototype</strong>, and <strong>web development</strong>,
+    I aim to create meaningful and efficient digital experiences.
     Currently, I’m exploring new technologies in both <strong>data analytics</strong> and <strong>interface design</strong>.
   </p>
 
-  <!-- Responsive Social Buttons -->
-  <nav class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3 mt-10 w-full max-w-2xl mx-auto">
+  <!-- Tombol Sosial -->
+  <nav
+    id="hero-buttons"
+    class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mt-8 w-full max-w-2xl mx-auto opacity-0 transition-all duration-700 px-2"
+  >
     <a href="mailto:vin.simorangkir81@gmail.com" class="social-btn">
-      <MailIcon class="size-4" />
-      <span>Contact Me</span>
+      <MailIcon class="size-4 sm:size-5" />
+      <span>Contact</span>
     </a>
     <a href="https://www.linkedin.com/in/kevinsimorangkir/" class="social-btn">
-      <LinkedInIcon class="size-4" />
+      <LinkedInIcon class="size-4 sm:size-5" />
       <span>LinkedIn</span>
     </a>
     <a href="https://www.instagram.com/vins.ch" class="social-btn">
-      <Instagram class="size-4" />
+      <Instagram class="size-4 sm:size-5" />
       <span>Instagram</span>
     </a>
     <a href="https://drive.google.com/file/d/1F9WT054aWFXBimIBtUKZUarpIro8BQZw/view?usp=sharing" class="social-btn">
-      <Formulir class="size-4" />
+      <Formulir class="size-4 sm:size-5" />
       <span>CV</span>
     </a>
     <a href="https://drive.google.com/file/d/1bL9ht_Zh0IMhR8pXQYuVN-cvziKeppcj/view?usp=sharing" class="social-btn">
-      <MailIcon class="size-4" />
+      <MailIcon class="size-4 sm:size-5" />
       <span>Portfolio (UI/UX)</span>
     </a>
     <a href="https://drive.google.com/file/d/1p08WIXh4iXn74h3_A0N9yddU89fTXypx/view?usp=drive_link" class="social-btn">
-      <MailIcon class="size-4" />
+      <MailIcon class="size-4 sm:size-5" />
       <span>Portfolio (Data)</span>
     </a>
   </nav>
 </div>
 
+<!-- Script Typing -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("typing-text");
+    const desc = document.getElementById("hero-desc");
+    const buttons = document.getElementById("hero-buttons");
+
+    const texts = [
+      "Hello, I'm Kevin Simorangkir",
+      "I'm a Data Analyst",
+      "I'm a UI/UX Designer",
+      "I'm a Tech Enthusiast",
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const currentText = texts[textIndex];
+      const displayedText = currentText.substring(0, charIndex);
+
+      el.innerHTML = `<span class='text-gradient'>${displayedText}</span><span class='cursor blink'>|</span>`;
+
+      if (!isDeleting && charIndex < currentText.length) {
+        charIndex++;
+        setTimeout(type, 70);
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(type, 40);
+      } else {
+        if (!isDeleting) {
+          isDeleting = true;
+          setTimeout(type, 1300);
+        } else {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          setTimeout(type, 300);
+        }
+      }
+    }
+
+    setTimeout(() => {
+      desc.classList.remove("opacity-0");
+      buttons.classList.remove("opacity-0");
+    }, 2500);
+
+    type();
+  });
+</script>
+
 <style is:global>
-  /* Tombol sosial */
+  /* Tombol Sosial */
   .social-btn {
-    @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-[#C4B073]/50
-      text-sm font-medium text-gray-800 dark:text-gray-200;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    @apply flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-[#C4B073]/50
+    text-xs sm:text-sm font-medium text-gray-800 dark:text-gray-200 transition-all duration-300;
   }
 
   .social-btn svg {
@@ -90,54 +148,47 @@ import SocialPill from "@/components/SocialPill.astro"
     @apply bg-[#C4B073] text-white border-[#C4B073];
   }
 
-  /* Efek spin lingkaran */
+  /* Efek Spin Foto */
   @keyframes spin-slow {
-    0% {
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(180deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
   }
-
   .animate-spin-slow {
     animation: spin-slow 6s ease-in-out infinite;
-    mask-image: radial-gradient(circle, transparent 70%, black 72%);
-    -webkit-mask-image: radial-gradient(circle, transparent 70%, black 72%);
   }
 
-  /* Efek shimmer berjalan untuk teks badge */
-  .animated-gradient-text {
-    background: linear-gradient(270deg, #A03133, #C4B073, #A03133);
-    background-size: 800% 800%;
+  /* Gradient Text */
+  .text-gradient {
+    background: linear-gradient(90deg, #A03133, #C4B073, #A03133);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmer 8s ease-in-out infinite;
+    animation: gradientFlow 6s ease infinite;
   }
 
-  @keyframes shimmer {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  @keyframes gradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
-  /* Background dark mode */
+  /* Cursor efek blink */
+  .cursor.blink {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+  /* Jarak dan tata letak */
+  #typing-text {
+    margin-bottom: 0.4rem;
+    word-break: break-word;
+  }
+
   html.dark {
     background-color: #161616;
-  }
-
-  @media (max-width: 640px) {
-    .social-btn {
-      @apply flex-1 text-sm;
-    }
   }
 </style>

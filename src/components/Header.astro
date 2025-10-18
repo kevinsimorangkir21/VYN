@@ -1,55 +1,54 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro"
+import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
-  { title: "Experience", label: "Experience", url: "/#experience" },
-  { title: "Projects", label: "Projects", url: "/#project" },
-  { title: "About Me", label: "About Me", url: "/#about-me" },
-  { title: "Article", label: "Article", url: "/#articles" },
-  { title: "Contacts", label: "Contacts", url: "mailto:vin.simorangkir81@gmail.com" },
-]
+  { title: "Experience", label: "experience", url: "/#experience" },
+  { title: "Projects", label: "project", url: "/#project" },
+  { title: "About Me", label: "about-me", url: "/#about-me" },
+  { title: "Article", label: "articles", url: "/#articles" },
+  { title: "Contacts", label: "contacts", url: "mailto:vin.simorangkir81@gmail.com" },
+];
 ---
 
-<header class="fixed top-4 z-50 flex items-center justify-center w-full px-4">
+<header class="fixed top-4 z-50 w-full flex justify-center px-4">
   <nav
     id="navbar"
-    class="flex items-center justify-between gap-4 px-4 py-2.5 text-sm font-medium rounded-full border border-white/30 dark:border-gray-700/40 shadow-lg transition-all duration-300 backdrop-blur-md bg-white/15 dark:bg-[#0b0b0b]/70 w-fit max-w-full"
+    class="relative flex items-center justify-between gap-4 px-5 py-2.5 text-sm font-medium rounded-full border border-white/20 dark:border-gray-800/60 shadow-xl transition-all duration-300 backdrop-blur-lg bg-white/10 dark:bg-[#0b0b0b]/60 w-fit"
   >
-    <!-- Mobile menu button -->
+    <!-- Mobile toggle -->
     <button
       id="menu-toggle"
-      class="sm:hidden block p-2 rounded-md hover:bg-white/30 dark:hover:bg-gray-800/50 transition"
+      class="sm:hidden p-2 rounded-md hover:bg-white/25 dark:hover:bg-gray-800/60 transition"
       aria-label="Toggle menu"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-6 h-6 text-gray-700 dark:text-gray-200"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      <svg xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24"
+        stroke-width="1.6" stroke="currentColor"
+        class="w-6 h-6 text-gray-800 dark:text-gray-200">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
       </svg>
     </button>
 
-    <!-- Desktop menu -->
-    <div id="menu" class="hidden sm:flex items-center justify-center gap-2 flex-1">
-      {
-        navItems.map((link) => (
-          <a
-            class="relative flex items-center justify-center h-8 px-2 py-0 rounded-full leading-none text-gray-700 dark:text-gray-200 hover:text-[#C4B073] dark:hover:text-[#C4B073] transition-all duration-300 hover:bg-white/20 dark:hover:bg-gray-800/60 hover:shadow-[0_0_8px_rgba(196,176,115,0.6)] whitespace-nowrap"
-            aria-label={link.label}
-            href={link.url}
-          >
-            {link.title}
-          </a>
-        ))
-      }
+    <!-- Desktop Menu -->
+    <div id="menu" class="hidden sm:flex items-center gap-2 relative">
+      <span
+        id="active-indicator"
+        class="absolute bottom-0 h-[2px] bg-[#C4B073] rounded-full transition-all duration-300 ease-out opacity-0"
+      ></span>
+
+      {navItems.map((link) => (
+        <a
+          href={link.url}
+          aria-label={link.label}
+          class="relative flex items-center justify-center px-3 py-1 rounded-full text-gray-700 dark:text-gray-200 transition-all duration-300 hover:text-[#C4B073] hover:bg-white/20 dark:hover:bg-gray-800/60"
+        >
+          {link.title}
+        </a>
+      ))}
     </div>
 
-    <!-- Theme toggle -->
-    <div class="flex items-center justify-end">
+    <div class="flex items-center">
       <ThemeToggle />
     </div>
   </nav>
@@ -57,71 +56,83 @@ const navItems = [
   <!-- Mobile dropdown -->
   <div
     id="mobile-menu"
-    class="hidden fixed top-20 left-1/2 -translate-x-1/2 flex-col items-center gap-3 p-4 rounded-2xl border border-white/30 dark:border-gray-700/40 bg-white/30 dark:bg-[#0b0b0b]/80 backdrop-blur-xl shadow-2xl transition-all duration-300 sm:hidden"
+    class="hidden fixed top-20 left-1/2 -translate-x-1/2 flex-col items-center gap-3 p-4 rounded-2xl border border-white/20 dark:border-gray-700/40 bg-white/30 dark:bg-[#0b0b0b]/85 backdrop-blur-xl shadow-2xl transition-all duration-300 opacity-0 sm:hidden"
   >
-    {
-      navItems.map((link) => (
-        <a
-          class="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-[#C4B073] dark:hover:text-[#C4B073] hover:bg-white/20 dark:hover:bg-gray-800/60 transition-all duration-300 whitespace-nowrap"
-          aria-label={link.label}
-          href={link.url}
-        >
-          {link.title}
-        </a>
-      ))
-    }
+    {navItems.map((link) => (
+      <a
+        href={link.url}
+        aria-label={link.label}
+        class="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-[#C4B073] hover:bg-white/25 dark:hover:bg-gray-800/60 transition-all duration-300"
+      >
+        {link.title}
+      </a>
+    ))}
   </div>
 </header>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll("header nav a")
-    const navbar = document.getElementById("navbar")
-    const mobileMenu = document.getElementById("mobile-menu")
-    const menuToggle = document.getElementById("menu-toggle")
+    const nav = document.getElementById("navbar");
+    const navLinks = nav.querySelectorAll("a[aria-label]");
+    const indicator = document.getElementById("active-indicator");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuToggle = document.getElementById("menu-toggle");
+    const sections = document.querySelectorAll("section[id]");
 
-    // Adaptive blur
-    const resizeBlur = () => {
-      const height = navbar.offsetHeight
-      navbar.style.backdropFilter = `blur(${Math.max(10, height / 2)}px)`
-    }
-    resizeBlur()
-    window.addEventListener("resize", resizeBlur)
+    let activeLink = null;
 
-    // Intersection highlight
-    const callback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navItems.forEach((item) => {
-            if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add(
-                "text-[#C4B073]",
-                "bg-white/30",
-                "dark:bg-gray-700/60",
-                "shadow-[0_0_8px_rgba(196,176,115,0.6)]"
-              )
-            } else {
-              item.classList.remove(
-                "text-[#C4B073]",
-                "bg-white/30",
-                "dark:bg-gray-700/60",
-                "shadow-[0_0_8px_rgba(196,176,115,0.6)]"
-              )
-            }
-          })
-        }
-      })
+    // Move underline indicator smoothly
+    function moveIndicator(target) {
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      const parentRect = target.parentElement.getBoundingClientRect();
+      indicator.style.width = `${rect.width}px`;
+      indicator.style.left = `${rect.left - parentRect.left}px`;
+      indicator.style.opacity = "1";
     }
 
-    const observer = new IntersectionObserver(callback, { threshold: 0.3 })
-    sections.forEach((section) => observer.observe(section))
+    // Intersection observer for section highlighting
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navLinks.forEach((link) => {
+              const match = link.getAttribute("aria-label") === entry.target.id;
+              link.classList.toggle("text-[#C4B073]", match);
+              if (match) {
+                activeLink = link;
+                moveIndicator(link);
+              }
+            });
+          }
+        });
+      },
+      { threshold: 0.45 }
+    );
 
-    // Mobile menu toggle
+    sections.forEach((s) => observer.observe(s));
+
+    // Reposition indicator on resize or route change
+    window.addEventListener("resize", () => moveIndicator(activeLink));
+
+    // Mobile toggle
     menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden")
-    })
-  })
+      const isVisible = !mobileMenu.classList.contains("hidden");
+      if (isVisible) {
+        mobileMenu.classList.add("opacity-0");
+        setTimeout(() => mobileMenu.classList.add("hidden"), 200);
+      } else {
+        mobileMenu.classList.remove("hidden");
+        setTimeout(() => mobileMenu.classList.remove("opacity-0"), 10);
+      }
+    });
+
+    // Initialize after render
+    setTimeout(() => {
+      activeLink = navLinks[0];
+      moveIndicator(activeLink);
+    }, 250);
+  });
 </script>
 
 <style>
@@ -130,18 +141,18 @@ const navItems = [
   }
 
   @keyframes fadeDown {
-    0% {
+    from {
       opacity: 0;
       transform: translateY(-10px);
     }
-    100% {
+    to {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
   nav {
-    animation: navShadow 1s linear both;
+    animation: navShadow linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
   }
@@ -149,9 +160,15 @@ const navItems = [
   @keyframes navShadow {
     0% {
       box-shadow: none;
+      backdrop-filter: blur(8px);
     }
     100% {
-      box-shadow: 0 4px 25px rgba(196, 176, 115, 0.25);
+      box-shadow: 0 4px 20px rgba(196, 176, 115, 0.25);
+      backdrop-filter: blur(18px);
     }
+  }
+
+  #mobile-menu {
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
 </style>

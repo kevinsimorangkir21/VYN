@@ -3,7 +3,33 @@
   target="_blank"
   rel="noopener noreferrer"
   role="link"
-  class="inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 transition bg-gray-100 border border-gray-300 rounded-full dark:bg-gray-800 dark:border-gray-600 dark:text-white focus-visible:ring-yellow-500/80 text-md hover:bg-gray-900 hover:border-gray-700 hover:text-white dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+  class="inline-flex items-center justify-center gap-2 px-5 py-2
+         rounded-full border text-base font-medium
+         text-gray-800 dark:text-gray-200
+         bg-gray-100/70 dark:bg-gray-800/70
+         border-gray-300/70 dark:border-gray-600/70
+         transition-all duration-300 ease-out
+         hover:scale-[1.03] hover:bg-[#C4B073] hover:text-white hover:border-[#C4B073]
+         dark:hover:bg-[#E6D8A2]/90 dark:hover:text-black dark:hover:border-[#E6D8A2]
+         focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C4B073]/70 focus-visible:ring-offset-2
+         active:scale-95 select-none group"
 >
   <slot />
 </a>
+
+<style is:global>
+  /* 🌟 Animasi subtle untuk hover */
+  a:hover {
+    box-shadow: 0 4px 12px rgba(196, 176, 115, 0.25);
+  }
+
+  /* 🌓 Dark mode lebih lembut */
+  html.dark a:hover {
+    box-shadow: 0 4px 10px rgba(230, 216, 162, 0.25);
+  }
+
+  /* 💫 Transisi menyeluruh */
+  a {
+    transition-property: color, background-color, border-color, transform, box-shadow;
+  }
+</style>
