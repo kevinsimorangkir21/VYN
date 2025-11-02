@@ -11,6 +11,8 @@ import SectionContainer from "@/components/SectionContainer.astro";
 import Hero from "@/components/Hero.astro";
 import TitleSection from "@/components/TitleSection.astro";
 import BookIcon from "@/components/icons/Book.astro";
+import CertificateIcon from "@/components/icons/CertificateIcon.astro";
+import Certificates from "@/components/Certificates.astro";
 
 // 🔥 Popup
 import Popup from "@/components/Popup.astro";
@@ -18,14 +20,12 @@ import Popup from "@/components/Popup.astro";
 const year = new Date().getFullYear();
 ---
 
-<!-- Tambahkan hideHeader dan hideNavbar di sini -->
 <Layout
   title={`Portfolio of KEVINS ${year}`}
   description="Portfolio website by KVNS"
   hideHeader={true}
 >
   <main class="px-4 sm:px-6 lg:px-8">
-    <!-- 🔥 Popup aktif -->
     <Popup show={true} once={false} />
 
     <!-- Hero Section -->
@@ -52,6 +52,15 @@ const year = new Date().getFullYear();
         <Projects />
       </SectionContainer>
 
+      <!-- Certificate Section -->
+      <SectionContainer id="certificate" class="animate-fadeInUp delay-250">
+        <TitleSection>
+          <CertificateIcon class="size-7 text-[#58C4C1]" />
+          Certificates
+        </TitleSection>
+        <Certificates />
+      </SectionContainer>
+
       <!-- Articles Section -->
       <SectionContainer id="articles" class="animate-fadeInUp delay-300">
         <TitleSection>
@@ -63,19 +72,19 @@ const year = new Date().getFullYear();
           {
             [
               {
-                title:
-                  "Pengalaman Kerja Praktik (KP) / Magang di Telkom Witel Lampung",
+                title: "Experience During Internship at Telkom",
                 date: "2025-09-01",
                 description:
                   "During my internship at Telkom Witel Lampung under the BGES MBB...",
-                slug: "pengalaman-kp-telkom",
+                slug: "internship-experience-telkom",
               },
               {
-                title: "Tips Optimasi SEO di Astro",
-                date: "2025-09-03",
+                title:
+                  "Gold Award 6th International Technology-Enhanced Language Learning Symposium (iTELLS 2025)",
+                date: "2025-07-18",
                 description:
                   "Cara memanfaatkan Astro untuk SEO yang lebih baik dan performa maksimal.",
-                slug: "tips-seo-astro",
+                slug: "6th-itells",
               },
               {
                 title: "Panduan Aksesibilitas untuk Desain Modern",
@@ -111,7 +120,6 @@ const year = new Date().getFullYear();
           }
         </div>
 
-        <!-- View All Button -->
         <div class="mt-10 text-center">
           <a
             href="/articles"
@@ -158,6 +166,9 @@ const year = new Date().getFullYear();
   }
   .animate-fadeInUp.delay-200 {
     animation-delay: 0.2s;
+  }
+  .animate-fadeInUp.delay-250 {
+    animation-delay: 0.25s;
   }
   .animate-fadeInUp.delay-300 {
     animation-delay: 0.3s;

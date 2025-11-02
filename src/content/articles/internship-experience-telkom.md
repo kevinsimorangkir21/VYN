@@ -1,8 +1,8 @@
 ---
-title: "Pengalaman Kerja Praktik (KP) / Magang di Telkom Witel Lampung"
+title: "Experience During Internship at Telkom"
 description: "Pengenalan dasar tentang Astro, framework modern untuk membangun website cepat dan ringan."
 pubDate: 2024-07-01
-slug: "pengalaman-kp-telkom"
+slug: "internship-experience-telkom"
 ---
 During my internship at Telkom Witel Lampung under the BGES MBB division, I was given the opportunity to work collaboratively with Ignatius Krisna Issaputra on several projects that combined both data analysis and web development.
 

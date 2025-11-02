@@ -1,0 +1,54 @@
+---
+const certificates = [
+  {
+    title: "Google UX Design Certificate",
+    issuer: "Coursera / Google",
+    year: "2024",
+    link: "https://coursera.org/share/example",
+  },
+  {
+    title: "Front-End Developer Certification",
+    issuer: "freeCodeCamp",
+    year: "2023",
+    link: "https://freecodecamp.org/certification/example",
+  },
+  {
+    title: "Data Analytics Professional Certificate",
+    issuer: "IBM",
+    year: "2022",
+    link: "https://www.credly.com/badges/example",
+  },
+];
+---
+
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    certificates.map((cert) => (
+      <a
+        href={cert.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group p-6 rounded-2xl border border-teal-400/30
+               bg-gradient-to-b from-white/80 to-white/50
+               dark:from-gray-900/40 dark:to-gray-800/30
+               backdrop-blur-xl shadow-md transition-all duration-500
+               hover:scale-[1.03] hover:shadow-2xl
+               hover:from-teal-50/80 hover:to-teal-100/60
+               hover:border-teal-400/60"
+      >
+        <h3 class="text-lg font-semibold mb-1 text-gray-800 dark:text-gray-200 transition-colors duration-300 group-hover:text-teal-500">
+          {cert.title}
+        </h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          {cert.issuer}
+        </p>
+        <p class="text-xs text-gray-400 mt-1">
+          {cert.year}
+        </p>
+
+        <!-- Garis aksen bawah -->
+        <div class="mt-3 w-16 h-[2px] bg-teal-400 rounded-full group-hover:w-24 transition-all duration-500"></div>
+      </a>
+    ))
+  }
+</div>
