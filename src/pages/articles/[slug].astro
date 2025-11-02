@@ -2,6 +2,7 @@
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import { getCollection } from "astro:content";
 
+// 🔹 Generate all article paths
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
   return articles.map((article) => ({
@@ -10,18 +11,36 @@ export async function getStaticPaths() {
   }));
 }
 
-const { article } = Astro.props;
-if (!article) {
-  throw new Error("Article not found");
+// 🔹 Type definition for props
+interface ArticleProps {
+  article: {
+    slug: string;
+    data: {
+      title: string;
+      description: string;
+      pubDate: Date;
+      related?: { title: string; slug: string; image: string }[];
+    };
+    render: () => Promise<{ Content: any }>;
+  };
 }
 
+// 🔹 Extract article data
+const { article } = Astro.props as ArticleProps;
+
+if (!article) {
+  throw new Error("❌ Article not found");
+}
+
+// 🔹 Render markdown content
 const { Content } = await article.render();
 ---
 
+<!-- ✅ Render artikel dengan layout -->
 <ArticleLayout
   title={article.data.title}
   description={article.data.description}
-  date={article.data.pubDate}
+  date={article.data.pubDate.toISOString()}
   related={article.data.related}
 >
   <Content />

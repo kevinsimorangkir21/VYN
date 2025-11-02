@@ -3,19 +3,92 @@ import Layout from "../layouts/Layout.astro";
 export const prerender = true;
 ---
 
-<Layout title="404 - Not Found">
-  <main class="flex flex-col items-center justify-center min-h-screen bg-[#161616] text-gray-100 text-center px-6">
-    <h1 class="text-7xl sm:text-8xl font-extrabold text-[#C4B073] mb-4">404</h1>
-    <h2 class="text-2xl sm:text-3xl font-semibold mb-3">Oops! Page Not Found.</h2>
-    <p class="text-gray-400 max-w-md mb-8">
-      The page you’re looking for might have been moved or deleted.
+<Layout
+  title="404 - Not Found"
+  description="Page not found"
+  hideHeader={true}
+  hideFooter={true}
+>
+  <main
+    class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#0D0D0D] via-[#161616] to-[#1A1A1A] text-gray-100 text-center px-6 relative overflow-hidden"
+  >
+    <!-- Decorative Teal Glow -->
+    <div
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-gradient-to-tr from-[#58c4c1]/40 via-transparent to-[#58c4c1]/10 rounded-full blur-3xl pointer-events-none animate-pulse"
+    >
+    </div>
+    <div
+      class="absolute bottom-1/4 right-1/2 translate-x-1/2 w-64 h-64 bg-gradient-to-bl from-[#58c4c1]/30 via-transparent to-[#58c4c1]/5 rounded-full blur-3xl pointer-events-none animate-pulse"
+    >
+    </div>
+
+    <!-- 404 Text -->
+    <h1
+      class="text-7xl sm:text-8xl font-extrabold text-[#58c4c1] mb-4 drop-shadow-lg animate-fadeIn"
+    >
+      404
+    </h1>
+    <h2
+      class="text-2xl sm:text-3xl font-semibold mb-3 text-gray-200 animate-fadeIn delay-200"
+    >
+      Oops! Page Not Found.
+    </h2>
+    <p class="text-gray-400 max-w-md mb-8 animate-fadeIn delay-400">
+      The page you’re looking for might have been moved, deleted, or never
+      existed.
     </p>
+
+    <!-- Back to Home Button -->
     <a
       href="/"
-      class="inline-flex items-center gap-2 border border-[#C4B073] text-[#C4B073] px-6 py-3 rounded-xl 
-             hover:bg-[#C4B073] hover:text-[#161616] transition-all duration-300 text-lg font-medium"
+      class="inline-flex items-center gap-2 border border-[#58c4c1] text-[#58c4c1] px-6 py-3 rounded-xl
+             hover:bg-[#58c4c1] hover:text-[#161616]
+             shadow-lg hover:shadow-2xl transition-all duration-300 text-lg font-medium animate-fadeIn delay-600"
     >
       ← Back to Home
     </a>
   </main>
 </Layout>
+
+<style is:global>
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-fadeIn.delay-200 {
+    animation-delay: 0.2s;
+  }
+  .animate-fadeIn.delay-400 {
+    animation-delay: 0.4s;
+  }
+  .animate-fadeIn.delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.6;
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 4s ease-in-out infinite;
+  }
+</style>

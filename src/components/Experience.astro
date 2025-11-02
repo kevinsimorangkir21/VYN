@@ -1,7 +1,8 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 
-const EXPERIENCE = [
+// 💼 Professional Experience
+const PROFESSIONAL_EXPERIENCE = [
   {
     date: "January 2025 - September 2025",
     title: "Creative",
@@ -39,14 +40,72 @@ const EXPERIENCE = [
     link: "#",
   },
 ];
+
+// 🏛️ Organizational Experience (default)
+const ORGANIZATIONAL_EXPERIENCE = [
+  {
+    date: "March 2023 - December 2024",
+    title: "Head of Creative Division",
+    company: "Himpunan Mahasiswa Informatika ITERA",
+    status: "Organization",
+    description:
+      "Led a team of 8 designers and content creators to develop brand consistency for Informatics Student Association events and publications. Coordinated digital assets, event posters, and video promotions while maintaining a unified design direction aligned with Informatics branding guidelines.",
+    link: "#",
+  },
+  {
+    date: "February 2022 - December 2022",
+    title: "Public Relations Staff",
+    company: "Himpunan Mahasiswa Informatika ITERA",
+    status: "Organization",
+    description:
+      "Handled public communication and managed partnerships for various Informatics events. Collaborated with external organizations and sponsors to enhance exposure while maintaining good relations with university stakeholders.",
+    link: "#",
+  },
+];
 ---
 
-<ol class="relative mt-16">
-  {
-    EXPERIENCE.map((exp, index) => (
-      <li>
-        <ExperienceItem {...exp} index={index} isLast={index === EXPERIENCE.length - 1} />
-      </li>
-    ))
-  }
-</ol>
+<section class="relative mt-24 mb-24 px-4 sm:px-8 md:px-12">
+  <!-- 💼 Professional Section -->
+  <h2
+    class="text-3xl sm:text-4xl font-bold text-center mb-10 text-[#C4B073] drop-shadow-lg"
+  >
+    Professional Experience
+  </h2>
+
+  <ol class="relative mt-10">
+    {
+      PROFESSIONAL_EXPERIENCE.map((exp, index) => (
+        <li>
+          {/* @ts-ignore */}
+          <ExperienceItem
+            {...exp}
+            index={index}
+            isLast={index === PROFESSIONAL_EXPERIENCE.length - 1}
+          />
+        </li>
+      ))
+    }
+  </ol>
+
+  <!-- 🏛️ Organizational Section -->
+  <h2
+    class="text-3xl sm:text-4xl font-bold text-center mt-24 mb-10 text-[#C4B073] drop-shadow-lg"
+  >
+    Organizational Experience
+  </h2>
+
+  <ol class="relative mt-10">
+    {
+      ORGANIZATIONAL_EXPERIENCE.map((exp, index) => (
+        <li>
+          {/* @ts-ignore */}
+          <ExperienceItem
+            {...exp}
+            index={index}
+            isLast={index === ORGANIZATIONAL_EXPERIENCE.length - 1}
+          />
+        </li>
+      ))
+    }
+  </ol>
+</section>

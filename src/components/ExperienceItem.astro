@@ -12,92 +12,156 @@ interface Props {
   isLast?: boolean;
 }
 
-const { title, company, description, link, date, status, index = 0, isLast = false } =
-  Astro.props as Props;
+const {
+  title,
+  company,
+  description,
+  link,
+  date,
+  status,
+  index = 0,
+  isLast = false,
+} = Astro.props as Props;
 
-// 🎨 Warna badge berdasarkan status
+// 🎨 Warna status badge modern teal
 const statusColors = {
-  Freelance: "bg-gradient-to-r from-[#C4B073]/30 to-[#A03133]/30 text-[#A03133] dark:text-[#C4B073]",
-  Internship: "bg-[#C4B073]/20 text-[#C4B073]",
-  Ongoing: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
-  Project: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
+  Freelance: "bg-[#266668]/20 text-[#266668] border border-[#266668]/40",
+  Internship: "bg-[#a19665]/20 text-[#a19665] border border-[#a19665]/40",
+  Ongoing: "bg-yellow-200/20 text-yellow-700 border border-yellow-500/30",
+  Project: "bg-blue-200/20 text-blue-700 border border-blue-500/30",
 };
 
 const badgeClass =
   statusColors[status] ||
-  "bg-gray-100 text-gray-800 dark:bg-gray-800/40 dark:text-gray-200";
+  "bg-gray-100/30 text-gray-800 dark:bg-gray-800/40 dark:text-gray-200";
 ---
 
 <div
-  class={`timeline-item relative mx-5 sm:mx-8 pb-12 grid opacity-0 translate-y-6 transition-all duration-700 ease-out
+  class={`timeline-item relative mx-5 sm:mx-8 pb-14 grid opacity-0 translate-y-8 
+  transition-all duration-700 ease-out
   before:absolute before:left-[-22px] before:top-0 before:block 
-  before:w-[2px] before:bg-[#C4B073]/40 dark:before:bg-[#C4B073]/20 before:content-['']
-  md:grid-cols-5 md:gap-10
+  before:w-[2px] before:bg-[#266668]/60
+  md:grid-cols-5 md:gap-12
   ${index % 2 === 0 ? "slide-left" : "slide-right"}
-  ${isLast ? "before:h-[1.5rem]" : "before:h-full"}`}
+  ${isLast ? "before:h-[2rem]" : "before:h-full"}`}
 >
-  <!-- Kiri: Judul & Info -->
-  <div class="relative pb-8 md:col-span-2">
+  <!-- ✨ Kiri: Info -->
+  <div class="relative pb-8 md:col-span-2 group">
     <div class="sticky top-0">
+      <!-- Titik Timeline -->
       <span
-        class="absolute -left-[26px] top-1 z-10 rounded-full w-3.5 h-3.5 bg-[#C4B073] shadow-[0_0_6px_rgba(196,176,115,0.6)]"
+        class="absolute -left-[26px] top-1 z-10 w-3.5 h-3.5 rounded-full
+        bg-[#266668] shadow-[0_0_15px_rgba(38,102,104,0.6)]
+        ring-[2px] ring-white/30 dark:ring-[#0b0b0b]/60 pulse-dot"
       ></span>
 
-      <h3 class="text-xl sm:text-2xl font-bold text-[#C4B073]">{title}</h3>
-      <h4 class="font-semibold text-base sm:text-lg text-gray-700 dark:text-gray-200">{company}</h4>
+      <!-- Judul -->
+      <h3
+        class="text-xl sm:text-2xl font-bold text-[#266668] group-hover:text-[#a19665]
+               transition-all duration-500 tracking-wide drop-shadow-sm"
+      >
+        {title}
+      </h3>
+
+      <h4
+        class="font-medium text-base sm:text-lg text-gray-700 dark:text-gray-200 italic"
+      >
+        {company}
+      </h4>
 
       <!-- Status -->
       <span
-        class={`inline-block mt-1 px-3 py-0.5 text-xs font-medium rounded-full shadow-sm ${badgeClass}`}
+        class={`inline-block mt-2 px-3 py-0.5 text-xs font-medium rounded-full shadow-sm backdrop-blur ${badgeClass}`}
       >
         {status}
       </span>
 
-      <time class="block mt-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400">{date}</time>
+      <time
+        class="block mt-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-light"
+      >
+        {date}
+      </time>
     </div>
   </div>
 
-  <!-- Kanan: Deskripsi -->
+  <!-- ✨ Kanan: Deskripsi -->
   <div
-    class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3 leading-relaxed text-sm sm:text-base"
+    class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300
+           md:col-span-3 leading-relaxed text-sm sm:text-base transition-all duration-700"
   >
-    {description}
-    {link && <LinkInline href={link} />}
+    <div
+      class="relative p-4 rounded-2xl bg-white/10 dark:bg-[#111]/40
+             border border-[#266668]/30
+             hover:border-[#a19665]/50 hover:shadow-[0_0_35px_rgba(161,150,101,0.25)]
+             shadow-[0_0_10px_rgba(38,102,104,0.1)]
+             transition-all duration-700 backdrop-blur-md hover:translate-x-1 hover:scale-[1.01]"
+    >
+      <div class="text-justify">
+        {description}
+        {link && <LinkInline href={link} />}
+      </div>
+    </div>
   </div>
 </div>
 
 <style is:global>
-  /* 🔹 Garis Timeline */
+  /* ✨ Timeline line */
   .timeline-item::before {
     content: "";
     position: absolute;
     left: -22px;
     top: 0;
     width: 2px;
-    background-color: #C4B073;
-    opacity: 0.4;
+    background: #26666880;
   }
 
-  /* 🎞️ Animasi Scroll */
+  /* 🌟 Pulse titik timeline */
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow:
+        0 0 8px rgba(38, 102, 104, 0.5),
+        0 0 18px rgba(161, 150, 101, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow:
+        0 0 25px rgba(38, 102, 104, 0.9),
+        0 0 45px rgba(161, 150, 101, 0.4);
+      transform: scale(1.15);
+    }
+  }
+  .pulse-dot {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  /* 🌀 Slide animations */
   @keyframes fadeSlideLeft {
-    from { opacity: 0; transform: translate(-40px, 20px); }
-    to { opacity: 1; transform: translate(0, 0); }
+    from {
+      opacity: 0;
+      transform: translate(-60px, 20px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
   @keyframes fadeSlideRight {
-    from { opacity: 0; transform: translate(40px, 20px); }
-    to { opacity: 1; transform: translate(0, 0); }
+    from {
+      opacity: 0;
+      transform: translate(60px, 20px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
-
-  .timeline-item.show.slide-left { animation: fadeSlideLeft 0.9s ease-out forwards; }
-  .timeline-item.show.slide-right { animation: fadeSlideRight 0.9s ease-out forwards; }
-
-  /* 🌙 Tema SeventeenEight */
-  html.seventeen-eight .timeline-item::before { background-color: #00007260 !important; }
-  html.seventeen-eight span.w-3\.5 { background-color: #000072 !important; }
-  html.seventeen-eight h3 { color: #000072 !important; }
-  html.seventeen-eight h4,
-  html.seventeen-eight time,
-  html.seventeen-eight .relative.flex { color: #1b602f !important; }
+  .timeline-item.show.slide-left {
+    animation: fadeSlideLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .timeline-item.show.slide-right {
+    animation: fadeSlideRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 </style>
 
 <script>
@@ -115,6 +179,8 @@ const badgeClass =
       { threshold: 0.15 }
     );
 
-    document.querySelectorAll(".timeline-item").forEach((el) => observer.observe(el));
+    document
+      .querySelectorAll(".timeline-item")
+      .forEach((el) => observer.observe(el));
   }
 </script>

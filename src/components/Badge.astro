@@ -1,23 +1,23 @@
 <div class="flex items-center justify-center">
-  <span class="relative inline-flex overflow-hidden rounded-full p-[1.5px]">
-    <!-- 🌈 Border Gradasi Berputar -->
+  <span class="relative inline-flex overflow-hidden rounded-full p-[1.8px]">
+    <!-- 🌌 Border Gradasi Berputar (Emerald x Gold) -->
     <span
-      class="absolute inset-[-150%] animate-[spin_3s_linear_infinite] 
-             bg-[conic-gradient(from_0deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]
-             opacity-90 dark:opacity-70"
+      class="absolute inset-[-150%] animate-[spin_5s_linear_infinite]
+             bg-[conic-gradient(from_0deg_at_50%_50%,#C4B073_0%,#1E3A34_40%,#C4B073_80%,#C4B073_100%)]
+             opacity-70 dark:opacity-60 blur-[0.3px]"
     ></span>
 
-    <!-- 💫 Isi Badge -->
+    <!-- 🪶 Isi Badge -->
     <div
-      class="inline-flex items-center justify-center px-4 py-1.5 text-sm font-medium 
-             text-green-900 dark:text-emerald-200
-             bg-green-50 dark:bg-gray-900/70
+      class="inline-flex items-center justify-center px-4 py-1.5 text-sm font-semibold
+             text-[#E6D8A2]
+             bg-[#0C0C0C]/90
              rounded-full cursor-pointer whitespace-nowrap
-             backdrop-blur-xl
-             ring-1 ring-green-200/50 dark:ring-emerald-400/20
-             transition-all duration-300
-             hover:scale-105 hover:ring-green-300/70 hover:text-green-800
-             dark:hover:ring-emerald-400/50 dark:hover:text-emerald-100"
+             backdrop-blur-xl border border-[#C4B073]/20
+             shadow-[0_0_10px_rgba(196,176,115,0.15)]
+             transition-all duration-500 ease-out
+             hover:scale-105 hover:shadow-[0_0_25px_rgba(196,176,115,0.3)]
+             hover:text-[#FFF8DC]"
     >
       <slot />
     </div>
@@ -34,7 +34,18 @@
     }
   }
 
-  /* Responsif: badge mengecil di layar kecil */
+  /* 🌙 Dark Mode Polishing */
+  html.dark .flex .inline-flex div {
+    background: rgba(10, 10, 10, 0.85);
+    color: #e6d8a2;
+    border-color: rgba(196, 176, 115, 0.25);
+  }
+
+  html.dark .flex .inline-flex div:hover {
+    background: rgba(20, 20, 20, 0.9);
+  }
+
+  /* 🌟 Responsif */
   @media (max-width: 640px) {
     .flex span div {
       font-size: 0.85rem;

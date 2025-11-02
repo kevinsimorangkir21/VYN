@@ -11,22 +11,22 @@ import Excel from "./icons/Excel.astro"
 import Prototype from "./icons/Pro.astro"
 
 const TAGS = {
-  NEXT: { name: "Next.js", class: "bg-[#111111] text-white", icon: NextJS, iconSize: "w-4 h-4" },
-  TAILWIND: { name: "Tailwind CSS", class: "bg-[#0A2540] text-white", icon: Tailwind, iconSize: "w-4 h-4" },
-  GITHUB: { name: "GitHub", class: "bg-[#1A1A1A] text-white", icon: GitHub, iconSize: "w-4 h-4" },
-  LINK: { name: "Link", class: "bg-[#1E3A8A] text-white", icon: Link, iconSize: "w-4 h-4" },
-  SQL: { name: "SQL", class: "bg-[#312E81] text-white", icon: SQL, iconSize: "w-4 h-4" },
-  FIGMA: { name: "Figma", class: "bg-[#9D174D] text-white", icon: Figma, iconSize: "w-4 h-4" },
-  TABLEAU: { name: "Tableau", class: "bg-[#9A4E1C] text-white", icon: Tableau, iconSize: "w-4 h-4" },
-  EXCEL: { name: "Excel", class: "bg-[#14532D] text-white", icon: Excel, iconSize: "w-3.5 h-3.5" },
-  PROTOTYPE: { name: "Prototype", class: "bg-[#0D0D0D] text-white", icon: Prototype, iconSize: "w-4 h-4" },
+  NEXT: { name: "Next.js", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: NextJS, iconSize: "w-4 h-4" },
+  TAILWIND: { name: "Tailwind CSS", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Tailwind, iconSize: "w-4 h-4" },
+  GITHUB: { name: "GitHub", class: "bg-gradient-to-r from-[#317b79] to-[#58C4C1] text-white", icon: GitHub, iconSize: "w-4 h-4" },
+  LINK: { name: "Live", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Link, iconSize: "w-4 h-4" },
+  SQL: { name: "SQL", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: SQL, iconSize: "w-4 h-4" },
+  FIGMA: { name: "Figma", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Figma, iconSize: "w-4 h-4" },
+  TABLEAU: { name: "Tableau", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Tableau, iconSize: "w-4 h-4" },
+  EXCEL: { name: "Excel", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Excel, iconSize: "w-3.5 h-3.5" },
+  PROTOTYPE: { name: "Prototype", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Prototype, iconSize: "w-4 h-4" },
 }
 
 const CATEGORIES = {
-  WEB_DEV: { name: "Web Development", class: "bg-[#1E3A8A] text-white" },
-  DATA_ANALYST: { name: "Data Analyst", class: "bg-[#14532D] text-white" },
-  UIUX: { name: "UI/UX Designer", class: "bg-[#4C1D95] text-white" },
-  GRAPHIC: { name: "Graphic Design", class: "bg-[#831843] text-white" },
+  WEB_DEV: { name: "Web Development", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white" },
+  DATA_ANALYST: { name: "Data Analyst", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white" },
+  UIUX: { name: "UI/UX Designer", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white" },
+  GRAPHIC: { name: "Graphic Design", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white" },
 }
 
 const PROJECTS = [
@@ -67,89 +67,73 @@ const PROJECTS = [
 ]
 ---
 
-<div class="flex flex-col gap-y-20 md:gap-y-28">
+<div class="relative flex flex-col gap-y-24 md:gap-y-32">
   {PROJECTS.map((project, index) => {
-    const { image, title, description, tags, categories, link, github, prototype } = project
     const reverse = index % 2 === 1
-
     return (
       <article
-        class={`group flex flex-col-reverse md:flex-row items-center gap-10 md:gap-14 ${
+        class={`group relative flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16 ${
           reverse ? "md:flex-row-reverse" : ""
-        }`}
+        } opacity-0 translate-y-10 transition-all duration-700 ease-out`}
       >
-        <!-- Gambar Project -->
-        <div class="w-full md:w-1/2">
+        <!-- Image -->
+        <div class="w-full md:w-1/2 relative">
           <div
-            class="relative overflow-hidden rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 transition-transform duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl"
+            class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-white/2 dark:from-[#58C4C1]/20 dark:to-[#0b2020]/10 backdrop-blur-xl shadow-[0_0_30px_-10px_rgba(88,196,193,0.3)] hover:shadow-[0_0_40px_-5px_rgba(88,196,193,0.45)] transition-all duration-700 ease-out hover:-translate-y-1 hover:scale-[1.01]"
           >
-            <img
-              src={image}
-              alt={title}
-              class="object-cover w-full h-64 sm:h-72 md:h-[22rem] transition-transform duration-700 group-hover:scale-105"
-              loading="lazy"
-            />
+            <img src={project.image} alt={project.title} class="object-cover w-full h-64 sm:h-72 md:h-[22rem] transition-transform duration-700 ease-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-3xl"></div>
           </div>
+          <div class="absolute -bottom-3 left-0 right-0 h-[2px] bg-gradient-to-r from-[#58C4C1]/60 via-[#58C4C1]/20 to-[#58C4C1]/60 blur-md opacity-70"></div>
         </div>
 
-        <!-- Detail Project -->
-        <div class="w-full md:w-1/2 space-y-3">
-          <h3 class="text-2xl sm:text-3xl font-bold text-[#C4B073]">{title}</h3>
+        <!-- Info -->
+        <div class="w-full md:w-1/2 space-y-4 relative">
+          <div class="absolute -top-10 right-10 w-24 h-24 bg-gradient-to-br from-[#58C4C1]/25 to-transparent rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
-          <!-- Categories -->
-          <ul class="flex flex-wrap gap-2 mb-2">
-            {categories.map((cat) => (
+          <h3 class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#3fa7a4] via-[#58C4C1] to-[#3fa7a4] bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(88,196,193,0.4)] tracking-tight">
+            {project.title}
+          </h3>
+
+          <ul class="flex flex-wrap gap-2 mb-3">
+            {project.categories.map((cat) => (
               <li key={cat.name}>
-                <span class={`rounded-full text-xs ${cat.class} py-1.5 px-3 font-medium shadow-sm`}>
+                <span class={`rounded-full text-xs ${cat.class} py-1.5 px-3 font-semibold shadow-sm hover:shadow-md hover:scale-103 transition-all`}>
                   {cat.name}
                 </span>
               </li>
             ))}
           </ul>
 
-          <!-- Tags -->
           <ul class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
+            {project.tags.map((tag) => (
               <li key={tag.name}>
-                <span
-                  class={`flex items-center gap-1.5 rounded-full text-xs ${tag.class} py-1.5 px-3 font-medium shadow-sm`}
-                >
-                  <tag.icon class={tag.iconSize} />
+                <span class={`flex items-center gap-1.5 rounded-full text-xs ${tag.class} py-1.5 px-3 font-medium shadow-sm hover:shadow-lg hover:scale-103 transition-all`}>
+                  <tag.icon class={`${tag.iconSize} drop-shadow-sm`} />
                   {tag.name}
                 </span>
               </li>
             ))}
           </ul>
 
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">{description}</p>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed mt-4 text-sm sm:text-base">
+            {project.description}
+          </p>
 
-          <!-- Tombol Link -->
-          <footer class="flex flex-wrap gap-3 mt-5">
-            {github && (
-              <LinkButton
-                href={github}
-                class="border-2 border-[#C4B073] text-gray-900 dark:text-white hover:bg-[#C4B073] hover:text-white transition-all px-4 py-2 rounded-lg flex items-center gap-2 font-medium"
-              >
-                <GitHub class="w-5 h-5" />
-                Code
+          <footer class="flex flex-wrap gap-3 mt-6">
+            {project.github && (
+              <LinkButton href={project.github} class="border border-[#58C4C1]/50 text-[#58C4C1]/80 hover:bg-[#58C4C1]/90 hover:text-white transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-medium shadow-sm hover:shadow-md hover:scale-103">
+                <GitHub class="w-5 h-5" /> Code
               </LinkButton>
             )}
-            {link && (
-              <LinkButton
-                href={link}
-                class="border-2 border-[#C4B073] text-gray-900 dark:text-white hover:bg-[#C4B073] hover:text-white transition-all px-4 py-2 rounded-lg flex items-center gap-2 font-medium"
-              >
-                <Link class="w-5 h-5" />
-                Preview
+            {project.link && (
+              <LinkButton href={project.link} class="border border-[#58C4C1]/50 text-[#58C4C1]/80 hover:bg-[#58C4C1]/90 hover:text-white transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-medium shadow-sm hover:shadow-md hover:scale-103">
+                <Link class="w-5 h-5" /> Preview
               </LinkButton>
             )}
-            {prototype && (
-              <LinkButton
-                href={prototype}
-                class="bg-[#C4B073] text-white hover:bg-[#bda05f] transition-all px-4 py-2 rounded-lg flex items-center gap-2 font-medium"
-              >
-                <Prototype class="w-5 h-5" />
-                Prototype
+            {project.prototype && (
+              <LinkButton href={project.prototype} class="bg-[#58C4C1]/90 text-white hover:brightness-105 hover:scale-103 transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-semibold shadow-md hover:shadow-lg">
+                <Prototype class="w-5 h-5" /> Prototype
               </LinkButton>
             )}
           </footer>
@@ -160,22 +144,24 @@ const PROJECTS = [
 </div>
 
 <style is:global>
-  article img {
-    transition: transform 0.7s ease, filter 0.5s ease;
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  article:hover img {
-    filter: brightness(1.05);
-  }
-
-  @media (max-width: 768px) {
-    article {
-      text-align: center;
-    }
-    article ul {
-      justify-content: center;
-    }
-    footer {
-      justify-content: center;
-    }
-  }
+  article.show { animation: fadeUp 0.9s ease-out forwards; }
 </style>
+
+<script>
+  if (typeof window !== "undefined") {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationDelay = `${i * 0.1}s`
+          entry.target.classList.add("show")
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.2 })
+    document.querySelectorAll("article").forEach((el) => observer.observe(el))
+  }
+</script>

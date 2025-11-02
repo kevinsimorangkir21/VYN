@@ -18,114 +18,107 @@ import Popup from "@/components/Popup.astro";
 const year = new Date().getFullYear();
 ---
 
+<!-- Tambahkan hideHeader dan hideNavbar di sini -->
 <Layout
   title={`Portfolio of KEVINS ${year}`}
   description="Portfolio website by KVNS"
+  hideHeader={true}
 >
   <main class="px-4 sm:px-6 lg:px-8">
     <!-- 🔥 Popup aktif -->
     <Popup show={true} once={false} />
 
     <!-- Hero Section -->
-    <SectionContainer class="py-20 md:py-36">
+    <SectionContainer class="py-20 md:py-36 animate-fadeInUp">
       <Hero />
     </SectionContainer>
 
     <div class="space-y-24 md:space-y-32">
       <!-- Experience Section -->
-      <SectionContainer id="experience">
+      <SectionContainer id="experience" class="animate-fadeInUp delay-100">
         <TitleSection>
-          <Briefcase class="size-8 text-[#C4B073]" />
+          <Briefcase class="size-8 text-[#58C4C1]" />
           Work Experience
         </TitleSection>
         <Experience />
       </SectionContainer>
 
       <!-- Project Section -->
-      <SectionContainer id="project">
+      <SectionContainer id="project" class="animate-fadeInUp delay-200">
         <TitleSection>
-          <CodeIcon class="size-7 text-[#C4B073]" />
+          <CodeIcon class="size-7 text-[#58C4C1]" />
           Projects
         </TitleSection>
         <Projects />
       </SectionContainer>
 
-      <!-- ✨ Articles Section (Gold Theme) -->
-      <SectionContainer id="articles">
+      <!-- Articles Section -->
+      <SectionContainer id="articles" class="animate-fadeInUp delay-300">
         <TitleSection>
-          <BookIcon class="size-7 text-[#C4B073]" />
+          <BookIcon class="size-7 text-[#58C4C1]" />
           Articles
         </TitleSection>
 
-        <div
-          class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          <!-- Article Card -->
-          <a
-            href="/articles/pengalaman-kp-telkom"
-            class="group p-6 rounded-2xl shadow-md 
-                   bg-white/80 dark:bg-black/30 
-                   backdrop-blur-xl border border-gray-200/30 
-                   dark:border-white/10 transition-transform hover:scale-[1.02]"
-          >
-            <h2
-              class="text-xl font-semibold mb-2 
-                     group-hover:text-[#C4B073] transition-colors duration-200"
-            >
-              Pengalaman Kerja Praktik (KP) / Magang di Telkom Witel Lampung
-            </h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2025-09-01</p>
-            <p class="opacity-90 text-gray-700 dark:text-gray-300">
-              During my internship at Telkom Witel Lampung under the BGES MBB...
-            </p>
-          </a>
-
-          <a
-            href="/articles/tips-seo-astro"
-            class="group p-6 rounded-2xl shadow-md 
-                   bg-white/80 dark:bg-black/30 
-                   backdrop-blur-xl border border-gray-200/30 
-                   dark:border-white/10 transition-transform hover:scale-[1.02]"
-          >
-            <h2
-              class="text-xl font-semibold mb-2 
-                     group-hover:text-[#C4B073] transition-colors duration-200"
-            >
-              Tips Optimasi SEO di Astro
-            </h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2025-09-03</p>
-            <p class="opacity-90 text-gray-700 dark:text-gray-300">
-              Cara memanfaatkan Astro untuk SEO yang lebih baik dan performa maksimal.
-            </p>
-          </a>
-
-          <a
-            href="/articles/design-accessibility"
-            class="group p-6 rounded-2xl shadow-md 
-                   bg-white/80 dark:bg-black/30 
-                   backdrop-blur-xl border border-gray-200/30 
-                   dark:border-white/10 transition-transform hover:scale-[1.02]"
-          >
-            <h2
-              class="text-xl font-semibold mb-2 
-                     group-hover:text-[#C4B073] transition-colors duration-200"
-            >
-              Panduan Aksesibilitas untuk Desain Modern
-            </h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">2025-09-10</p>
-            <p class="opacity-90 text-gray-700 dark:text-gray-300">
-              Membuat desain yang ramah pengguna dan mudah diakses untuk semua orang.
-            </p>
-          </a>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            [
+              {
+                title:
+                  "Pengalaman Kerja Praktik (KP) / Magang di Telkom Witel Lampung",
+                date: "2025-09-01",
+                description:
+                  "During my internship at Telkom Witel Lampung under the BGES MBB...",
+                slug: "pengalaman-kp-telkom",
+              },
+              {
+                title: "Tips Optimasi SEO di Astro",
+                date: "2025-09-03",
+                description:
+                  "Cara memanfaatkan Astro untuk SEO yang lebih baik dan performa maksimal.",
+                slug: "tips-seo-astro",
+              },
+              {
+                title: "Panduan Aksesibilitas untuk Desain Modern",
+                date: "2025-09-10",
+                description:
+                  "Membuat desain yang ramah pengguna dan mudah diakses untuk semua orang.",
+                slug: "design-accessibility",
+              },
+            ].map((article, i) => (
+              <a
+                href={`/articles/${article.slug}`}
+                class={`group p-6 rounded-2xl shadow-lg
+                      bg-gradient-to-b from-white/80 to-white/50
+                      dark:from-gray-900/40 dark:to-gray-800/30
+                      backdrop-blur-xl border border-[#58C4C1]/30
+                      transition-all duration-500
+                      hover:scale-[1.03] hover:shadow-2xl
+                      hover:from-[#e7f9f8]/80 hover:to-[#d3f5f4]/60
+                      hover:border-[#58C4C1]/60
+                      animate-fadeInUp delay-${i * 150}`}
+              >
+                <h2 class="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-[#58C4C1]">
+                  {article.title}
+                </h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                  {article.date}
+                </p>
+                <p class="opacity-90 text-gray-700 dark:text-gray-300">
+                  {article.description}
+                </p>
+              </a>
+            ))
+          }
         </div>
 
         <!-- View All Button -->
         <div class="mt-10 text-center">
-          <a 
-            href="/articles" 
-            class="inline-block px-6 py-2.5 rounded-xl font-semibold
-                   bg-gradient-to-r from-[#C4B073] to-[#D4AF37]
-                   text-white shadow-md hover:opacity-90 transition-all duration-300"
+          <a
+            href="/articles"
+            class="inline-block px-6 py-3 rounded-xl font-semibold
+                   bg-[#58C4C1]
+                   text-white shadow-lg hover:opacity-95 hover:scale-105
+                   transition-all duration-300 animate-fadeInUp delay-500"
           >
             View All Articles →
           </a>
@@ -133,9 +126,9 @@ const year = new Date().getFullYear();
       </SectionContainer>
 
       <!-- About Me Section -->
-      <SectionContainer id="about-me">
+      <SectionContainer id="about-me" class="animate-fadeInUp delay-400">
         <TitleSection>
-          <ProfileCheck class="size-8 text-[#C4B073]" />
+          <ProfileCheck class="size-8 text-[#58C4C1]" />
           About Me
         </TitleSection>
         <AboutMe />
@@ -143,3 +136,36 @@ const year = new Date().getFullYear();
     </div>
   </main>
 </Layout>
+
+<style is:global>
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-fadeInUp.delay-100 {
+    animation-delay: 0.1s;
+  }
+  .animate-fadeInUp.delay-200 {
+    animation-delay: 0.2s;
+  }
+  .animate-fadeInUp.delay-300 {
+    animation-delay: 0.3s;
+  }
+  .animate-fadeInUp.delay-400 {
+    animation-delay: 0.4s;
+  }
+  .animate-fadeInUp.delay-500 {
+    animation-delay: 0.5s;
+  }
+</style>

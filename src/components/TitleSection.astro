@@ -1,33 +1,37 @@
+---
+const { className = "" } = Astro.props;
+---
+
 <h2
-  class={`flex items-center mb-6 gap-x-3 font-semibold 
+  class={`premium-heading flex items-center mb-6 gap-x-3 font-semibold 
           text-[1.75rem] sm:text-3xl md:text-4xl 
           text-black/80 dark:text-white 
           tracking-tight transition-all duration-300 
           hover:text-[#C4B073] dark:hover:text-[#E6D8A2] 
-          ${Astro.props.className}`}
+          ${className}`}
 >
   <slot />
 </h2>
 
-<style is:global>
-  h2 {
+<style>
+  .premium-heading {
     line-height: 1.2;
   }
 
   /* ✨ Efek gradien ringan untuk tampilan premium */
   @media (prefers-color-scheme: light) {
-    h2 {
+    .premium-heading {
       background: linear-gradient(90deg, #000 0%, #5c4d1a 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    h2:hover {
-      background: linear-gradient(90deg, #C4B073 0%, #8f7e4b 100%);
+    .premium-heading:hover {
+      background: linear-gradient(90deg, #c4b073 0%, #8f7e4b 100%);
     }
   }
 
   /* ✨ Mode gelap tetap solid dengan efek glow lembut */
-  html.dark h2:hover {
+  html.dark .premium-heading:hover {
     text-shadow: 0 0 8px rgba(228, 210, 135, 0.4);
   }
 </style>

@@ -15,8 +15,14 @@ const THEMES = ["Light", "Dark", "System"];
     aria-label="Ganti tema"
   >
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
-    <MoonIcon id="dark" class="theme-toggle-icon absolute size-5 transition-all" />
-    <SystemIcon id="system" class="theme-toggle-icon absolute size-5 transition-all" />
+    <MoonIcon
+      id="dark"
+      class="theme-toggle-icon absolute size-5 transition-all"
+    />
+    <SystemIcon
+      id="system"
+      class="theme-toggle-icon absolute size-5 transition-all"
+    />
   </button>
 
   <!-- 🎨 Dropdown pilihan tema -->
@@ -74,55 +80,62 @@ const THEMES = ["Light", "Dark", "System"];
 </style>
 
 <script is:inline>
-  const THEMES = ["light", "dark", "system"];
-  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
-  const themesMenu = document.getElementById("themes-menu");
-  const toggleBtn = document.getElementById("theme-toggle-btn");
+  document.addEventListener("astro:page-load", () => {
+    const THEMES = ["light", "dark", "system"];
+    const matchMediaDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const themesMenu = document.getElementById("themes-menu");
+    const toggleBtn = document.getElementById("theme-toggle-btn");
 
-  const getThemePreference = () =>
-    localStorage.getItem("theme") ?? "system";
+    if (!themesMenu || !toggleBtn) return;
 
-  const updateIcon = (theme) => {
-    document.querySelectorAll(".theme-toggle-icon").forEach((el) => {
-      el.style.scale = el.id === theme ? "1" : "0";
-      el.style.opacity = el.id === theme ? "1" : "0";
+    const getThemePreference = () => localStorage.getItem("theme") ?? "system";
+
+    const updateIcon = (theme) => {
+      document.querySelectorAll(".theme-toggle-icon").forEach((el) => {
+        el.style.scale = el.id === theme ? "1" : "0";
+        el.style.opacity = el.id === theme ? "1" : "0";
+      });
+    };
+
+    const applyTheme = (theme) => {
+      const isDark =
+        theme === "dark" || (theme === "system" && matchMediaDark.matches);
+      document.documentElement.classList.toggle("dark", isDark);
+      updateIcon(theme);
+    };
+
+    const updateTheme = () => {
+      const theme = getThemePreference();
+      applyTheme(theme);
+      document.querySelectorAll(".themes-menu-option").forEach((li) => {
+        li.classList.toggle(
+          "active",
+          li.textContent.trim().toLowerCase() === theme
+        );
+      });
+    };
+
+    updateTheme();
+
+    toggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      themesMenu.classList.toggle("open");
     });
-  };
 
-  const applyTheme = (theme) => {
-    const isDark =
-      theme === "dark" ||
-      (theme === "system" && matchMedia.matches);
-    document.documentElement.classList.toggle("dark", isDark);
-    updateIcon(theme);
-  };
+    document.addEventListener("click", () =>
+      themesMenu.classList.remove("open")
+    );
 
-  const updateTheme = () => {
-    const theme = getThemePreference();
-    applyTheme(theme);
-    document.querySelectorAll(".themes-menu-option").forEach((li) => {
-      li.classList.toggle("active", li.textContent.trim().toLowerCase() === theme);
+    document.querySelectorAll(".themes-menu-option").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        const chosen = e.target.textContent.trim().toLowerCase();
+        localStorage.setItem("theme", chosen);
+        updateTheme();
+        themesMenu.classList.remove("open");
+      });
     });
-  };
 
-  updateTheme();
-
-  toggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    themesMenu.classList.toggle("open");
+    matchMediaDark.addEventListener("change", updateTheme);
+    document.addEventListener("astro:after-swap", updateTheme);
   });
-
-  document.addEventListener("click", () => themesMenu.classList.remove("open"));
-
-  document.querySelectorAll(".themes-menu-option").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      const chosen = e.target.textContent.trim().toLowerCase();
-      localStorage.setItem("theme", chosen);
-      updateTheme();
-      themesMenu.classList.remove("open");
-    });
-  });
-
-  matchMedia.addEventListener("change", updateTheme);
-  document.addEventListener("astro:after-swap", updateTheme);
 </script>

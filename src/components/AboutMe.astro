@@ -5,81 +5,89 @@ const seventeeneightImage = "/VINSSS.png";
 ---
 
 <article
-  class="flex flex-col items-center justify-center gap-8 
-         text-gray-700 dark:text-gray-300 
-         md:flex-row 
-         transition-all duration-500 seventeen-eight-profile"
+  class="flex flex-col items-center justify-center gap-10
+         text-gray-800 dark:text-gray-200
+         md:flex-row
+         transition-all duration-700 ease-in-out seventeen-eight-profile"
 >
   <!-- 🧩 Text -->
   <div
-    class="[&>p]:mb-4 [&>p>strong]:text-yellow-600 
-           dark:[&>p>strong]:text-yellow-300 
-           [&>p>strong]:font-medium 
-           [&>p>strong]:font-mono 
-           leading-relaxed order-2 md:order-1 
-           max-w-xl text-justify"
+    class="[&>p]:mb-5 [&>p>strong]:text-[#58c4c1]
+           dark:[&>p>strong]:text-[#58c4c1]
+           [&>p>strong]:font-semibold
+           leading-relaxed order-2 md:order-1
+           max-w-xl text-justify font-inter tracking-wide"
   >
-    <p>
-      My name is <strong>Kevin Simorangkir</strong>, and I began learning programming in high school,
-      driven by my interest in creating computer games and mobile applications.
-      I have contributed to several communities and companies, producing projects such as
+    <p class="text-lg">
+      My name is <strong>Kevin Simorangkir</strong>, and I began learning
+      programming in high school, driven by my interest in creating computer
+      games and mobile applications. I have contributed to several communities
+      and companies, producing projects such as
       <strong>REFORA ITERA, Harvesty, SIPAD,</strong> and other feed designs.
     </p>
 
-    <p>
+    <p class="text-lg">
       These include
-      <strong>Telkom Witel Lampung, Telkom Indonesia, Yayasan Media Selaras,</strong>
-      and <strong>Baparekraf Digital Talent</strong>.
-      Throughout my journey, I’ve enjoyed each experience and continue striving
-      to learn, grow, and innovate further.
+      <strong
+        >Telkom Witel Lampung, Telkom Indonesia, Yayasan Media Selaras,</strong
+      >
+      and <strong>Baparekraf Digital Talent</strong>. Throughout my journey,
+      I’ve enjoyed each experience and continue striving to learn, grow, and
+      innovate further.
     </p>
   </div>
 
   <!-- 🧩 Profile Image -->
-  <div
-    class="relative order-1 md:order-2 group"
-  >
+  <div class="relative order-1 md:order-2 group">
+    <div
+      class="absolute inset-0 bg-gradient-to-tr
+             from-[#58c4c1]/20 via-transparent to-[#58c4c1]/5
+             dark:from-[#58c4c1]/10 dark:to-[#58c4c1]/5
+             rounded-3xl blur-2xl opacity-0 group-hover:opacity-100
+             transition-opacity duration-700"
+    >
+    </div>
+
     <img
-      width="240"
-      height="240"
+      width="260"
+      height="260"
       src={defaultImage}
       alt={personalImageAlt}
-      class="object-cover aspect-square rounded-2xl
-             p-2 w-64 h-64
-             bg-black/10 dark:bg-yellow-500/5
-             ring-1 ring-black/60 dark:ring-white/20
-             transition-all duration-500 ease-in-out
-             group-hover:rotate-0 rotate-3 
-             group-hover:scale-105 profile-image"
+      class="object-cover aspect-square rounded-3xl
+             p-2 w-64 h-64 shadow-xl shadow-[#58c4c1]/30
+             dark:shadow-[#58c4c1]/10
+             bg-gradient-to-br from-white/60 to-[#58c4c1]/10
+             dark:from-[#0a2e2d]/40 dark:to-black/40
+             ring-2 ring-[#58c4c1]/30 dark:ring-[#58c4c1]/20
+             transition-all duration-700 ease-in-out
+             group-hover:rotate-0 rotate-3
+             group-hover:scale-105 group-hover:shadow-2xl
+             hover:brightness-110 hover:saturate-125 profile-image"
       style="object-position: 50% 50%"
     />
-    <div
-      class="absolute inset-0 rounded-2xl 
-             bg-gradient-to-tr from-transparent to-yellow-200/20
-             dark:to-yellow-400/10 opacity-0 group-hover:opacity-100 
-             transition-opacity duration-500"
-    ></div>
   </div>
 </article>
 
-<!-- 🎨 Custom Style for SeventeenEight Theme -->
+<!-- 🎨 Premium Style for SeventeenEight Theme -->
 <style is:global>
   html.seventeen-eight .seventeen-eight-profile,
   html.seventeen-eight .seventeen-eight-profile * {
-    color: #1B602F !important; /* text hijau alami */
+    color: #1b602f !important;
   }
 
   html.seventeen-eight .seventeen-eight-profile strong {
-    color: #000072 !important; /* strong biru tua */
+    color: #58c4c1 !important;
   }
 
   html.seventeen-eight .seventeen-eight-profile .profile-image {
     content: url("/VINSSS.png") !important;
-    background-color: #EAF4ED !important;
-    ring-color: #1B602F !important;
+    background: linear-gradient(135deg, #eaf4ed 0%, #f7faf8 100%) !important;
+    ring-color: #58c4c1 !important;
+    box-shadow: 0 10px 25px rgba(88, 196, 193, 0.25) !important;
   }
 
   html.seventeen-eight .seventeen-eight-profile .profile-image:hover {
-    transform: scale(1.05) rotate(0deg);
+    transform: scale(1.07) rotate(0deg);
+    filter: brightness(1.1);
   }
 </style>

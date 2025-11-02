@@ -6,7 +6,11 @@ const navItems = [
   { title: "Projects", label: "project", url: "/#project" },
   { title: "Article", label: "articles", url: "/#articles" },
   { title: "About Me", label: "about-me", url: "/#about-me" },
-  { title: "Contacts", label: "contacts", url: "mailto:vin.simorangkir81@gmail.com" },
+  {
+    title: "Contacts",
+    label: "contacts",
+    url: "mailto:vin.simorangkir81@gmail.com",
+  },
 ];
 ---
 
@@ -15,90 +19,112 @@ const navItems = [
     id="navbar"
     class="relative flex items-center justify-between gap-4 px-5 py-2.5 text-sm font-medium rounded-full border border-white/20 dark:border-gray-800/60 shadow-xl transition-all duration-300 backdrop-blur-lg bg-white/10 dark:bg-[#0b0b0b]/60 w-fit"
   >
-    <!-- Mobile toggle -->
+    <!-- 🌐 Mobile Menu Toggle -->
     <button
       id="menu-toggle"
       class="sm:hidden p-2 rounded-md hover:bg-white/25 dark:hover:bg-gray-800/60 transition"
       aria-label="Toggle menu"
     >
-      <svg xmlns="http://www.w3.org/2000/svg"
-        fill="none" viewBox="0 0 24 24"
-        stroke-width="1.6" stroke="currentColor"
-        class="w-6 h-6 text-gray-800 dark:text-gray-200">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.6"
+        stroke="currentColor"
+        class="w-6 h-6 text-gray-800 dark:text-gray-200"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
       </svg>
     </button>
 
-    <!-- Desktop Menu -->
+    <!-- 🧭 Desktop Navigation -->
     <div id="menu" class="hidden sm:flex items-center gap-2 relative">
       <span
         id="active-indicator"
-        class="absolute bottom-0 h-[2px] bg-[#C4B073] rounded-full transition-all duration-300 ease-out opacity-0"
+        class="absolute bottom-0 h-[2px] bg-[#0b868e] rounded-full transition-all duration-300 ease-out opacity-0"
       ></span>
 
-      {navItems.map((link) => (
-        <a
-          href={link.url}
-          aria-label={link.label}
-          class="relative flex items-center justify-center px-3 py-1 rounded-full text-gray-700 dark:text-gray-200 transition-all duration-300 hover:text-[#C4B073] hover:bg-white/20 dark:hover:bg-gray-800/60"
-        >
-          {link.title}
-        </a>
-      ))}
+      {
+        navItems.map((link) => (
+          <a
+            href={link.url}
+            aria-label={link.label}
+            class="relative flex items-center justify-center px-3 py-1 rounded-full text-gray-700 dark:text-gray-200 transition-all duration-300 hover:text-[#0b868e] hover:bg-[#a19665]/20 dark:hover:bg-gray-800/60"
+          >
+            {link.title}
+          </a>
+        ))
+      }
     </div>
 
+    <!-- 🌙 Theme Toggle -->
     <div class="flex items-center">
       <ThemeToggle />
     </div>
   </nav>
 
-  <!-- Mobile dropdown -->
+  <!-- 📱 Mobile Dropdown Menu -->
   <div
     id="mobile-menu"
     class="hidden fixed top-20 left-1/2 -translate-x-1/2 flex-col items-center gap-3 p-4 rounded-2xl border border-white/20 dark:border-gray-700/40 bg-white/30 dark:bg-[#0b0b0b]/85 backdrop-blur-xl shadow-2xl transition-all duration-300 opacity-0 sm:hidden"
   >
-    {navItems.map((link) => (
-      <a
-        href={link.url}
-        aria-label={link.label}
-        class="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-[#C4B073] hover:bg-white/25 dark:hover:bg-gray-800/60 transition-all duration-300"
-      >
-        {link.title}
-      </a>
-    ))}
+    {
+      navItems.map((link) => (
+        <a
+          href={link.url}
+          aria-label={link.label}
+          class="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-[#0b868e] hover:bg-[#a19665]/25 dark:hover:bg-gray-800/60 transition-all duration-300"
+        >
+          {link.title}
+        </a>
+      ))
+    }
   </div>
 </header>
 
+<!-- 🧩 Navbar Script -->
 <script>
   document.addEventListener("astro:page-load", () => {
-    const nav = document.getElementById("navbar");
-    const navLinks = nav.querySelectorAll("a[aria-label]");
-    const indicator = document.getElementById("active-indicator");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const menuToggle = document.getElementById("menu-toggle");
+    const nav = document.getElementById("navbar") as HTMLElement | null;
+    const indicator = document.getElementById(
+      "active-indicator"
+    ) as HTMLElement | null;
+    const mobileMenu = document.getElementById(
+      "mobile-menu"
+    ) as HTMLElement | null;
+    const menuToggle = document.getElementById(
+      "menu-toggle"
+    ) as HTMLElement | null;
     const sections = document.querySelectorAll("section[id]");
+    const navLinks =
+      nav?.querySelectorAll<HTMLAnchorElement>("a[aria-label]") ?? [];
 
-    let activeLink = null;
+    if (!nav || !indicator || !menuToggle || !mobileMenu) return;
 
-    // Move underline indicator smoothly
-    function moveIndicator(target) {
-      if (!target) return;
+    let activeLink: HTMLAnchorElement | null = null;
+
+    // 🪄 Fungsi Indikator Aktif
+    function moveIndicator(target: HTMLElement | null) {
+      if (!target || !indicator) return;
       const rect = target.getBoundingClientRect();
-      const parentRect = target.parentElement.getBoundingClientRect();
+      const parentRect = target.parentElement?.getBoundingClientRect();
+      if (!parentRect) return;
       indicator.style.width = `${rect.width}px`;
       indicator.style.left = `${rect.left - parentRect.left}px`;
       indicator.style.opacity = "1";
     }
 
-    // Intersection observer for section highlighting
+    // 🔍 Observer untuk Scroll Section
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             navLinks.forEach((link) => {
               const match = link.getAttribute("aria-label") === entry.target.id;
-              link.classList.toggle("text-[#C4B073]", match);
+              link.classList.toggle("text-[#0b868e]", match);
               if (match) {
                 activeLink = link;
                 moveIndicator(link);
@@ -112,11 +138,11 @@ const navItems = [
 
     sections.forEach((s) => observer.observe(s));
 
-    // Reposition indicator on resize or route change
     window.addEventListener("resize", () => moveIndicator(activeLink));
 
-    // Mobile toggle
+    // 📱 Toggle Mobile Menu
     menuToggle.addEventListener("click", () => {
+      if (!mobileMenu) return;
       const isVisible = !mobileMenu.classList.contains("hidden");
       if (isVisible) {
         mobileMenu.classList.add("opacity-0");
@@ -127,14 +153,17 @@ const navItems = [
       }
     });
 
-    // Initialize after render
+    // ✨ Inisialisasi Awal
     setTimeout(() => {
-      activeLink = navLinks[0];
-      moveIndicator(activeLink);
+      if (navLinks.length > 0) {
+        activeLink = navLinks[0];
+        moveIndicator(activeLink);
+      }
     }, 250);
   });
 </script>
 
+<!-- 🎨 Styling -->
 <style>
   header {
     animation: fadeDown 0.8s ease-out both;
@@ -163,12 +192,14 @@ const navItems = [
       backdrop-filter: blur(8px);
     }
     100% {
-      box-shadow: 0 4px 20px rgba(196, 176, 115, 0.25);
+      box-shadow: 0 4px 20px rgba(11, 134, 142, 0.25); /* teal shadow */
       backdrop-filter: blur(18px);
     }
   }
 
   #mobile-menu {
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
   }
 </style>

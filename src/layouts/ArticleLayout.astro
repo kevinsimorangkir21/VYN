@@ -12,89 +12,108 @@ const { title, description, date, related = [] } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
-  <main class="flex-1 bg-white dark:bg-[#161616] text-gray-800 dark:text-gray-100 transition-colors duration-300">
+  <main
+    class="flex-1 bg-white dark:bg-[#161616] text-gray-800 dark:text-gray-100 transition-colors duration-300"
+  >
     <!-- Header Navigasi -->
     <div class="max-w-6xl mx-auto px-6 pt-16">
       <a
         href="/articles"
-        class="inline-flex items-center gap-2 text-[#C4B073] hover:text-[#D4AF37] 
-               font-medium transition-all duration-300 hover:translate-x-[-4px]"
+        class="inline-flex items-center gap-2 text-[#0b868e] hover:text-[#20c997]
+               font-medium transition-all duration-300 hover:-translate-x-1"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-             class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
         </svg>
         Back to Blog
       </a>
     </div>
 
     <!-- Konten Artikel -->
-    <article class="prose dark:prose-invert lg:prose-lg mx-auto px-6 py-12 text-center transition-colors duration-300">
-      <h1 
-        class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 
-               bg-gradient-to-r from-[#C4B073] to-[#D4AF37] 
+    <article
+      class="prose dark:prose-invert lg:prose-lg mx-auto px-6 py-12 text-center transition-colors duration-300"
+    >
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6
+               bg-gradient-to-r from-[#0b868e] to-[#20c997]
                bg-clip-text text-transparent leading-tight"
       >
         {title}
       </h1>
 
       <p class="text-sm md:text-base text-gray-500 dark:text-gray-400 mb-10">
-        {new Date(date).toLocaleDateString('id-ID', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
+        {
+          new Date(date).toLocaleDateString("id-ID", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
       </p>
 
-      <div class="max-w-3xl mx-auto leading-relaxed text-gray-800 dark:text-gray-300 text-left">
+      <div
+        class="max-w-3xl mx-auto leading-relaxed text-gray-800 dark:text-gray-300 text-left"
+      >
         <slot />
       </div>
     </article>
 
     <!-- Related Posts -->
-    {related.length > 0 && (
-      <section class="max-w-6xl mx-auto px-6 pb-20">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-3">
-          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-            Related Posts
-          </h2>
-          <a
-            href="/articles"
-            class="text-[#C4B073] hover:text-[#D4AF37] font-medium transition-colors duration-300"
-          >
-            View All Posts »
-          </a>
-        </div>
-
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {related.map((post) => (
+    {
+      related.length > 0 && (
+        <section class="max-w-6xl mx-auto px-6 pb-20">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-3">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+              Related Posts
+            </h2>
             <a
-              href={`/articles/${post.slug}`}
-              class="group block rounded-lg overflow-hidden 
+              href="/articles"
+              class="text-[#0b868e] hover:text-[#20c997] font-medium transition-colors duration-300"
+            >
+              View All Posts »
+            </a>
+          </div>
+
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {related.map((post) => (
+              <a
+                href={`/articles/${post.slug}`}
+                class="group block rounded-lg overflow-hidden 
                      bg-gray-50 dark:bg-[#1f1f1f] 
                      border border-gray-200 dark:border-[#2a2a2a] 
-                     hover:border-[#C4B073] hover:scale-[1.02]
+                     hover:border-[#0b868e] hover:scale-[1.03]
                      transition-all duration-300 shadow-sm dark:shadow-none"
-            >
-              <img 
-                src={post.image}
-                alt={post.title}
-                class="w-full h-48 object-cover group-hover:opacity-80 transition"
-                loading="lazy"
-              />
-              <div class="p-4">
-                <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-100 
-                           group-hover:text-[#C4B073] transition-colors duration-300">
-                  {post.title}
-                </h3>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-    )}
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  class="w-full h-48 object-cover group-hover:opacity-80 transition"
+                  loading="lazy"
+                />
+                <div class="p-4">
+                  <h3
+                    class="font-semibold text-lg text-gray-800 dark:text-gray-100 
+                           group-hover:text-[#0b868e] transition-colors duration-300"
+                  >
+                    {post.title}
+                  </h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
   </main>
 </Layout>
 
@@ -104,17 +123,20 @@ const { title, description, date, related = [] } = Astro.props;
   }
 
   .prose a {
-    color: #C4B073;
+    color: #0b868e;
     text-decoration: underline;
     transition: color 0.2s ease;
   }
 
   .prose a:hover {
-    color: #D4AF37;
+    color: #20c997;
   }
 
-  .prose h1, .prose h2, .prose h3, .prose h4 {
-    background: linear-gradient(to right, #C4B073, #D4AF37);
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    background: linear-gradient(to right, #0b868e, #20c997);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

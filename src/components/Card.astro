@@ -9,10 +9,18 @@ const { href, title, body } = Astro.props;
 ---
 
 <li class="link-card group">
-  <a href={href} class="block w-full h-full rounded-xl p-6 transition-all duration-300">
-    <h2 class="flex items-center justify-between text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 transition-colors duration-300">
+  <a
+    href={href}
+    class="block w-full h-full rounded-xl p-6 transition-all duration-300"
+  >
+    <h2
+      class="flex items-center justify-between text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2 transition-colors duration-300"
+    >
       {title}
-      <span class="text-[#C4B073] group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
+      <span
+        class="text-[#58C4C1] group-hover:translate-x-1 transition-transform duration-300"
+        >&rarr;</span
+      >
     </h2>
     <p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
       {body}
@@ -21,46 +29,48 @@ const { href, title, body } = Astro.props;
 </li>
 
 <style is:global>
+  /* ✨ Base style */
   .link-card {
     list-style: none;
     display: flex;
     border-radius: 0.75rem;
-    background: linear-gradient(135deg, #C4B073, #D4AF37);
+    background: linear-gradient(135deg, #58c4c1, #3ba7a3);
     padding: 1px;
     transition: all 0.5s ease;
   }
 
   .link-card a {
-    background-color: #fff;
-    color: #222;
+    background-color: #ffffff;
+    color: #1a1a1a;
     border-radius: 0.75rem;
   }
 
   html.dark .link-card a {
-    background-color: #1b1b1b;
+    background-color: #161616;
   }
 
+  /* 🩵 Hover & focus effect */
   .link-card:hover,
   .link-card:focus-within {
     transform: translateY(-2px);
     box-shadow:
-      0 8px 20px rgba(196, 176, 115, 0.3),
-      inset 0 0 0 1px rgba(212, 175, 55, 0.4);
+      0 8px 20px rgba(88, 196, 193, 0.35),
+      inset 0 0 0 1px rgba(88, 196, 193, 0.4);
   }
 
   .link-card a:hover h2 {
-    color: #C4B073;
+    color: #3ba7a3;
   }
 
   .link-card a:hover p {
-    color: #3a3a3a;
+    color: #2f2f2f;
   }
 
   html.dark .link-card a:hover p {
-    color: #dcdcdc;
+    color: #d8d8d8;
   }
 
-  /* ✨ Responsif */
+  /* ✨ Responsive tweaks */
   @media (max-width: 640px) {
     .link-card a {
       padding: 1rem;
