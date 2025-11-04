@@ -11,6 +11,7 @@ export default function AccessibilityToolbar() {
     const highContrast = localStorage.getItem("high-contrast") === "true";
     setIsLargeText(largeText);
     setIsHighContrast(highContrast);
+
     if (largeText) document.body.classList.add("large-text");
     if (highContrast) document.body.classList.add("high-contrast");
   }, []);
@@ -34,32 +35,35 @@ export default function AccessibilityToolbar() {
   return (
     <div
       className="fixed bottom-6 right-6 flex items-center gap-3
-                 bg-white/60 dark:bg-gray-900/60
-                 border border-gray-200/60 dark:border-gray-700/60
-                 shadow-[0_8px_25px_rgba(0,0,0,0.15)]
-                 rounded-full px-4 py-2 z-50 backdrop-blur-2xl
-                 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(196,176,115,0.25)]"
+                 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl
+                 border border-gray-200/40 dark:border-gray-700/40
+                 shadow-[0_8px_28px_rgba(15,112,149,0.15)]
+                 rounded-full px-4 py-2 z-50
+                 transition-all duration-300
+                 hover:shadow-[0_10px_36px_rgba(15,112,149,0.25)]"
       role="toolbar"
       aria-label="Accessibility tools"
     >
+      {/* 🔠 Large Text Toggle */}
       <button
         onClick={toggleLargeText}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C4B073]/70 ${
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f7095]/60 ${
           isLargeText
-            ? "bg-[#C4B073] text-white shadow-md"
-            : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-[#C4B073]/10"
+            ? "bg-[#0f7095] text-white shadow-md"
+            : "bg-gray-100/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-200 hover:bg-[#0f7095]/10"
         }`}
       >
         <ZoomIn size={16} />
         <span className="hidden sm:inline">Text</span>
       </button>
 
+      {/* 🌗 High Contrast Toggle */}
       <button
         onClick={toggleContrast}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C4B073]/70 ${
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0f7095]/60 ${
           isHighContrast
-            ? "bg-[#C4B073] text-white shadow-md"
-            : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-[#C4B073]/10"
+            ? "bg-[#0f7095] text-white shadow-md"
+            : "bg-gray-100/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-200 hover:bg-[#0f7095]/10"
         }`}
       >
         <Contrast size={16} />

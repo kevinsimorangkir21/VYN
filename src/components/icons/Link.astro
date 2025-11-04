@@ -1,1 +1,53 @@
-<svg {...Astro.props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+---
+const {
+  size = 24,
+  color = "currentColor",
+  class: className = "",
+} = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  fill="none"
+  stroke={color}
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={`icon icon-link ${className}`}
+>
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+
+<style>
+  .icon-link {
+    transition:
+      transform 0.3s ease,
+      stroke 0.3s ease,
+      filter 0.3s ease;
+    cursor: pointer;
+  }
+
+  .icon-link:hover {
+    transform: scale(1.12) rotate(3deg);
+    stroke: url(#gold-gradient);
+    filter: drop-shadow(0 0 6px rgba(196, 176, 115, 0.4));
+  }
+
+  html.dark .icon-link:hover {
+    filter: drop-shadow(0 0 8px rgba(233, 217, 153, 0.5));
+  }
+</style>
+
+<!-- Gradient reusable -->
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="gold-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c4b073"></stop>
+      <stop offset="100%" stop-color="#d9c98b"></stop>
+    </linearGradient>
+  </defs>
+</svg>

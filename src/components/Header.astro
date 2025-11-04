@@ -14,15 +14,18 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-4 z-50 w-full flex justify-center px-4">
+<header class="fixed top-5 z-50 w-full flex justify-center px-4">
   <nav
     id="navbar"
-    class="relative flex items-center justify-between gap-4 px-5 py-2.5 text-sm font-medium rounded-full border border-white/20 dark:border-gray-800/60 shadow-xl transition-all duration-300 backdrop-blur-lg bg-white/10 dark:bg-[#0b0b0b]/60 w-fit"
+    class="relative flex items-center justify-between gap-4 px-6 py-3 text-sm font-medium
+           rounded-full border border-white/10 dark:border-gray-800/60
+           shadow-lg transition-all duration-500 backdrop-blur-xl
+           bg-white/70 dark:bg-[#0b0b0b]/70 w-fit"
   >
     <!-- 🌐 Mobile Menu Toggle -->
     <button
       id="menu-toggle"
-      class="sm:hidden p-2 rounded-md hover:bg-white/25 dark:hover:bg-gray-800/60 transition"
+      class="sm:hidden p-2 rounded-md hover:bg-[#0f7095]/10 dark:hover:bg-[#0f7095]/20 transition"
       aria-label="Toggle menu"
     >
       <svg
@@ -44,7 +47,7 @@ const navItems = [
     <div id="menu" class="hidden sm:flex items-center gap-2 relative">
       <span
         id="active-indicator"
-        class="absolute bottom-0 h-[2px] bg-[#0b868e] rounded-full transition-all duration-300 ease-out opacity-0"
+        class="absolute bottom-0 h-[2px] bg-[#0f7095] rounded-full transition-all duration-300 ease-out opacity-0"
       ></span>
 
       {
@@ -52,7 +55,9 @@ const navItems = [
           <a
             href={link.url}
             aria-label={link.label}
-            class="relative flex items-center justify-center px-3 py-1 rounded-full text-gray-700 dark:text-gray-200 transition-all duration-300 hover:text-[#0b868e] hover:bg-[#a19665]/20 dark:hover:bg-gray-800/60"
+            class="relative flex items-center justify-center px-3 py-1.5 rounded-full
+                   text-gray-700 dark:text-gray-200 transition-all duration-300
+                   hover:text-[#0f7095] hover:bg-[#0f7095]/10"
           >
             {link.title}
           </a>
@@ -69,14 +74,17 @@ const navItems = [
   <!-- 📱 Mobile Dropdown Menu -->
   <div
     id="mobile-menu"
-    class="hidden fixed top-20 left-1/2 -translate-x-1/2 flex-col items-center gap-3 p-4 rounded-2xl border border-white/20 dark:border-gray-700/40 bg-white/30 dark:bg-[#0b0b0b]/85 backdrop-blur-xl shadow-2xl transition-all duration-300 opacity-0 sm:hidden"
+    class="hidden fixed top-20 left-1/2 -translate-x-1/2 flex-col items-center gap-3 p-4 rounded-2xl
+           border border-white/20 dark:border-gray-700/40 bg-white/80 dark:bg-[#0b0b0b]/90
+           backdrop-blur-xl shadow-2xl transition-all duration-300 opacity-0 sm:hidden"
   >
     {
       navItems.map((link) => (
         <a
           href={link.url}
           aria-label={link.label}
-          class="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-[#0b868e] hover:bg-[#a19665]/25 dark:hover:bg-gray-800/60 transition-all duration-300"
+          class="block px-5 py-2 rounded-lg text-gray-800 dark:text-gray-200
+                 hover:text-[#0f7095] hover:bg-[#0f7095]/10 transition-all duration-300"
         >
           {link.title}
         </a>
@@ -85,48 +93,44 @@ const navItems = [
   </div>
 </header>
 
-<!-- 🧩 Navbar Script -->
 <script>
   document.addEventListener("astro:page-load", () => {
-    const nav = document.getElementById("navbar") as HTMLElement | null;
-    const indicator = document.getElementById(
-      "active-indicator"
-    ) as HTMLElement | null;
-    const mobileMenu = document.getElementById(
-      "mobile-menu"
-    ) as HTMLElement | null;
-    const menuToggle = document.getElementById(
-      "menu-toggle"
-    ) as HTMLElement | null;
+    const nav = document.getElementById("navbar");
+    const indicator = document.getElementById("active-indicator");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuToggle = document.getElementById("menu-toggle");
     const sections = document.querySelectorAll("section[id]");
-    const navLinks =
-      nav?.querySelectorAll<HTMLAnchorElement>("a[aria-label]") ?? [];
+    const navLinks = nav
+      ? (Array.from(nav.querySelectorAll("a[aria-label]")) as HTMLElement[])
+      : ([] as HTMLElement[]);
 
     if (!nav || !indicator || !menuToggle || !mobileMenu) return;
 
+    // 🧭 aktif link
     let activeLink: HTMLAnchorElement | null = null;
 
-    // 🪄 Fungsi Indikator Aktif
+    // 🪄 fungsi indikator aktif
     function moveIndicator(target: HTMLElement | null) {
       if (!target || !indicator) return;
       const rect = target.getBoundingClientRect();
-      const parentRect = target.parentElement?.getBoundingClientRect();
+      const parentRect =
+        target.parentElement && target.parentElement.getBoundingClientRect();
       if (!parentRect) return;
       indicator.style.width = `${rect.width}px`;
       indicator.style.left = `${rect.left - parentRect.left}px`;
       indicator.style.opacity = "1";
     }
 
-    // 🔍 Observer untuk Scroll Section
+    // 🔍 observer untuk scroll section
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             navLinks.forEach((link) => {
               const match = link.getAttribute("aria-label") === entry.target.id;
-              link.classList.toggle("text-[#0b868e]", match);
+              link.classList.toggle("text-[#0f7095]", match);
               if (match) {
-                activeLink = link;
+                activeLink = link as HTMLAnchorElement;
                 moveIndicator(link);
               }
             });
@@ -137,10 +141,9 @@ const navItems = [
     );
 
     sections.forEach((s) => observer.observe(s));
-
     window.addEventListener("resize", () => moveIndicator(activeLink));
 
-    // 📱 Toggle Mobile Menu
+    // 📱 Toggle mobile menu
     menuToggle.addEventListener("click", () => {
       if (!mobileMenu) return;
       const isVisible = !mobileMenu.classList.contains("hidden");
@@ -153,10 +156,10 @@ const navItems = [
       }
     });
 
-    // ✨ Inisialisasi Awal
+    // ✨ Inisialisasi awal
     setTimeout(() => {
       if (navLinks.length > 0) {
-        activeLink = navLinks[0];
+        activeLink = navLinks[0] as HTMLAnchorElement;
         moveIndicator(activeLink);
       }
     }, 250);
@@ -172,7 +175,7 @@ const navItems = [
   @keyframes fadeDown {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
     to {
       opacity: 1;
@@ -189,11 +192,11 @@ const navItems = [
   @keyframes navShadow {
     0% {
       box-shadow: none;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
     100% {
-      box-shadow: 0 4px 20px rgba(11, 134, 142, 0.25); /* teal shadow */
-      backdrop-filter: blur(18px);
+      box-shadow: 0 4px 25px rgba(15, 112, 149, 0.2);
+      backdrop-filter: blur(20px);
     }
   }
 

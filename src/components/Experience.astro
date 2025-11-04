@@ -1,15 +1,24 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 
+interface ExperienceType {
+  date: string;
+  title: string;
+  company: string;
+  status: "Freelance" | "Internship" | "Ongoing" | "Project";
+  description: string;
+  link?: string;
+}
+
 // 💼 Professional Experience
-const PROFESSIONAL_EXPERIENCE = [
+const PROFESSIONAL_EXPERIENCE: ExperienceType[] = [
   {
     date: "January 2025 - September 2025",
     title: "Creative",
     company: "PT. Yayasan Media Selaras Cendekiawan",
     status: "Freelance",
     description:
-      "Designing social media feeds and stories according to the specified color palette. During this period, I used three different design themes to provide visual variation; Created six logos for the departments: Founder, Secretary, Treasurer, Project Management, Partnership, and Creative — each with unique color identity; Collaborated with the Partnership division to design a partner guidebook; Designed OBS layouts, certificates, and webinar posters requested by the Project Management division.",
+      "Designing social media feeds and stories according to the specified color palette; created six logos for department branding; collaborated on partner guidebook and webinar visual materials.",
     link: "#",
   },
   {
@@ -18,7 +27,7 @@ const PROFESSIONAL_EXPERIENCE = [
     company: "PT. Yayasan Media Selaras Cendekiawan",
     status: "Freelance",
     description:
-      "Supervised UI/UX, Front-End, and Back-End divisions to achieve 85%–95% completion target by September. Managed budget allocations to align with project goals, conducted twice-weekly evaluations, and delivered structured weekly progress and budget reports to upper management.",
+      "Led UI/UX, Front-End, and Back-End teams with structured evaluations; optimized project timeline and budget; ensured delivery consistency through weekly reports.",
     link: "#",
   },
   {
@@ -27,7 +36,7 @@ const PROFESSIONAL_EXPERIENCE = [
     company: "Telkom Witel Lampung",
     status: "Internship",
     description:
-      "Performed data analysis on Indibiz installations across Lampung using SQL integrated with PHP; Developed an internal dashboard called ‘Kedaton Connect’ for Telkom Akses Kedaton using the Waterfall method; Learned the operational hierarchy of Telkom Indonesia and its subsidiaries.",
+      "Performed SQL-based data analysis; developed internal dashboard ‘Kedaton Connect’ for Telkom Akses Kedaton; studied Telkom’s operational hierarchy.",
     link: "#",
   },
   {
@@ -36,24 +45,21 @@ const PROFESSIONAL_EXPERIENCE = [
     company: "Baparekraf Digital Talent",
     status: "Internship",
     description:
-      "Developed an agricultural solution website named ‘Harvesty’ using PHP and Bootstrap; Followed the Waterfall method from UI/UX design to back-end development; Managed team collaboration with clear communication and leadership to ensure full project completion by mid-June 2024.",
+      "Built an agricultural solution website ‘Harvesty’ using PHP and Bootstrap; followed the Waterfall method; ensured full completion through effective collaboration.",
     link: "#",
   },
 ];
 
-// 🏛️ Organizational Experience (default)
-const ORGANIZATIONAL_EXPERIENCE = [];
+// 🏛️ Organizational Experience
+const ORGANIZATIONAL_EXPERIENCE: ExperienceType[] = [];
 ---
 
 <section class="relative mt-24 mb-24 px-4 sm:px-8 md:px-12">
-  <!-- 💼 Professional Section -->
-  <h2
-    class="text-3xl sm:text-4xl font-bold text-center mb-10 text-[#C4B073] drop-shadow-lg"
-  >
+  <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-[#0f7095]">
     Professional Experience
   </h2>
 
-  <ol class="relative mt-10">
+  <ol class="relative mt-10 space-y-12">
     {
       PROFESSIONAL_EXPERIENCE.map((exp, index) => (
         <li>
@@ -68,14 +74,13 @@ const ORGANIZATIONAL_EXPERIENCE = [];
     }
   </ol>
 
-  <!-- 🏛️ Organizational Section -->
   <h2
-    class="text-3xl sm:text-4xl font-bold text-center mt-24 mb-10 text-[#C4B073] drop-shadow-lg"
+    class="text-3xl sm:text-4xl font-bold text-center mt-24 mb-10 text-[#0f7095]"
   >
     Organizational Experience
   </h2>
 
-  <ol class="relative mt-10">
+  <ol class="relative mt-10 space-y-12">
     {
       ORGANIZATIONAL_EXPERIENCE.map((exp, index) => (
         <li>

@@ -1,14 +1,54 @@
+---
+const {
+  size = 28,
+  color = "currentColor",
+  class: className = "",
+} = Astro.props;
+---
+
 <svg
   xmlns="http://www.w3.org/2000/svg"
   fill="none"
   viewBox="0 0 24 24"
   stroke-width="1.5"
-  stroke="currentColor"
-  class="size-7"
+  stroke={color}
+  width={size}
+  height={size}
+  class={`icon icon-map-marker ${className}`}
 >
   <path
     stroke-linecap="round"
     stroke-linejoin="round"
     d="M15.59 14.37a4.5 4.5 0 0 0-7.18 0L4.5 21l3.91-1.63a9 9 0 0 1 7.18 0L19.5 21l-3.91-6.63zM12 11.25a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
   ></path>
+</svg>
+
+<style>
+  .icon-map-marker {
+    transition:
+      transform 0.3s ease,
+      stroke 0.3s ease,
+      filter 0.3s ease;
+    cursor: pointer;
+  }
+
+  .icon-map-marker:hover {
+    transform: scale(1.1);
+    stroke: url(#gold-gradient);
+    filter: drop-shadow(0 0 6px rgba(196, 176, 115, 0.4));
+  }
+
+  html.dark .icon-map-marker:hover {
+    filter: drop-shadow(0 0 8px rgba(233, 217, 153, 0.5));
+  }
+</style>
+
+<!-- Gradient reusable -->
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="gold-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c4b073"></stop>
+      <stop offset="100%" stop-color="#d9c98b"></stop>
+    </linearGradient>
+  </defs>
 </svg>

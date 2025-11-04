@@ -1,21 +1,30 @@
 ---
-const { href } = Astro.props;
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props as Props;
 ---
 
 <a
   href={href}
+  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+  target={href.startsWith("http") ? "_blank" : undefined}
   role="link"
   class="inline-flex items-center text-base sm:text-lg font-medium relative
-         text-[#C4B073] hover:text-[#D4AF37]
-         dark:text-[#EADFAE] dark:hover:text-[#F5E6B3]
-         transition-colors duration-300 group"
+         text-[#0f7095] hover:text-[#5fb7cc]
+         dark:text-[#89d6e8] dark:hover:text-[#a1e4f3]
+         transition-colors duration-300"
 >
   <slot />
 
-  <!-- ✨ Animated underline -->
+  <!-- ✨ Smooth underline animation -->
   <span
-    class="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-gradient-to-r from-[#C4B073] to-[#D4AF37] 
-           group-hover:w-full transition-all duration-500 ease-out rounded-full"
+    class="absolute left-0 bottom-0 h-[2px] w-full origin-left
+           scale-x-0 bg-gradient-to-r from-[#0f7095] to-[#5fb7cc]
+           dark:from-[#5fb7cc] dark:to-[#a1e4f3]
+           transition-transform duration-500 ease-out
+           hover:scale-x-100 rounded-full"
   ></span>
 </a>
 
@@ -24,13 +33,6 @@ const { href } = Astro.props;
   @media (max-width: 400px) {
     a[role="link"] {
       font-size: 0.95rem;
-    }
-  }
-
-  /* 🌙 Mode gelap - garis bawah lebih lembut */
-  @media (prefers-color-scheme: dark) {
-    a[role="link"] span {
-      background: linear-gradient(to right, #EADFAE, #D4AF37);
     }
   }
 </style>

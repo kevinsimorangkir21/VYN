@@ -10,19 +10,13 @@ import Brush from "./icons/Brush.astro";
 const personalImageAlt = "Kevin Simorangkir";
 ---
 
-<div
-  class="relative max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-16 text-center flex flex-col items-center justify-center"
+<section
+  class="relative max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-20 text-center flex flex-col items-center justify-center"
 >
   <!-- Foto Profil -->
-  <div class="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-3 group">
-    <div
-      class="absolute inset-0 rounded-full p-[3px] bg-[conic-gradient(from_0deg,#58c4c1,#3bb3b0,#58c4c1)] animate-spin-slow group-hover:animate-pulse-glow"
-    >
-      <div class="absolute inset-[3px] rounded-full bg-white dark:bg-[#161616]">
-      </div>
-    </div>
+  <div class="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 mb-6">
     <img
-      class="absolute inset-[6px] w-[calc(100%-12px)] h-[calc(100%-12px)] object-cover rounded-full shadow-lg group-hover:scale-105 transition-transform duration-500"
+      class="rounded-full object-cover w-full h-full border border-gray-200/60 dark:border-white/10 shadow-sm transition-transform duration-700 hover:scale-105"
       src="/KVNS.webp"
       alt={personalImageAlt}
       loading="lazy"
@@ -31,42 +25,34 @@ const personalImageAlt = "Kevin Simorangkir";
 
   <!-- Badge -->
   <Badge
-    class="px-4 py-2 text-xs sm:text-sm font-semibold border border-[#58c4c1]/50 text-[#58c4c1] bg-[#58c4c1]/10 rounded-full shadow-md backdrop-blur-sm mb-5 relative overflow-hidden"
+    class="px-4 py-2 text-xs sm:text-sm font-medium border border-[#0f7095]/30 text-[#0f7095] bg-[#0f7095]/10 rounded-full backdrop-blur-sm mb-6"
   >
-    <span class="relative z-10"
-      >Open To Work — Data Analyst / UI/UX Designer</span
-    >
-    <div
-      class="absolute inset-0 bg-gradient-to-r from-[#58c4c1]/30 via-[#58c4c1]/20 to-[#58c4c1]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-    >
-    </div>
+    Open To Work — Data Analyst / UI/UX Designer
   </Badge>
 
-  <!-- Typing Heading -->
+  <!-- Nama dan Peran -->
   <h1
     id="typing-text"
-    class="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight opacity-0 transition-opacity duration-1000"
+    class="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight mb-4"
   >
   </h1>
 
   <!-- Deskripsi -->
   <p
     id="hero-desc"
-    class="mt-3 sm:mt-4 opacity-0 text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed transition-all duration-700 px-2"
+    class="opacity-0 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700"
   >
     I’m a graduate of <strong>Informatics Engineering</strong> passionate about data
     analysis and user experience design. With experience in
     <strong>data programming</strong>, <strong>UI/UX prototype</strong>, and
     <strong>web development</strong>, I aim to create meaningful and efficient
-    digital experiences. Currently, I’m exploring new technologies in both
-    <strong>data analytics</strong> and
-    <strong>interface design</strong>.
+    digital experiences.
   </p>
 
   <!-- Tombol Sosial -->
   <nav
     id="hero-buttons"
-    class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mt-8 w-full max-w-2xl mx-auto opacity-0 transition-all duration-700 px-2"
+    class="opacity-0 flex flex-wrap justify-center gap-3 sm:gap-4 mt-10 transition-opacity duration-700"
   >
     <a href="mailto:vin.simorangkir81@gmail.com" class="social-btn">
       <MailIcon class="size-4 sm:size-5" />
@@ -102,7 +88,7 @@ const personalImageAlt = "Kevin Simorangkir";
       <span>Portfolio (Data)</span>
     </a>
   </nav>
-</div>
+</section>
 
 <!-- Script Typing -->
 <script>
@@ -138,17 +124,16 @@ const personalImageAlt = "Kevin Simorangkir";
       } else {
         if (!isDeleting) {
           isDeleting = true;
-          setTimeout(type, 1300);
+          setTimeout(type, 1500);
         } else {
           isDeleting = false;
           textIndex = (textIndex + 1) % texts.length;
-          setTimeout(type, 300);
+          setTimeout(type, 400);
         }
       }
     };
 
     setTimeout(() => {
-      el.classList.remove("opacity-0");
       desc.classList.remove("opacity-0");
       buttons.classList.remove("opacity-0");
     }, 600);
@@ -159,55 +144,33 @@ const personalImageAlt = "Kevin Simorangkir";
 
 <style is:global>
   .social-btn {
-    @apply flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-[#58c4c1]/60
-    text-xs sm:text-sm font-medium text-gray-800 dark:text-gray-200 transition-all duration-300 bg-white/5 dark:bg-transparent;
-  }
-  .social-btn svg {
-    transition: transform 0.3s ease-out;
-  }
-  .social-btn:hover {
-    @apply bg-[#58c4c1] text-white border-[#58c4c1] shadow-lg shadow-[#58c4c1]/40;
-    transform: translateY(-2px);
-  }
-  .social-btn:hover svg {
-    transform: translateY(-3px) scale(1.1);
+    @apply flex items-center justify-center gap-2 px-4 py-2 rounded-md border border-gray-300 dark:border-white/10
+    text-sm font-medium text-gray-800 dark:text-gray-200 transition-all duration-300 bg-white/60 dark:bg-white/5 backdrop-blur-sm;
   }
 
-  /* Animasi lingkaran & glow */
-  @keyframes spin-slow {
-    0% {
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(180deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  .social-btn:hover {
+    @apply text-white shadow-md;
+    background-color: #0f7095;
+    border-color: #0f7095;
+    transform: translateY(-2px);
   }
-  @keyframes pulse-glow {
-    0%,
-    100% {
-      filter: drop-shadow(0 0 6px #58c4c1aa);
-    }
-    50% {
-      filter: drop-shadow(0 0 14px #58c4c1cc);
-    }
+
+  .social-btn svg {
+    transition: transform 0.3s ease;
   }
-  .animate-spin-slow {
-    animation: spin-slow 6s ease-in-out infinite;
-  }
-  .animate-pulse-glow {
-    animation: pulse-glow 3s ease-in-out infinite;
+
+  .social-btn:hover svg {
+    transform: scale(1.1);
   }
 
   .text-main {
-    color: #58c4c1;
+    color: #0f7095;
   }
 
   .cursor.blink {
     animation: blink 1s infinite;
   }
+
   @keyframes blink {
     0%,
     100% {
@@ -216,11 +179,6 @@ const personalImageAlt = "Kevin Simorangkir";
     50% {
       opacity: 1;
     }
-  }
-
-  #typing-text {
-    margin-bottom: 0.4rem;
-    word-break: break-word;
   }
 
   html.dark {

@@ -10,38 +10,47 @@ import { ViewTransitions } from "astro:transitions";
 interface Props {
   title: string;
   description: string;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
 }
 
-const { description, title } = Astro.props;
+const {
+  description,
+  title,
+  hideHeader = false,
+  hideFooter = false,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/V.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
   </head>
 
-  <body class="relative text-black dark:text-white">
-    <!-- background -->
+  <body class="relative text-black dark:text-white selection:bg-[#0f7095]/30">
+    <!-- 🌊 Background gradien -->
     <div
       class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full
-             bg-gray-50 dark:bg-[#161616]
-             bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(88,196,193,0.25),rgba(255,255,255,0.5))]
-             dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(88,196,193,0.15),rgba(22,22,22,1))]"
+             bg-gray-50 dark:bg-[#0c0c0c]
+             bg-[radial-gradient(ellipse_90%_80%_at_50%_-20%,rgba(15,112,149,0.12),rgba(255,255,255,0.6))]
+             dark:bg-[radial-gradient(ellipse_90%_80%_at_50%_-20%,rgba(15,112,149,0.15),rgba(10,10,10,1))]"
     >
     </div>
 
-    <Header />
+    {!hideHeader && <Header />}
+
     <slot />
 
     <AccessibilityToolbar client:load />
-    <Footer />
+
+    {!hideFooter && <Footer />}
 
     <style is:global>
       :root {
@@ -51,6 +60,7 @@ const { description, title } = Astro.props;
       html {
         font-family: "Onest Variable", system-ui, sans-serif;
         scroll-behavior: smooth;
+        background-color: transparent;
       }
 
       body {
@@ -70,11 +80,11 @@ const { description, title } = Astro.props;
       @media (prefers-color-scheme: dark) {
         body {
           color: rgba(255, 255, 255, 0.9);
-          background-color: #161616;
+          background-color: #0c0c0c;
         }
       }
 
-      /* 🔸 Header blur effect */
+      /* 🌫️ Header blur + glowing border */
       #header-nav {
         animation: blur linear both 0.5s;
         animation-timeline: scroll();
@@ -85,77 +95,76 @@ const { description, title } = Astro.props;
         to {
           backdrop-filter: blur(20px);
           border-width: 1px;
-          border-color: rgba(0, 0, 0, 0.1);
+          border-color: rgba(15, 112, 149, 0.2);
+          background-color: rgba(255, 255, 255, 0.5);
           padding: 0.25rem 0.75rem;
           display: flex;
-          flex-direction: row;
           align-items: center;
-          background-color: rgba(88, 196, 193, 0.1);
           border-radius: 9999px;
           box-shadow:
-            0 0 20px rgba(88, 196, 193, 0.2),
-            inset 0 0 5px rgba(88, 196, 193, 0.3);
+            0 0 25px rgba(15, 112, 149, 0.15),
+            inset 0 0 5px rgba(15, 112, 149, 0.2);
         }
       }
 
       @media (prefers-color-scheme: dark) {
         @keyframes blur {
           to {
+            backdrop-filter: blur(25px);
+            background-color: rgba(10, 10, 10, 0.75);
+            border-color: rgba(15, 112, 149, 0.3);
             box-shadow:
-              0px 5px 50px -5px rgba(0, 0, 0, 0.4),
-              0px 0px 15px 2px rgba(88, 196, 193, 0.25);
-            background: rgba(22, 22, 22, 0.85);
-            backdrop-filter: blur(20px);
-            border-width: 1px;
-            border-color: rgba(88, 196, 193, 0.3);
-            padding: 0.25rem 0.75rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            border-radius: 9999px;
+              0 0 30px rgba(15, 112, 149, 0.25),
+              inset 0 0 6px rgba(15, 112, 149, 0.25);
           }
         }
       }
 
-      /* -------------------------------
-         ✨ THEME: Teal #58C4C1 Edition
-      -------------------------------- */
-      html.seventeen-eight body > div:first-of-type {
-        background: linear-gradient(135deg, #58c4c1, #20c997);
+      /* ---------------------------------
+         🌟 THEME: Teal #0f7095 Edition
+      ---------------------------------- */
+      html.teal-theme body > div:first-of-type {
+        background: linear-gradient(135deg, #0f7095, #38c0dd);
       }
 
-      html.seventeen-eight body {
-        color: #fff;
-      }
-
-      html.seventeen-eight header a,
-      html.seventeen-eight header button,
-      html.seventeen-eight #theme-toggle-btn,
-      html.seventeen-eight #themes-menu li {
+      html.teal-theme header a,
+      html.teal-theme header button,
+      html.teal-theme #theme-toggle-btn,
+      html.teal-theme #themes-menu li {
         background-color: transparent;
-        color: #58c4c1;
+        color: #0f7095;
         border-radius: 0.5rem;
         padding: 0.25rem 0.75rem;
         transition:
-          color 0.2s ease,
-          background-color 0.2s ease;
+          color 0.25s ease,
+          background-color 0.25s ease;
       }
 
-      html.seventeen-eight header a:hover,
-      html.seventeen-eight header button:hover,
-      html.seventeen-eight #theme-toggle-btn:hover,
-      html.seventeen-eight #themes-menu li:hover {
-        color: #fff;
-        background-color: rgba(88, 196, 193, 0.2);
+      html.teal-theme header a:hover,
+      html.teal-theme header button:hover,
+      html.teal-theme #theme-toggle-btn:hover,
+      html.teal-theme #themes-menu li:hover {
+        color: #ffffff;
+        background-color: rgba(15, 112, 149, 0.2);
       }
 
-      /* Accessibility Toolbar */
+      /* 🧭 Accessibility Toolbar */
       body.large-text {
-        font-size: 1.25em;
+        font-size: 1.2em;
       }
 
       body.high-contrast {
         filter: invert(1) hue-rotate(180deg);
+      }
+
+      /* ✨ Smooth fade on page transitions */
+      main,
+      section,
+      header,
+      footer {
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
       }
     </style>
   </body>

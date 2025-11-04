@@ -1,13 +1,15 @@
 ---
 import LinkInline from "./LinkInline.astro";
 
+type StatusType = "Freelance" | "Internship" | "Ongoing" | "Project";
+
 interface Props {
   title: string;
   company: string;
   description: string;
   link?: string;
   date: string;
-  status: string;
+  status: StatusType;
   index?: number;
   isLast?: boolean;
 }
@@ -23,9 +25,9 @@ const {
   isLast = false,
 } = Astro.props as Props;
 
-// 🎨 Warna status badge modern teal
+// 🎨 Warna badge berdasarkan status
 const statusColors = {
-  Freelance: "bg-[#266668]/20 text-[#266668] border border-[#266668]/40",
+  Freelance: "bg-[#0f7095]/20 text-[#0f7095] border border-[#0f7095]/40",
   Internship: "bg-[#a19665]/20 text-[#a19665] border border-[#a19665]/40",
   Ongoing: "bg-yellow-200/20 text-yellow-700 border border-yellow-500/30",
   Project: "bg-blue-200/20 text-blue-700 border border-blue-500/30",
@@ -39,26 +41,27 @@ const badgeClass =
 <div
   class={`timeline-item relative mx-5 sm:mx-8 pb-14 grid opacity-0 translate-y-8 
   transition-all duration-700 ease-out
-  before:absolute before:left-[-22px] before:top-0 before:block 
-  before:w-[2px] before:bg-[#266668]/60
+  before:absolute before:left-[-14px] before:top-[14px] before:block 
+  before:w-[2px] before:bg-[#0f7095]/50 dark:before:bg-[#0f7095]/30
   md:grid-cols-5 md:gap-12
   ${index % 2 === 0 ? "slide-left" : "slide-right"}
   ${isLast ? "before:h-[2rem]" : "before:h-full"}`}
 >
-  <!-- ✨ Kiri: Info -->
+  <!-- ✨ Kiri -->
   <div class="relative pb-8 md:col-span-2 group">
-    <div class="sticky top-0">
+    <div class="relative">
       <!-- Titik Timeline -->
       <span
-        class="absolute -left-[26px] top-1 z-10 w-3.5 h-3.5 rounded-full
-        bg-[#266668] shadow-[0_0_15px_rgba(38,102,104,0.6)]
-        ring-[2px] ring-white/30 dark:ring-[#0b0b0b]/60 pulse-dot"
+        class="absolute -left-[19px] top-[6px] z-10 w-4 h-4 rounded-full
+        bg-[#0f7095] border-2 border-white dark:border-[#0b0b0b]
+        shadow-[0_0_12px_rgba(15,112,149,0.7)]
+        pulse-dot"
       ></span>
 
       <!-- Judul -->
       <h3
-        class="text-xl sm:text-2xl font-bold text-[#266668] group-hover:text-[#a19665]
-               transition-all duration-500 tracking-wide drop-shadow-sm"
+        class="text-xl sm:text-2xl font-bold text-[#0f7095] group-hover:text-[#a19665]
+               transition-all duration-500 tracking-wide"
       >
         {title}
       </h3>
@@ -84,16 +87,16 @@ const badgeClass =
     </div>
   </div>
 
-  <!-- ✨ Kanan: Deskripsi -->
+  <!-- ✨ Kanan -->
   <div
     class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300
            md:col-span-3 leading-relaxed text-sm sm:text-base transition-all duration-700"
   >
     <div
       class="relative p-4 rounded-2xl bg-white/10 dark:bg-[#111]/40
-             border border-[#266668]/30
-             hover:border-[#a19665]/50 hover:shadow-[0_0_35px_rgba(161,150,101,0.25)]
-             shadow-[0_0_10px_rgba(38,102,104,0.1)]
+             border border-[#0f7095]/30
+             hover:border-[#a19665]/50 hover:shadow-[0_0_25px_rgba(15,112,149,0.25)]
+             shadow-[0_0_10px_rgba(15,112,149,0.1)]
              transition-all duration-700 backdrop-blur-md hover:translate-x-1 hover:scale-[1.01]"
     >
       <div class="text-justify">
@@ -105,29 +108,19 @@ const badgeClass =
 </div>
 
 <style is:global>
-  /* ✨ Timeline line */
-  .timeline-item::before {
-    content: "";
-    position: absolute;
-    left: -22px;
-    top: 0;
-    width: 2px;
-    background: #26666880;
-  }
-
   /* 🌟 Pulse titik timeline */
   @keyframes pulseGlow {
     0%,
     100% {
       box-shadow:
-        0 0 8px rgba(38, 102, 104, 0.5),
-        0 0 18px rgba(161, 150, 101, 0.3);
+        0 0 8px rgba(15, 112, 149, 0.6),
+        0 0 16px rgba(161, 150, 101, 0.3);
       transform: scale(1);
     }
     50% {
       box-shadow:
-        0 0 25px rgba(38, 102, 104, 0.9),
-        0 0 45px rgba(161, 150, 101, 0.4);
+        0 0 20px rgba(15, 112, 149, 0.9),
+        0 0 35px rgba(161, 150, 101, 0.5);
       transform: scale(1.15);
     }
   }
@@ -162,6 +155,16 @@ const badgeClass =
   .timeline-item.show.slide-right {
     animation: fadeSlideRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
+
+  /* 📱 Responsif */
+  @media (max-width: 640px) {
+    .timeline-item::before {
+      left: -10px;
+    }
+    .timeline-item span {
+      left: -15px !important;
+    }
+  }
 </style>
 
 <script>
@@ -170,7 +173,7 @@ const badgeClass =
       (entries) => {
         entries.forEach((entry, i) => {
           if (entry.isIntersecting) {
-            entry.target.style.animationDelay = `${i * 0.15}s`;
+            (entry.target as HTMLElement).style.animationDelay = `${i * 0.15}s`;
             entry.target.classList.add("show");
             observer.unobserve(entry.target);
           }

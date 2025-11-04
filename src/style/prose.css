@@ -1,4 +1,4 @@
-/* ✨ Custom Prose Theme v3 — KVNS Premium Portfolio Style */
+/* ✨ Custom Prose Theme v4 — KVNS Modern Teal Edition */
 
 /* Base layout */
 .prose {
@@ -6,7 +6,7 @@
     line-height: 1.85;
     color: #1e1e1e;
     transition: color 0.4s ease, background 0.4s ease;
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Onest Variable", "Inter", system-ui, sans-serif;
     letter-spacing: -0.01em;
 }
 
@@ -14,31 +14,50 @@
     color: #e5e5e5;
 }
 
-/* Headings with luxurious gold gradient + subtle glow */
+/* Headings: teal gradient with soft glow */
 .prose h1,
 .prose h2,
 .prose h3 {
-    background: linear-gradient(120deg, #c4b073, #d9c98b);
+    background: linear-gradient(120deg, #0f7095, #38c0dd);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     letter-spacing: -0.02em;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 3px rgba(15, 112, 149, 0.25);
     transition: all 0.3s ease;
 }
 
-/* Smooth underline effect on headings on hover */
 .prose h2:hover,
 .prose h3:hover {
-    text-shadow: 0 2px 6px rgba(196, 176, 115, 0.6);
+    text-shadow: 0 3px 8px rgba(15, 112, 149, 0.5);
 }
 
-/* Images: responsive, soft shadows, subtle hover glow */
+/* Paragraphs */
+.prose p {
+    color: inherit;
+    opacity: 0.9;
+}
+
+/* Links */
+.prose a {
+    color: #0f7095;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.prose a:hover {
+    color: #38c0dd;
+    text-shadow: 0 0 6px rgba(15, 112, 149, 0.3);
+}
+
+/* Images: clean modern shadows */
 .prose img {
     border-radius: 16px;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     margin: 2rem auto;
     max-width: 100%;
     height: auto;
@@ -47,47 +66,46 @@
 
 .prose img:hover {
     transform: scale(1.03);
-    box-shadow: 0 12px 34px rgba(196, 176, 115, 0.25);
+    box-shadow: 0 12px 36px rgba(15, 112, 149, 0.25);
 }
 
-/* Code blocks: modern, dark theme with glowing highlight */
+/* Code blocks: modern dark look with teal accents */
 .prose pre {
-    background-color: #111827;
-    color: #f3f4f6;
-    border-radius: 16px;
+    background: #0c0f14;
+    color: #e5e7eb;
+    border-radius: 14px;
     padding: 1.5rem 1.75rem;
     overflow-x: auto;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     font-size: 0.95rem;
-    transition: box-shadow 0.3s ease;
+    box-shadow: 0 8px 22px rgba(15, 112, 149, 0.2);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .prose pre:hover {
-    box-shadow: 0 8px 26px rgba(196, 176, 115, 0.35);
+    box-shadow: 0 10px 30px rgba(15, 112, 149, 0.35);
 }
 
-/* Inline code: gold accent with soft glow */
+/* Inline code: subtle teal highlight */
 .prose code {
-    background: rgba(196, 176, 115, 0.2);
+    background: rgba(15, 112, 149, 0.15);
     padding: 0.3em 0.5em;
     border-radius: 6px;
     font-size: 0.9em;
-    color: #bca96c;
-    box-shadow: 0 1px 4px rgba(196, 176, 115, 0.15);
+    color: #0f7095;
     transition: background 0.3s ease;
 }
 
 .prose code:hover {
-    background: rgba(196, 176, 115, 0.3);
+    background: rgba(15, 112, 149, 0.25);
 }
 
-/* Blockquote: gold-accented, modern styling */
+/* Blockquote: teal-accented minimal style */
 .prose blockquote {
-    border-left: 4px solid #c4b073;
+    border-left: 4px solid #0f7095;
     padding-left: 1.5rem;
     font-style: italic;
-    color: #6b7280;
-    background: rgba(196, 176, 115, 0.06);
+    color: #4b5563;
+    background: rgba(15, 112, 149, 0.05);
     border-radius: 8px;
     margin: 1.5rem 0;
     transition: background 0.3s ease, border-color 0.3s ease;
@@ -95,10 +113,10 @@
 
 .dark .prose blockquote {
     color: #d1d5db;
-    background: rgba(196, 176, 115, 0.1);
+    background: rgba(15, 112, 149, 0.12);
 }
 
-/* Back-link button: premium gold gradient + hover glow */
+/* Back-link button: glassy teal with glow */
 .back-link {
     display: inline-block;
     margin-top: 3rem;
@@ -106,19 +124,19 @@
     border-radius: 14px;
     font-weight: 600;
     text-decoration: none;
-    background: linear-gradient(to right, #c4b073, #d9c98b);
-    color: #1f1f1f;
-    box-shadow: 0 8px 24px rgba(196, 176, 115, 0.35);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    background: linear-gradient(135deg, #0f7095, #38c0dd);
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(15, 112, 149, 0.35);
+    transition: all 0.3s ease;
 }
 
 .back-link:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(196, 176, 115, 0.45);
-    background: linear-gradient(to right, #d9c98b, #c4b073);
+    box-shadow: 0 10px 30px rgba(15, 112, 149, 0.45);
+    background: linear-gradient(135deg, #38c0dd, #0f7095);
 }
 
-/* Responsiveness */
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .prose {
         padding: 0 1rem;
@@ -134,7 +152,7 @@
     }
 }
 
-/* Optional subtle animations */
+/* ✨ Subtle transition for all prose elements */
 .prose * {
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }

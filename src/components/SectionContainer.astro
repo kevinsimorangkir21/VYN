@@ -1,11 +1,64 @@
 ---
-const { class: className, id } = Astro.props;
+const { class: className = "", id } = Astro.props;
 ---
 
 <section
   id={id}
   data-section={id}
-  class={`section ${className} scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl`}
+  class={`relative section ${className} scroll-m-24 w-full mx-auto container max-w-5xl px-4 sm:px-6 md:px-8 transition-all duration-700 ease-out opacity-0 translate-y-8`}
 >
+  <!-- Decorative gradient background glow -->
+  <div
+    class="absolute -z-10 inset-0 bg-gradient-to-b from-[#0f7095]/5 via-transparent to-transparent blur-3xl opacity-60 pointer-events-none"
+  >
+  </div>
+
   <slot />
 </section>
+
+<style is:global>
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  section.section.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    animation: fadeSlideUp 1s ease-out forwards;
+  }
+
+  /* ✨ Responsif kecil */
+  @media (max-width: 640px) {
+    section.section {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+</style>
+
+<script>
+  if (typeof window !== "undefined") {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document
+      .querySelectorAll("section.section")
+      .forEach((el) => observer.observe(el));
+  }
+</script>

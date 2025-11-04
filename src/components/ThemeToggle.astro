@@ -6,40 +6,48 @@ import SystemIcon from "./icons/System.astro";
 const THEMES = ["Light", "Dark", "System"];
 ---
 
-<div class="relative mx-1">
-  <!-- 🌗 Tombol toggle -->
+<div class="relative mx-1 select-none">
+  <!-- 🌗 Toggle Button -->
   <button
     id="theme-toggle-btn"
-    class="appearance-none border-none flex items-center justify-center
-           hover:scale-110 active:scale-95 transition-transform duration-300"
+    class="appearance-none border-none flex items-center justify-center p-2
+           rounded-full hover:scale-110 active:scale-95
+           bg-white/60 dark:bg-[#0f7095]/10 backdrop-blur-md
+           shadow-[0_2px_8px_rgba(15,112,149,0.15)]
+           transition-all duration-300 ease-out"
     aria-label="Ganti tema"
   >
-    <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
+    <SunIcon
+      id="light"
+      class="theme-toggle-icon size-5 transition-all text-[#0f7095]"
+    />
     <MoonIcon
       id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all"
+      class="theme-toggle-icon absolute size-5 transition-all text-[#7fd0ea]"
     />
     <SystemIcon
       id="system"
-      class="theme-toggle-icon absolute size-5 transition-all"
+      class="theme-toggle-icon absolute size-5 transition-all text-gray-500 dark:text-gray-300"
     />
   </button>
 
-  <!-- 🎨 Dropdown pilihan tema -->
+  <!-- 🎨 Dropdown Tema -->
   <div
     id="themes-menu"
-    class="absolute hidden top-8 right-0 text-sm p-1 min-w-[8rem]
-           rounded-xl border border-gray-200 dark:border-gray-700/40
-           bg-white/80 dark:bg-gray-900/90 backdrop-blur-md
-           shadow-lg transition-all duration-200 z-50"
+    class="absolute hidden top-10 right-0 text-sm min-w-[8.5rem] p-1
+           rounded-2xl border border-[#0f7095]/20 dark:border-[#7fd0ea]/20
+           bg-white/70 dark:bg-[#071d24]/80 backdrop-blur-xl
+           shadow-[0_4px_20px_rgba(15,112,149,0.15)]
+           transition-all duration-200 z-50"
   >
     <ul class="flex flex-col">
       {
         THEMES.map((theme) => (
           <li
-            class="themes-menu-option px-3 py-2 cursor-pointer select-none rounded-md
-                   hover:bg-yellow-100 dark:hover:bg-gray-700
-                   text-gray-700 dark:text-gray-200 transition-colors"
+            class="themes-menu-option px-3 py-2 cursor-pointer rounded-lg
+                   hover:bg-[#0f7095]/10 dark:hover:bg-[#0f7095]/30
+                   text-gray-700 dark:text-gray-200
+                   transition-all duration-200"
           >
             {theme}
           </li>
@@ -50,16 +58,16 @@ const THEMES = ["Light", "Dark", "System"];
 </div>
 
 <style>
-  /* ✨ Efek animasi dropdown */
+  /* ✨ Dropdown animation */
   #themes-menu.open {
     display: block;
-    animation: fade-scale-in 0.2s ease forwards;
+    animation: fade-scale-in 0.25s ease-out forwards;
   }
 
   @keyframes fade-scale-in {
     from {
       opacity: 0;
-      transform: scale(0.9) translateY(-4px);
+      transform: scale(0.9) translateY(-6px);
     }
     to {
       opacity: 1;
@@ -67,15 +75,25 @@ const THEMES = ["Light", "Dark", "System"];
     }
   }
 
+  /* 🌈 Active state highlight */
   .themes-menu-option.active {
-    background-color: rgba(196, 176, 115, 0.25);
+    background: linear-gradient(to right, #0f7095, #2ca1c4);
+    color: white !important;
     font-weight: 600;
-    color: #c4b073;
+    box-shadow: 0 0 10px rgba(15, 112, 149, 0.25);
   }
 
   html.dark .themes-menu-option.active {
-    background-color: rgba(196, 176, 115, 0.2);
-    color: #f2e7b6;
+    background: linear-gradient(to right, #7fd0ea, #0f7095);
+    box-shadow: 0 0 8px rgba(127, 208, 234, 0.3);
+  }
+
+  /* 🌓 Icon animation */
+  .theme-toggle-icon {
+    transform-origin: center;
+    opacity: 0;
+    scale: 0;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
 </style>
 
@@ -94,6 +112,8 @@ const THEMES = ["Light", "Dark", "System"];
       document.querySelectorAll(".theme-toggle-icon").forEach((el) => {
         el.style.scale = el.id === theme ? "1" : "0";
         el.style.opacity = el.id === theme ? "1" : "0";
+        el.style.transform =
+          el.id === theme ? "rotate(0deg)" : "rotate(180deg)";
       });
     };
 

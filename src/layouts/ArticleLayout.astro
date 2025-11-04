@@ -13,14 +13,14 @@ const { title, description, date, related = [] } = Astro.props;
 
 <Layout title={title} description={description}>
   <main
-    class="flex-1 bg-white dark:bg-[#161616] text-gray-800 dark:text-gray-100 transition-colors duration-300"
+    class="flex-1 bg-white dark:bg-[#0b0b0b] text-gray-800 dark:text-gray-100 transition-colors duration-300"
   >
-    <!-- Header Navigasi -->
+    <!-- 🔙 Header Navigasi -->
     <div class="max-w-6xl mx-auto px-6 pt-16">
       <a
         href="/articles"
-        class="inline-flex items-center gap-2 text-[#0b868e] hover:text-[#20c997]
-               font-medium transition-all duration-300 hover:-translate-x-1"
+        class="inline-flex items-center gap-2 text-[#0f7095] hover:text-[#2fbad1]
+               font-medium transition-all duration-300 hover:-translate-x-1 group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ const { title, description, date, related = [] } = Astro.props;
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-5 h-5"
+          class="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300"
         >
           <path
             stroke-linecap="round"
@@ -39,13 +39,13 @@ const { title, description, date, related = [] } = Astro.props;
       </a>
     </div>
 
-    <!-- Konten Artikel -->
+    <!-- 📝 Konten Artikel -->
     <article
       class="prose dark:prose-invert lg:prose-lg mx-auto px-6 py-12 text-center transition-colors duration-300"
     >
       <h1
         class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6
-               bg-gradient-to-r from-[#0b868e] to-[#20c997]
+               bg-gradient-to-r from-[#0f7095] to-[#2fbad1]
                bg-clip-text text-transparent leading-tight"
       >
         {title}
@@ -62,23 +62,26 @@ const { title, description, date, related = [] } = Astro.props;
       </p>
 
       <div
-        class="max-w-3xl mx-auto leading-relaxed text-gray-800 dark:text-gray-300 text-left"
+        class="max-w-3xl mx-auto leading-relaxed text-gray-800 dark:text-gray-300 text-left prose-headings:font-semibold prose-a:text-[#0f7095] prose-a:no-underline prose-a:hover:text-[#2fbad1] prose-a:transition-colors"
       >
         <slot />
       </div>
     </article>
 
-    <!-- Related Posts -->
+    <!-- 🧩 Related Posts -->
     {
       related.length > 0 && (
         <section class="max-w-6xl mx-auto px-6 pb-20">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-3">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-3">
+            <h2
+              class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#0f7095] to-[#2fbad1]
+                     bg-clip-text text-transparent"
+            >
               Related Posts
             </h2>
             <a
               href="/articles"
-              class="text-[#0b868e] hover:text-[#20c997] font-medium transition-colors duration-300"
+              class="text-[#0f7095] hover:text-[#2fbad1] font-medium transition-all duration-300"
             >
               View All Posts »
             </a>
@@ -88,22 +91,22 @@ const { title, description, date, related = [] } = Astro.props;
             {related.map((post) => (
               <a
                 href={`/articles/${post.slug}`}
-                class="group block rounded-lg overflow-hidden 
-                     bg-gray-50 dark:bg-[#1f1f1f] 
-                     border border-gray-200 dark:border-[#2a2a2a] 
-                     hover:border-[#0b868e] hover:scale-[1.03]
-                     transition-all duration-300 shadow-sm dark:shadow-none"
+                class="group block rounded-xl overflow-hidden 
+                       bg-gray-50/80 dark:bg-[#141414] 
+                       border border-gray-200 dark:border-[#1f1f1f]
+                       hover:border-[#0f7095] hover:shadow-lg hover:shadow-[#0f7095]/10
+                       hover:-translate-y-1 transition-all duration-300"
               >
                 <img
                   src={post.image}
                   alt={post.title}
-                  class="w-full h-48 object-cover group-hover:opacity-80 transition"
+                  class="w-full h-48 object-cover group-hover:opacity-85 transition duration-300"
                   loading="lazy"
                 />
-                <div class="p-4">
+                <div class="p-5">
                   <h3
                     class="font-semibold text-lg text-gray-800 dark:text-gray-100 
-                           group-hover:text-[#0b868e] transition-colors duration-300"
+                           group-hover:text-[#0f7095] transition-colors duration-300"
                   >
                     {post.title}
                   </h3>
@@ -122,22 +125,38 @@ const { title, description, date, related = [] } = Astro.props;
     max-width: 60ch;
   }
 
+  /* ✨ Link di dalam artikel */
   .prose a {
-    color: #0b868e;
-    text-decoration: underline;
-    transition: color 0.2s ease;
+    color: #0f7095;
+    transition: color 0.25s ease;
   }
-
   .prose a:hover {
-    color: #20c997;
+    color: #2fbad1;
   }
 
+  /* ✨ Heading berwarna gradien */
   .prose h1,
   .prose h2,
   .prose h3,
   .prose h4 {
-    background: linear-gradient(to right, #0b868e, #20c997);
+    background: linear-gradient(to right, #0f7095, #2fbad1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  /* 💫 Smooth fade saat halaman dimuat */
+  main {
+    animation: fadeIn 0.4s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>

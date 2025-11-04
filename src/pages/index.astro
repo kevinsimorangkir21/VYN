@@ -14,7 +14,7 @@ import BookIcon from "@/components/icons/Book.astro";
 import CertificateIcon from "@/components/icons/CertificateIcon.astro";
 import Certificates from "@/components/Certificates.astro";
 
-// 🔥 Popup
+// Popup (optional)
 import Popup from "@/components/Popup.astro";
 
 const year = new Date().getFullYear();
@@ -23,48 +23,47 @@ const year = new Date().getFullYear();
 <Layout
   title={`Portfolio of KEVINS ${year}`}
   description="Portfolio website by KVNS"
-  hideHeader={true}
 >
   <main class="px-4 sm:px-6 lg:px-8">
     <Popup show={false} once={false} />
 
-    <!-- Hero Section -->
+    <!-- 🌟 Hero Section -->
     <SectionContainer class="py-20 md:py-36 animate-fadeInUp">
       <Hero />
     </SectionContainer>
 
-    <div class="space-y-24 md:space-y-32">
-      <!-- Experience Section -->
+    <div class="space-y-28 md:space-y-40">
+      <!-- 💼 Experience Section -->
       <SectionContainer id="experience" class="animate-fadeInUp delay-100">
         <TitleSection>
-          <Briefcase class="size-8 text-[#58C4C1]" />
+          <Briefcase class="size-8 text-[#0f7095]" />
           Work Experience
         </TitleSection>
         <Experience />
       </SectionContainer>
 
-      <!-- Project Section -->
+      <!-- 💻 Project Section -->
       <SectionContainer id="project" class="animate-fadeInUp delay-200">
         <TitleSection>
-          <CodeIcon class="size-7 text-[#58C4C1]" />
+          <CodeIcon class="size-7 text-[#0f7095]" />
           Projects
         </TitleSection>
         <Projects />
       </SectionContainer>
 
-      <!-- Certificate Section -->
+      <!-- 🎓 Certificate Section -->
       <SectionContainer id="certificate" class="animate-fadeInUp delay-250">
         <TitleSection>
-          <CertificateIcon class="size-7 text-[#58C4C1]" />
+          <CertificateIcon class="size-7 text-[#0f7095]" />
           Certificates
         </TitleSection>
         <Certificates />
       </SectionContainer>
 
-      <!-- Articles Section -->
+      <!-- 📰 Articles Section -->
       <SectionContainer id="articles" class="animate-fadeInUp delay-300">
         <TitleSection>
-          <BookIcon class="size-7 text-[#58C4C1]" />
+          <BookIcon class="size-7 text-[#0f7095]" />
           Articles
         </TitleSection>
 
@@ -96,17 +95,18 @@ const year = new Date().getFullYear();
             ].map((article, i) => (
               <a
                 href={`/articles/${article.slug}`}
-                class={`group p-6 rounded-2xl shadow-lg
-                      bg-gradient-to-b from-white/80 to-white/50
-                      dark:from-gray-900/40 dark:to-gray-800/30
-                      backdrop-blur-xl border border-[#58C4C1]/30
-                      transition-all duration-500
-                      hover:scale-[1.03] hover:shadow-2xl
-                      hover:from-[#e7f9f8]/80 hover:to-[#d3f5f4]/60
-                      hover:border-[#58C4C1]/60
-                      animate-fadeInUp delay-${i * 150}`}
+                class={`group p-6 rounded-2xl border border-[#0f7095]/25
+                        bg-gradient-to-b from-white/80 to-white/60
+                        dark:from-gray-900/50 dark:to-gray-800/30
+                        backdrop-blur-xl shadow-sm
+                        transition-all duration-500
+                        hover:scale-[1.03] hover:shadow-xl
+                        hover:border-[#0f7095]/60
+                        hover:from-[#e6f3f8]/90 hover:to-[#d3ecf3]/70
+                        dark:hover:from-[#0a3341]/40 dark:hover:to-[#0f3a49]/30
+                        animate-fadeInUp delay-${i * 150}`}
               >
-                <h2 class="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-[#58C4C1]">
+                <h2 class="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-[#0f7095]">
                   {article.title}
                 </h2>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
@@ -120,12 +120,12 @@ const year = new Date().getFullYear();
           }
         </div>
 
-        <div class="mt-10 text-center">
+        <div class="mt-12 text-center">
           <a
             href="/articles"
             class="inline-block px-6 py-3 rounded-xl font-semibold
-                   bg-[#58C4C1]
-                   text-white shadow-lg hover:opacity-95 hover:scale-105
+                   bg-[#0f7095] text-white shadow-md
+                   hover:opacity-95 hover:scale-105
                    transition-all duration-300 animate-fadeInUp delay-500"
           >
             View All Articles →
@@ -133,10 +133,10 @@ const year = new Date().getFullYear();
         </div>
       </SectionContainer>
 
-      <!-- About Me Section -->
+      <!-- 🙋‍♂️ About Me Section -->
       <SectionContainer id="about-me" class="animate-fadeInUp delay-400">
         <TitleSection>
-          <ProfileCheck class="size-8 text-[#58C4C1]" />
+          <ProfileCheck class="size-8 text-[#0f7095]" />
           About Me
         </TitleSection>
         <AboutMe />
@@ -146,6 +146,7 @@ const year = new Date().getFullYear();
 </Layout>
 
 <style is:global>
+  /* ✨ Animasi Fade In Up */
   @keyframes fadeInUp {
     0% {
       opacity: 0;
@@ -156,11 +157,9 @@ const year = new Date().getFullYear();
       transform: translateY(0);
     }
   }
-
   .animate-fadeInUp {
     animation: fadeInUp 0.8s ease-out forwards;
   }
-
   .animate-fadeInUp.delay-100 {
     animation-delay: 0.1s;
   }
@@ -178,5 +177,20 @@ const year = new Date().getFullYear();
   }
   .animate-fadeInUp.delay-500 {
     animation-delay: 0.5s;
+  }
+
+  html.dark {
+    background: linear-gradient(to bottom right, #0c0c0c, #111, #161616);
+  }
+
+  /* 🌐 Transisi lembut antar-seksi */
+  section[data-section] {
+    scroll-margin-top: 6rem;
+    transition:
+      transform 0.5s ease,
+      opacity 0.5s ease;
+  }
+  section[data-section]:hover {
+    transform: translateY(-3px);
   }
 </style>

@@ -1,33 +1,33 @@
 ---
-import GitHub from "./icons/GitHub.astro"
-import NextJS from "./icons/NextJS.astro"
-import Tailwind from "./icons/Tailwind.astro"
-import Link from "./icons/Link.astro"
-import LinkButton from "./LinkButton.astro"
-import SQL from "./icons/SQL.astro"
-import Figma from "./icons/Figma.astro"
-import Tableau from "./icons/Tableau.astro"
-import Excel from "./icons/Excel.astro"
-import Prototype from "./icons/Pro.astro"
+import GitHub from "./icons/GitHub.astro";
+import NextJS from "./icons/NextJS.astro";
+import Tailwind from "./icons/Tailwind.astro";
+import Link from "./icons/Link.astro";
+import LinkButton from "./LinkButton.astro";
+import SQL from "./icons/SQL.astro";
+import Figma from "./icons/Figma.astro";
+import Tableau from "./icons/Tableau.astro";
+import Excel from "./icons/Excel.astro";
+import Prototype from "./icons/Pro.astro";
 
 const TAGS = {
-  NEXT: { name: "Next.js", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: NextJS, iconSize: "w-4 h-4" },
-  TAILWIND: { name: "Tailwind CSS", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Tailwind, iconSize: "w-4 h-4" },
-  GITHUB: { name: "GitHub", class: "bg-gradient-to-r from-[#317b79] to-[#58C4C1] text-white", icon: GitHub, iconSize: "w-4 h-4" },
-  LINK: { name: "Live", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Link, iconSize: "w-4 h-4" },
-  SQL: { name: "SQL", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: SQL, iconSize: "w-4 h-4" },
-  FIGMA: { name: "Figma", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Figma, iconSize: "w-4 h-4" },
-  TABLEAU: { name: "Tableau", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Tableau, iconSize: "w-4 h-4" },
-  EXCEL: { name: "Excel", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Excel, iconSize: "w-3.5 h-3.5" },
-  PROTOTYPE: { name: "Prototype", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white", icon: Prototype, iconSize: "w-4 h-4" },
-}
+  NEXT: { name: "Next.js", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: NextJS, iconSize: "w-4 h-4" },
+  TAILWIND: { name: "Tailwind CSS", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Tailwind, iconSize: "w-4 h-4" },
+  GITHUB: { name: "GitHub", class: "bg-gradient-to-r from-[#0a516c] to-[#39a3c1] text-white", icon: GitHub, iconSize: "w-4 h-4" },
+  LINK: { name: "Live", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Link, iconSize: "w-4 h-4" },
+  SQL: { name: "SQL", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: SQL, iconSize: "w-4 h-4" },
+  FIGMA: { name: "Figma", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Figma, iconSize: "w-4 h-4" },
+  TABLEAU: { name: "Tableau", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Tableau, iconSize: "w-4 h-4" },
+  EXCEL: { name: "Excel", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Excel, iconSize: "w-3.5 h-3.5" },
+  PROTOTYPE: { name: "Prototype", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Prototype, iconSize: "w-4 h-4" },
+};
 
 const CATEGORIES = {
-  WEB_DEV: { name: "Web Development", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white" },
-  DATA_ANALYST: { name: "Data Analyst", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white" },
-  UIUX: { name: "UI/UX Designer", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white" },
-  GRAPHIC: { name: "Graphic Design", class: "bg-gradient-to-r from-[#3fa7a4] to-[#58C4C1] text-white" },
-}
+  WEB_DEV: { name: "Web Development", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white" },
+  DATA_ANALYST: { name: "Data Analyst", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white" },
+  UIUX: { name: "UI/UX Designer", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white" },
+  GRAPHIC: { name: "Graphic Design", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white" },
+};
 
 const PROJECTS = [
   {
@@ -64,12 +64,12 @@ const PROJECTS = [
     tags: [TAGS.FIGMA, TAGS.PROTOTYPE],
     categories: [CATEGORIES.UIUX],
   },
-]
+];
 ---
 
 <div class="relative flex flex-col gap-y-24 md:gap-y-32">
   {PROJECTS.map((project, index) => {
-    const reverse = index % 2 === 1
+    const reverse = index % 2 === 1;
     return (
       <article
         class={`group relative flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16 ${
@@ -79,25 +79,33 @@ const PROJECTS = [
         <!-- Image -->
         <div class="w-full md:w-1/2 relative">
           <div
-            class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-white/2 dark:from-[#58C4C1]/20 dark:to-[#0b2020]/10 backdrop-blur-xl shadow-[0_0_30px_-10px_rgba(88,196,193,0.3)] hover:shadow-[0_0_40px_-5px_rgba(88,196,193,0.45)] transition-all duration-700 ease-out hover:-translate-y-1 hover:scale-[1.01]"
+            class="relative overflow-hidden rounded-3xl border border-[#0f7095]/30 
+                   bg-gradient-to-b from-[#0f7095]/10 to-transparent 
+                   backdrop-blur-xl shadow-[0_0_25px_-10px_rgba(15,112,149,0.4)] 
+                   hover:shadow-[0_0_40px_-5px_rgba(15,112,149,0.6)] 
+                   transition-all duration-700 ease-out hover:-translate-y-1 hover:scale-[1.01]"
           >
-            <img src={project.image} alt={project.title} class="object-cover w-full h-64 sm:h-72 md:h-[22rem] transition-transform duration-700 ease-out group-hover:scale-105" />
+            <img
+              src={project.image}
+              alt={project.title}
+              class="object-cover w-full h-64 sm:h-72 md:h-[22rem] transition-transform duration-700 ease-out group-hover:scale-105"
+            />
             <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-3xl"></div>
           </div>
-          <div class="absolute -bottom-3 left-0 right-0 h-[2px] bg-gradient-to-r from-[#58C4C1]/60 via-[#58C4C1]/20 to-[#58C4C1]/60 blur-md opacity-70"></div>
+          <div class="absolute -bottom-3 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0f7095]/60 via-[#0f7095]/20 to-[#0f7095]/60 blur-md opacity-70"></div>
         </div>
 
         <!-- Info -->
         <div class="w-full md:w-1/2 space-y-4 relative">
-          <div class="absolute -top-10 right-10 w-24 h-24 bg-gradient-to-br from-[#58C4C1]/25 to-transparent rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+          <div class="absolute -top-10 right-10 w-24 h-24 bg-gradient-to-br from-[#0f7095]/25 to-transparent rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
-          <h3 class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#3fa7a4] via-[#58C4C1] to-[#3fa7a4] bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(88,196,193,0.4)] tracking-tight">
+          <h3 class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#0f7095] via-[#39a3c1] to-[#0f7095] bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(15,112,149,0.4)] tracking-tight">
             {project.title}
           </h3>
 
           <ul class="flex flex-wrap gap-2 mb-3">
             {project.categories.map((cat) => (
-              <li key={cat.name}>
+              <li>
                 <span class={`rounded-full text-xs ${cat.class} py-1.5 px-3 font-semibold shadow-sm hover:shadow-md hover:scale-103 transition-all`}>
                   {cat.name}
                 </span>
@@ -107,7 +115,7 @@ const PROJECTS = [
 
           <ul class="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
-              <li key={tag.name}>
+              <li>
                 <span class={`flex items-center gap-1.5 rounded-full text-xs ${tag.class} py-1.5 px-3 font-medium shadow-sm hover:shadow-lg hover:scale-103 transition-all`}>
                   <tag.icon class={`${tag.iconSize} drop-shadow-sm`} />
                   {tag.name}
@@ -122,46 +130,57 @@ const PROJECTS = [
 
           <footer class="flex flex-wrap gap-3 mt-6">
             {project.github && (
-              <LinkButton href={project.github} class="border border-[#58C4C1]/50 text-[#58C4C1]/80 hover:bg-[#58C4C1]/90 hover:text-white transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-medium shadow-sm hover:shadow-md hover:scale-103">
+              <LinkButton href={project.github} class="border border-[#0f7095]/50 text-[#0f7095]/80 hover:bg-[#0f7095]/90 hover:text-white transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-medium shadow-sm hover:shadow-md hover:scale-103">
                 <GitHub class="w-5 h-5" /> Code
               </LinkButton>
             )}
             {project.link && (
-              <LinkButton href={project.link} class="border border-[#58C4C1]/50 text-[#58C4C1]/80 hover:bg-[#58C4C1]/90 hover:text-white transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-medium shadow-sm hover:shadow-md hover:scale-103">
+              <LinkButton href={project.link} class="border border-[#0f7095]/50 text-[#0f7095]/80 hover:bg-[#0f7095]/90 hover:text-white transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-medium shadow-sm hover:shadow-md hover:scale-103">
                 <Link class="w-5 h-5" /> Preview
               </LinkButton>
             )}
             {project.prototype && (
-              <LinkButton href={project.prototype} class="bg-[#58C4C1]/90 text-white hover:brightness-105 hover:scale-103 transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-semibold shadow-md hover:shadow-lg">
+              <LinkButton href={project.prototype} class="bg-[#0f7095]/90 text-white hover:brightness-105 hover:scale-103 transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-semibold shadow-md hover:shadow-lg">
                 <Prototype class="w-5 h-5" /> Prototype
               </LinkButton>
             )}
           </footer>
         </div>
       </article>
-    )
+    );
   })}
 </div>
 
 <style is:global>
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  article.show { animation: fadeUp 0.9s ease-out forwards; }
+  article.show {
+    animation: fadeUp 0.9s ease-out forwards;
+  }
 </style>
 
 <script>
   if (typeof window !== "undefined") {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationDelay = `${i * 0.1}s`
-          entry.target.classList.add("show")
-          observer.unobserve(entry.target)
-        }
-      })
-    }, { threshold: 0.2 })
-    document.querySelectorAll("article").forEach((el) => observer.observe(el))
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).style.animationDelay = `${i * 0.1}s`;
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    document.querySelectorAll("article").forEach((el) => observer.observe(el));
   }
 </script>
