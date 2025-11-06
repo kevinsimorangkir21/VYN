@@ -4,7 +4,7 @@ import "../style/prose.css";
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import AccessibilityToolbar from "../components/AccessibilityToolbar.jsx";
+import CookieBanner from "../components/CookieBanner.jsx";
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -32,6 +32,18 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+
+    <!-- ✅ Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVYH9XNM0K"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MVYH9XNM0K");
+    </script>
   </head>
 
   <body class="relative text-black dark:text-white selection:bg-[#0f7095]/30">
@@ -48,9 +60,57 @@ const {
 
     <slot />
 
-    <AccessibilityToolbar client:load />
-
     {!hideFooter && <Footer />}
+
+    <!-- 🍪 Cookie Banner -->
+    <CookieBanner client:load />
+
+    <!-- 📊 Google Analytics & Session Logic -->
+    <script>
+      const consent = localStorage.getItem("cookie-consent");
+
+      // ✅ Load Google Analytics only if consented
+      if (consent === "accepted") {
+        const ga = document.createElement("script");
+        ga.async = true;
+        ga.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"; // <-- Ganti ID kamu
+        document.head.appendChild(ga);
+
+        ga.onload = () => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag("js", new Date());
+          gtag("config", "G-XXXXXXXXXX", { anonymize_ip: true });
+        };
+
+        // ✅ Example: create a simple session cookie
+        document.cookie =
+          "user_session=active; path=/; max-age=3600; SameSite=Lax";
+      } else {
+        // ❌ If rejected, clear cookies
+        document.cookie = "user_session=; path=/; max-age=0;";
+      }
+
+      // 🍪 Reset cookie consent manually
+      function resetCookies() {
+        localStorage.removeItem("cookie-consent");
+        location.reload();
+      }
+    </script>
+
+    <!-- ⚙️ Manage Cookies Floating Button -->
+    <button
+      id="manage-cookies"
+      onclick="resetCookies()"
+      class="fixed bottom-5 right-5 z-[9998] rounded-full p-3
+             bg-[#0f7095] text-black font-medium text-sm shadow-lg
+             hover:bg-[#5fb7cc] transition-all duration-300"
+      title="Manage cookie preferences"
+    >
+      🍪
+    </button>
 
     <style is:global>
       :root {
@@ -120,44 +180,7 @@ const {
         }
       }
 
-      /* ---------------------------------
-         🌟 THEME: Teal #0f7095 Edition
-      ---------------------------------- */
-      html.teal-theme body > div:first-of-type {
-        background: linear-gradient(135deg, #0f7095, #38c0dd);
-      }
-
-      html.teal-theme header a,
-      html.teal-theme header button,
-      html.teal-theme #theme-toggle-btn,
-      html.teal-theme #themes-menu li {
-        background-color: transparent;
-        color: #0f7095;
-        border-radius: 0.5rem;
-        padding: 0.25rem 0.75rem;
-        transition:
-          color 0.25s ease,
-          background-color 0.25s ease;
-      }
-
-      html.teal-theme header a:hover,
-      html.teal-theme header button:hover,
-      html.teal-theme #theme-toggle-btn:hover,
-      html.teal-theme #themes-menu li:hover {
-        color: #ffffff;
-        background-color: rgba(15, 112, 149, 0.2);
-      }
-
-      /* 🧭 Accessibility Toolbar */
-      body.large-text {
-        font-size: 1.2em;
-      }
-
-      body.high-contrast {
-        filter: invert(1) hue-rotate(180deg);
-      }
-
-      /* ✨ Smooth fade on page transitions */
+      /* ✨ Smooth fade on transitions */
       main,
       section,
       header,

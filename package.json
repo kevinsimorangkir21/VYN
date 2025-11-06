@@ -20,6 +20,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "astro-maintenance": "^2.0.0",
     "astro-robots-txt": "1.0.0",
+    "framer-motion": "^12.23.24",
     "lucide-astro": "^0.525.0",
     "lucide-react": "^0.545.0",
     "preact": "^10.27.2",
