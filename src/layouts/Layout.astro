@@ -38,17 +38,13 @@ const {
          Jangan double-load di <head> untuk menghindari duplikasi pageview. -->
   </head>
 
-  <body class="relative text-black dark:text-white selection:bg-[#0f7095]/30">
-    <!-- 🌊 Background: cinematic gradient + teal glow (lebih subtle & premium) -->
-    <div
-      class="absolute inset-0 -z-10 w-full min-h-screen
-             bg-gradient-to-b from-white via-[#eaf5f8]/50 to-white
-             dark:from-[#050505] dark:via-[#0c0c0c] dark:to-[#050505]"
-    >
+  <body class="relative text-black selection:bg-[#0f7095]/20 bg-white">
+    <!-- 🧊 Background: pure white + very subtle teal glow -->
+    <div class="absolute inset-0 -z-10 w-full min-h-screen bg-white">
       <div
         class="absolute inset-0 pointer-events-none
-               bg-[radial-gradient(circle_at_50%_0%,rgba(15,112,149,0.18),transparent_60%)]
-               blur-[110px] opacity-70"
+               bg-[radial-gradient(circle_at_50%_0%,rgba(15,112,149,0.08),transparent_55%)]
+               blur-[90px] opacity-60"
       >
       </div>
     </div>
@@ -83,8 +79,9 @@ const {
             dataLayer.push(arguments);
           }
           window.gtag = gtag;
-          gtag();
-          gtag();
+
+          gtag("js", new Date());
+          gtag("config", GA_ID, { anonymize_ip: true });
         };
 
         // Example: create a simple session cookie
@@ -120,9 +117,10 @@ const {
 
     <style is:global>
       :root {
-        color-scheme: light dark;
+        /* light only */
+        color-scheme: light;
 
-        /* KVNS core tokens (fallback jika belum ada) */
+        /* KVNS core tokens */
         --brand-h: 190;
         --brand-500: hsl(var(--brand-h) 62% 40%);
         --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -150,7 +148,6 @@ const {
         min-height: 100vh;
         overscroll-behavior: none;
 
-        /* Smooth theme transition apply to body too */
         transition:
           background-color 0.35s var(--ease),
           color 0.35s var(--ease);
@@ -158,7 +155,7 @@ const {
 
       /* Selection */
       ::selection {
-        background: color-mix(in srgb, #0f7095 45%, transparent);
+        background: color-mix(in srgb, #0f7095 20%, transparent);
         color: white;
       }
 
@@ -167,11 +164,8 @@ const {
         width: 8px;
       }
       ::-webkit-scrollbar-thumb {
-        background: color-mix(in srgb, #0f7095 45%, #0b0b0b);
+        background: color-mix(in srgb, #0f7095 35%, #d9d9d9);
         border-radius: 99px;
-      }
-      html.dark ::-webkit-scrollbar-thumb {
-        background: color-mix(in srgb, #0f7095 55%, #050505);
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -188,14 +182,7 @@ const {
         }
       }
 
-      @media (prefers-color-scheme: dark) {
-        body {
-          color: rgba(255, 255, 255, 0.9);
-          background-color: #0c0c0c;
-        }
-      }
-
-      /* 🌫️ Header blur + glowing border saat scroll */
+      /* 🌫️ Header blur + glowing border saat scroll (light only) */
       #header-nav {
         animation: kvnsNavBlur linear both 0.5s;
         animation-timeline: scroll();
@@ -214,18 +201,6 @@ const {
           box-shadow:
             0 0 25px rgba(15, 112, 149, 0.15),
             inset 0 0 5px rgba(15, 112, 149, 0.2);
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        @keyframes kvnsNavBlur {
-          to {
-            backdrop-filter: blur(25px);
-            background-color: rgba(10, 10, 10, 0.75);
-            border-color: rgba(15, 112, 149, 0.3);
-            box-shadow:
-              0 0 30px rgba(15, 112, 149, 0.25),
-              inset 0 0 6px rgba(15, 112, 149, 0.25);
-          }
         }
       }
 
