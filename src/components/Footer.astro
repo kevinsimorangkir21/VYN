@@ -7,12 +7,10 @@ const version = pkg?.version ? `v${pkg.version}` : "v";
 ---
 
 <footer
-  class="relative mt-20 px-6 w-full max-w-screen-xl mx-auto container overflow-hidden text-center md:text-left bg-white"
-  aria-label="Site Footer"
+  class="relative mt-20 px-6 w-full max-w-screen-xl mx-auto container overflow-hidden text-center md:text-left bg-transparent text-[#0f7095] dark:text-white"
 >
-  <!-- subtle white + teal glow -->
   <div
-    class="absolute inset-0 -z-10 pointer-events-none bg-white
+    class="absolute inset-0 -z-10 pointer-events-none bg-transparent
            before:content-[''] before:absolute before:inset-0
            before:bg-[radial-gradient(circle_at_50%_0%,rgba(15,112,149,0.07),transparent_60%)]
            before:blur-[110px] before:opacity-70"
@@ -52,9 +50,24 @@ const version = pkg?.version ? `v${pkg.version}` : "v";
           Portfolio KVNS
         </a>
       </span>
+
       <span class="text-[11px] text-neutral-400 font-mono select-none"
         >({version})</span
       >
+
+      <!-- STATUS + CHANGELOG -->
+      <div
+        class="flex items-center gap-3 mt-1.5 text-[11px] text-neutral-600 font-mono"
+      >
+        <div class="flex items-center gap-1">
+          <span class="inline-block w-2 h-2 rounded-full bg-green-500"></span>
+          <span>Operational</span>
+        </div>
+        <span class="opacity-30">•</span>
+        <a href="/changelog" class="hover:text-[#0f7095] transition-colors">
+          Last Update {version}
+        </a>
+      </div>
     </div>
 
     <!-- right -->
