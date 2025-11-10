@@ -33,27 +33,24 @@ const {
     <title>{title}</title>
     <ViewTransitions />
 
-    <!-- ✅ Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVYH9XNM0K"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-MVYH9XNM0K");
-    </script>
+    <!-- NOTE:
+         Google Analytics akan diload via consent (di bawah).
+         Jangan double-load di <head> untuk menghindari duplikasi pageview. -->
   </head>
 
   <body class="relative text-black dark:text-white selection:bg-[#0f7095]/30">
-    <!-- 🌊 Background gradien -->
+    <!-- 🌊 Background: cinematic gradient + teal glow (lebih subtle & premium) -->
     <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full
-             bg-gray-50 dark:bg-[#0c0c0c]
-             bg-[radial-gradient(ellipse_90%_80%_at_50%_-20%,rgba(15,112,149,0.12),rgba(255,255,255,0.6))]
-             dark:bg-[radial-gradient(ellipse_90%_80%_at_50%_-20%,rgba(15,112,149,0.15),rgba(10,10,10,1))]"
+      class="absolute inset-0 -z-10 w-full min-h-screen
+             bg-gradient-to-b from-white via-[#eaf5f8]/50 to-white
+             dark:from-[#050505] dark:via-[#0c0c0c] dark:to-[#050505]"
     >
+      <div
+        class="absolute inset-0 pointer-events-none
+               bg-[radial-gradient(circle_at_50%_0%,rgba(15,112,149,0.18),transparent_60%)]
+               blur-[110px] opacity-70"
+      >
+      </div>
     </div>
 
     {!hideHeader && <Header />}
@@ -65,15 +62,19 @@ const {
     <!-- 🍪 Cookie Banner -->
     <CookieBanner client:load />
 
-    <!-- 📊 Google Analytics & Session Logic -->
+    <!-- 📊 Google Analytics & Session (via consent) -->
     <script>
+      // Single source of truth untuk GA ID (ganti ke ID milikmu):
+      const GA_ID = "G-XXXXXXXXXX";
+
       const consent = localStorage.getItem("cookie-consent");
 
       // ✅ Load Google Analytics only if consented
-      if (consent === "accepted") {
+      if (consent === "accepted" && GA_ID && GA_ID !== "G-XXXXXXXXXX") {
+        // Inject gtag.js
         const ga = document.createElement("script");
         ga.async = true;
-        ga.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"; // <-- Ganti ID kamu
+        ga.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
         document.head.appendChild(ga);
 
         ga.onload = () => {
@@ -81,16 +82,17 @@ const {
           function gtag() {
             dataLayer.push(arguments);
           }
-          gtag("js", new Date());
-          gtag("config", "G-XXXXXXXXXX", { anonymize_ip: true });
+          window.gtag = gtag;
+          gtag();
+          gtag();
         };
 
-        // ✅ Example: create a simple session cookie
+        // Example: create a simple session cookie
         document.cookie =
           "user_session=active; path=/; max-age=3600; SameSite=Lax";
       } else {
         // ❌ If rejected, clear cookies
-        document.cookie = "user_session=; path=/; max-age=0;";
+        document.cookie = "user_session=; path=/; max-age=0; SameSite=Lax";
       }
 
       // 🍪 Reset cookie consent manually
@@ -98,6 +100,9 @@ const {
         localStorage.removeItem("cookie-consent");
         location.reload();
       }
+
+      // Expose for the Manage Cookies button
+      window.resetCookies = resetCookies;
     </script>
 
     <!-- ⚙️ Manage Cookies Floating Button -->
@@ -105,9 +110,10 @@ const {
       id="manage-cookies"
       onclick="resetCookies()"
       class="fixed bottom-5 right-5 z-[9998] rounded-full p-3
-             bg-[#0f7095] text-black font-medium text-sm shadow-lg
+             bg-[#0f7095] text-white font-medium text-sm shadow-lg
              hover:bg-[#5fb7cc] transition-all duration-300"
       title="Manage cookie preferences"
+      aria-label="Manage cookie preferences"
     >
       🍪
     </button>
@@ -115,12 +121,26 @@ const {
     <style is:global>
       :root {
         color-scheme: light dark;
+
+        /* KVNS core tokens (fallback jika belum ada) */
+        --brand-h: 190;
+        --brand-500: hsl(var(--brand-h) 62% 40%);
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       html {
         font-family: "Onest Variable", system-ui, sans-serif;
         scroll-behavior: smooth;
         background-color: transparent;
+
+        /* Smooth theme transition (Apple-ish) */
+        transition:
+          background-color 0.35s var(--ease),
+          color 0.35s var(--ease);
+        font-feature-settings:
+          "liga" 1,
+          "calt" 1;
+        font-synthesis-weight: none;
       }
 
       body {
@@ -129,11 +149,42 @@ const {
         flex-direction: column;
         min-height: 100vh;
         overscroll-behavior: none;
+
+        /* Smooth theme transition apply to body too */
+        transition:
+          background-color 0.35s var(--ease),
+          color 0.35s var(--ease);
+      }
+
+      /* Selection */
+      ::selection {
+        background: color-mix(in srgb, #0f7095 45%, transparent);
+        color: white;
+      }
+
+      /* Subtle scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: color-mix(in srgb, #0f7095 45%, #0b0b0b);
+        border-radius: 99px;
+      }
+      html.dark ::-webkit-scrollbar-thumb {
+        background: color-mix(in srgb, #0f7095 55%, #050505);
       }
 
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
+        }
+        html,
+        body,
+        main,
+        section,
+        header,
+        footer {
+          transition: none !important;
         }
       }
 
@@ -144,14 +195,13 @@ const {
         }
       }
 
-      /* 🌫️ Header blur + glowing border */
+      /* 🌫️ Header blur + glowing border saat scroll */
       #header-nav {
-        animation: blur linear both 0.5s;
+        animation: kvnsNavBlur linear both 0.5s;
         animation-timeline: scroll();
         animation-range: 0 500px;
       }
-
-      @keyframes blur {
+      @keyframes kvnsNavBlur {
         to {
           backdrop-filter: blur(20px);
           border-width: 1px;
@@ -166,9 +216,8 @@ const {
             inset 0 0 5px rgba(15, 112, 149, 0.2);
         }
       }
-
       @media (prefers-color-scheme: dark) {
-        @keyframes blur {
+        @keyframes kvnsNavBlur {
           to {
             backdrop-filter: blur(25px);
             background-color: rgba(10, 10, 10, 0.75);
@@ -180,14 +229,15 @@ const {
         }
       }
 
-      /* ✨ Smooth fade on transitions */
+      /* ✨ Smooth color transitions for main regions */
       main,
       section,
       header,
       footer {
         transition:
-          background-color 0.3s ease,
-          color 0.3s ease;
+          background-color 0.35s var(--ease),
+          color 0.35s var(--ease),
+          border-color 0.35s var(--ease);
       }
     </style>
   </body>

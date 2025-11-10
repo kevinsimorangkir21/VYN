@@ -1,14 +1,46 @@
+---
+const {
+  size = 26,
+  color = "currentColor",
+  class: className = "",
+} = Astro.props;
+---
+
 <svg
-  {...Astro.props}
-  width="24"
-  height="24"
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
   viewBox="0 0 24 24"
-  stroke-width="2"
-  stroke="currentColor"
   fill="none"
+  stroke={color}
+  stroke-width="1.9"
   stroke-linecap="round"
   stroke-linejoin="round"
-  ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-    d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path
-    d="M6 21v-2a4 4 0 0 1 4 -4h4"></path><path d="M15 19l2 2l4 -4"></path></svg
+  class={`kvns-icon-usercheck transition-all duration-300 ease-out ${className}`}
 >
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path>
+  <path d="M15 19l2 2l4 -4"></path>
+
+  <defs>
+    <linearGradient id="kvnsUserCheckGF" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9b676"></stop>
+      <stop offset="100%" stop-color="#e9dda5"></stop>
+    </linearGradient>
+  </defs>
+</svg>
+
+<style>
+  .kvns-icon-usercheck {
+    cursor: pointer;
+  }
+  .kvns-icon-usercheck:hover {
+    transform: translateY(-2px) scale(1.11);
+    stroke: url(#kvnsUserCheckGF);
+    filter: drop-shadow(0 0 7px rgba(201, 182, 118, 0.42));
+  }
+  html.dark .kvns-icon-usercheck:hover {
+    filter: drop-shadow(0 0 11px rgba(233, 217, 153, 0.55));
+  }
+</style>

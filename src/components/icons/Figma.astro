@@ -1,16 +1,46 @@
+---
+const {
+  size = 28,
+  color = "currentColor",
+  class: className = "",
+} = Astro.props;
+---
+
 <svg
   xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
   viewBox="0 0 256 256"
-  class="w-4 h-4"
   fill="none"
-  stroke="white"
-  stroke-width="16"
+  stroke={color}
+  stroke-width="14"
   stroke-linecap="round"
   stroke-linejoin="round"
+  class={`kvns-icon-grid transition-all duration-300 ease-out ${className}`}
 >
-  <rect x="64" y="0" width="64" height="128" rx="32" />
-  <rect x="128" y="0" width="64" height="64" rx="32" />
-  <rect x="128" y="64" width="64" height="64" rx="32" />
-  <rect x="64" y="128" width="64" height="64" rx="32" />
-  <rect x="128" y="128" width="64" height="64" rx="32" />
+  <rect x="64" y="0" width="64" height="128" rx="32"></rect>
+  <rect x="128" y="0" width="64" height="64" rx="32"></rect>
+  <rect x="128" y="64" width="64" height="64" rx="32"></rect>
+  <rect x="64" y="128" width="64" height="64" rx="32"></rect>
+  <rect x="128" y="128" width="64" height="64" rx="32"></rect>
+
+  <defs>
+    <linearGradient id="kvnsGoldGrid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9b676"></stop>
+      <stop offset="100%" stop-color="#e9dda5"></stop>
+    </linearGradient>
+  </defs>
 </svg>
+
+<style>
+  .kvns-icon-grid {
+    cursor: pointer;
+  }
+  .kvns-icon-grid:hover {
+    transform: translateY(-2px) scale(1.11);
+    filter: drop-shadow(0 0 7px rgba(201, 182, 118, 0.42));
+  }
+  .kvns-icon-grid.gradient rect {
+    stroke: url(#kvnsGoldGrid);
+  }
+</style>

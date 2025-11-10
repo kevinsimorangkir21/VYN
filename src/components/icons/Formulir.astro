@@ -1,16 +1,22 @@
+---
+const {
+  size = 28,
+  color = "currentColor",
+  class: className = "",
+} = Astro.props;
+---
+
 <svg
-  {...Astro.props}
   xmlns="http://www.w3.org/2000/svg"
-  class="icon icon-form-modern transition-all duration-300 hover:scale-110"
-  width="28"
-  height="28"
+  width={size}
+  height={size}
   viewBox="0 0 24 24"
-  stroke-width="2"
-  stroke="currentColor"
   fill="none"
+  stroke={color}
+  stroke-width="1.9"
   stroke-linecap="round"
   stroke-linejoin="round"
-  style="color: white;"
+  class={`kvns-icon-form transition-all duration-300 ease-out ${className}`}
 >
   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
   <rect x="4" y="4" width="16" height="16" rx="2"></rect>
@@ -19,4 +25,25 @@
   <path d="M8 16h4"></path>
   <path d="M15.5 15.5l2.5 2.5"></path>
   <path d="M18 13l3 3l-2 2l-3 -3z"></path>
+
+  <defs>
+    <linearGradient id="kvnsGoldForm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9b676"></stop>
+      <stop offset="100%" stop-color="#e9dda5"></stop>
+    </linearGradient>
+  </defs>
 </svg>
+
+<style>
+  .kvns-icon-form {
+    cursor: pointer;
+  }
+  .kvns-icon-form:hover {
+    transform: translateY(-2px) scale(1.1);
+    filter: drop-shadow(0 0 7px rgba(201, 182, 118, 0.42));
+  }
+  .kvns-icon-form.gradient path,
+  .kvns-icon-form.gradient rect {
+    stroke: url(#kvnsGoldForm);
+  }
+</style>

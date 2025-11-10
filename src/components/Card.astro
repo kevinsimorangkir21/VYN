@@ -8,83 +8,74 @@ interface Props {
 const { href, title, body } = Astro.props;
 ---
 
-<li class="link-card group">
+<li class="kvns-link-card group">
   <a
     href={href}
-    class="block w-full h-full rounded-2xl p-6 sm:p-7 transition-all duration-500 ease-out
-           bg-white/80 dark:bg-[#0b0b0b]/70
-           backdrop-blur-xl border border-transparent hover:border-[#0f7095]/40
-           shadow-[0_4px_20px_rgba(0,0,0,0.05)]
-           hover:shadow-[0_6px_30px_rgba(15,112,149,0.25)]
-           hover:-translate-y-[3px]"
+    class="kvns-link-core block w-full h-full rounded-2xl p-6 sm:p-7"
   >
-    <h2
-      class="flex items-center justify-between text-xl font-semibold
-             text-gray-800 dark:text-gray-100 mb-2 transition-colors duration-300"
-    >
-      <span class="group-hover:text-[#0f7095]">{title}</span>
-      <span
-        class="text-[#0f7095] opacity-80 group-hover:translate-x-1 group-hover:opacity-100 transition-all duration-300"
-        >&rarr;</span
-      >
+    <h2 class="flex items-center justify-between text-xl font-semibold mb-2">
+      <span>{title}</span>
+      <span class="arrow">&rarr;</span>
     </h2>
 
-    <p
-      class="text-gray-600 dark:text-gray-400 text-base leading-relaxed transition-colors duration-300
-             group-hover:text-gray-800 dark:group-hover:text-gray-300"
-    >
-      {body}
-    </p>
+    <p class="text-base leading-relaxed">{body}</p>
   </a>
 </li>
 
 <style is:global>
-  /* 🌊 Border Gradasi Premium */
-  .link-card {
+  .kvns-link-card {
     list-style: none;
-    display: flex;
-    border-radius: 1rem;
-    background: linear-gradient(135deg, #0f7095, #74c0d9);
-    padding: 1.2px;
-    transition: all 0.5s ease;
   }
 
-  /* 🌙 Mode Gelap */
-  html.dark .link-card {
-    background: linear-gradient(135deg, #0f7095, #0b2f3d);
+  .kvns-link-core {
+    background: var(--surface-2);
+    border: 1px solid var(--line-soft);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: all 0.45s var(--ease);
+    color: var(--text-default);
   }
 
-  /* ✨ Hover Effect */
-  .link-card:hover {
-    box-shadow:
-      0 8px 25px rgba(15, 112, 149, 0.25),
-      inset 0 0 0 1px rgba(15, 112, 149, 0.3);
-    transform: translateY(-2px);
+  .kvns-link-core:hover {
+    border-color: var(--brand-500);
+    box-shadow: 0 10px 32px -6px
+      color-mix(in srgb, var(--brand-500) 40%, transparent);
+    transform: translateY(-3px) scale(1.02);
   }
 
-  /* 🌈 Hover transition */
-  .link-card a:hover h2 span {
-    color: #0f7095;
+  .kvns-link-core .arrow {
+    color: var(--brand-500);
+    opacity: 0.7;
+    transition: all 0.35s var(--ease);
+  }
+  .kvns-link-core:hover .arrow {
+    opacity: 1;
+    transform: translateX(3px);
   }
 
-  /* 📱 Responsif */
+  .kvns-link-core h2 span {
+    transition: color 0.35s var(--ease);
+  }
+  .kvns-link-core:hover h2 span {
+    color: var(--brand-500);
+  }
+
   @media (max-width: 640px) {
-    .link-card a {
+    .kvns-link-core {
       padding: 1rem;
     }
-    .link-card h2 {
+    .kvns-link-core h2 {
       font-size: 1.05rem;
     }
-    .link-card p {
+    .kvns-link-core p {
       font-size: 0.95rem;
     }
   }
 
-  /* 🌬️ Entry animation */
-  .link-card {
-    animation: fadeUpCard 0.8s ease-out both;
+  /* smooth entry */
+  .kvns-link-card {
+    animation: fadeUpCard 0.6s ease-out both;
   }
-
   @keyframes fadeUpCard {
     from {
       opacity: 0;

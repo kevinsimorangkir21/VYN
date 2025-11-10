@@ -4,18 +4,14 @@ const defaultImage = "/KVNS.png";
 ---
 
 <article
-  class="flex flex-col items-center justify-center gap-10
-         text-gray-800 dark:text-gray-200
-         md:flex-row transition-all duration-700 ease-in-out
-         seventeen-eight-profile"
+  class="kvns-profile flex flex-col items-center justify-center gap-10 text-gray-800 dark:text-gray-200 md:flex-row transition-all duration-700 ease-in-out"
 >
   <!-- 🧩 Text -->
   <div
-    class="[&>p]:mb-6 [&>p>strong]:text-[#0f7095]
-           dark:[&>p>strong]:text-[#6bc8e0]
+    class="[&>p]:mb-6 [&>p>strong]:text-[var(--brand-500)]
+           dark:[&>p>strong]:text-[var(--brand-400)]
            [&>p>strong]:font-semibold
-           leading-relaxed order-2 md:order-1
-           max-w-xl text-justify font-inter tracking-wide"
+           leading-relaxed order-2 md:order-1 max-w-xl text-justify font-inter tracking-wide"
   >
     <p class="text-lg sm:text-xl leading-relaxed">
       My name is <strong>Kevin Simorangkir</strong>, and I began learning
@@ -39,8 +35,8 @@ const defaultImage = "/KVNS.png";
   <div class="relative order-1 md:order-2 group">
     <div
       class="absolute inset-0 bg-gradient-to-tr
-             from-[#0f7095]/20 via-transparent to-[#0f7095]/5
-             dark:from-[#0f7095]/15 dark:to-[#0f7095]/10
+             from-[hsl(var(--brand-h)_60%_40%_/_0.18)] via-transparent to-[hsl(var(--brand-h)_60%_40%_/_0.06)]
+             dark:from-[hsl(var(--brand-h)_40%_22%_/_0.18)] dark:to-[hsl(var(--brand-h)_40%_22%_/_0.10)]
              rounded-3xl blur-2xl opacity-0 group-hover:opacity-100
              transition-opacity duration-700"
     >
@@ -52,49 +48,29 @@ const defaultImage = "/KVNS.png";
       src={defaultImage}
       alt={personalImageAlt}
       class="object-cover aspect-square rounded-3xl
-             p-2 w-64 h-64 shadow-xl shadow-[#0f7095]/25
-             dark:shadow-[#0f7095]/15
-             bg-gradient-to-br from-white/70 to-[#0f7095]/10
-             dark:from-[#041f27]/40 dark:to-black/40
-             ring-2 ring-[#0f7095]/30 dark:ring-[#0f7095]/20
+             p-2 w-64 h-64 shadow-xl shadow-[hsl(var(--brand-h)_60%_20%_/_0.25)]
+             dark:shadow-[hsl(var(--brand-h)_60%_20%_/_0.18)]
+             bg-gradient-to-br from-white/70 to-[hsl(var(--brand-h)_60%_40%_/_0.10)]
+             dark:from-[hsl(var(--brand-h)_24%_13%_/_0.40)] dark:to-black/40
+             ring-2 ring-[hsl(var(--brand-h)_60%_40%_/_0.30)] dark:ring-[hsl(var(--brand-h)_60%_40%_/_0.22)]
              transition-all duration-700 ease-in-out
-             rotate-2 group-hover:rotate-0
-             group-hover:scale-105 group-hover:shadow-2xl
-             hover:brightness-110 hover:saturate-125 profile-image"
+             group-hover:scale-[1.01] hover:brightness-[1.02]"
       style="object-position: 50% 50%"
     />
   </div>
 </article>
 
-<!-- 🎨 Premium Style for SeventeenEight Theme -->
-<style is:global>
-  html.seventeen-eight .seventeen-eight-profile,
-  html.seventeen-eight .seventeen-eight-profile * {
-    color: #0f7095 !important;
+<style>
+  .kvns-profile {
+    --brand-h: 192;
+    --brand-s: 70%;
+    --brand-l: 42%;
   }
-
-  html.seventeen-eight .seventeen-eight-profile strong {
-    color: #0f7095 !important;
-  }
-
-  html.seventeen-eight .seventeen-eight-profile .profile-image {
-    content: url("/VINSSS.png") !important;
-    background: linear-gradient(135deg, #e8f3f7 0%, #f8fbfc 100%) !important;
-    ring-color: #0f7095 !important;
-    box-shadow: 0 10px 25px rgba(15, 112, 149, 0.25) !important;
-  }
-
-  html.seventeen-eight .seventeen-eight-profile .profile-image:hover {
-    transform: scale(1.07) rotate(0deg);
-    filter: brightness(1.1);
-  }
-
-  /* ✨ Responsif tambahan */
   @media (max-width: 768px) {
-    .seventeen-eight-profile {
+    .kvns-profile {
       gap: 2.5rem;
     }
-    .seventeen-eight-profile img {
+    .kvns-profile img {
       width: 220px;
       height: 220px;
     }

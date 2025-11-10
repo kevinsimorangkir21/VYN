@@ -1,51 +1,304 @@
 ---
-import Badge from "@/components/Badge.astro";
+import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
+import Badge from "@/components/Badge.astro";
 import SocialPill from "@/components/SocialPill.astro";
 import LinkedInIcon from "@/components/icons/LinkedIn.astro";
-import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout
-  title="Design System – Portfolio.dev"
-  description="Katalog komponen UI yang digunakan dalam portfolio.dev"
+  title="KVNS Prime UI — Design System"
+  description="Showcase katalog komponen KVNS Prime UI untuk portfolio & case studies."
 >
-  <SectionContainer class="py-32 md:py-44 flex flex-col gap-y-16 max-w-4xl mx-auto px-6">
-    <!-- Badge Component -->
-    <article class="space-y-4">
-      <h1 class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100">
-        &lt;Badge /&gt;
+  <!-- HERO -->
+  <section class="kvns-ds-hero relative text-center py-24 sm:py-28">
+    <div class="kvns-ds-hero__glow"></div>
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="kvns-ds-title">
+        KVNS <span>Prime UI</span>
       </h1>
-      <div class="flex items-center gap-4">
-        <Badge>Open to work</Badge>
-        <Badge>Available for freelance</Badge>
+      <p class="kvns-ds-sub">
+        Cinematic, premium, and consistent. Komponen siap pakai untuk brand &
+        portfolio kamu.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <SectionContainer
+    class="kvns-ds-wrapper py-16 md:py-24 max-w-6xl mx-auto px-6"
+  >
+    <!-- CATEGORY: Identity -->
+    <article class="kvns-ds-block">
+      <header class="kvns-ds-block__head">
+        <h2 class="kvns-ds-block__title">Identity</h2>
+        <p class="kvns-ds-block__desc">
+          Komponen kecil yang membangun identitas visual — badge, label, dan
+          elemen micro.
+        </p>
+      </header>
+
+      <div class="kvns-ds-grid">
+        <!-- Badge demo -->
+        <div class="kvns-ds-card group">
+          <div class="kvns-ds-card__bar">Badge</div>
+          <div class="kvns-ds-card__preview">
+            <div class="flex flex-wrap items-center gap-3">
+              <Badge>Open to work</Badge>
+              <Badge>Available for freelance</Badge>
+              <Badge
+                class="px-4 py-2 text-xs sm:text-sm font-medium border border-[hsl(var(--brand-h)_62%_40%)/.25] text-[hsl(var(--brand-h)_62%_40%)] bg-[hsl(var(--brand-h)_62%_40%)/.10] rounded-full"
+              >
+                KVNS Prime UI
+              </Badge>
+            </div>
+          </div>
+          <footer class="kvns-ds-card__meta">
+            <span>Variant:</span>
+            <code>default</code>
+            <code>brand</code>
+          </footer>
+        </div>
       </div>
     </article>
 
-    <!-- SocialPill Component -->
-    <article class="space-y-4">
-      <h1 class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100">
-        &lt;SocialPill /&gt;
-      </h1>
-      <div class="flex flex-wrap items-center gap-3">
-        <SocialPill href="https://linkedin.com/in/midudev">
-          <LinkedInIcon class="w-4 h-4 md:w-5 md:h-5" />
-          LinkedIn
-        </SocialPill>
+    <!-- CATEGORY: Navigation -->
+    <article class="kvns-ds-block">
+      <header class="kvns-ds-block__head">
+        <h2 class="kvns-ds-block__title">Navigation</h2>
+        <p class="kvns-ds-block__desc">
+          Akses cepat ke profil & kanal — pills dan CTA yang konsisten.
+        </p>
+      </header>
 
-        <SocialPill href="https://twitter.com/midudev">
-          <svg
-            class="w-4 h-4 md:w-5 md:h-5 fill-current"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              d="M22.46 6.01c-.77.35-1.6.59-2.46.69a4.26 4.26 0 001.87-2.35 8.35 8.35 0 01-2.68 1.03 4.21 4.21 0 00-7.17 3.84A12 12 0 013 4.79a4.22 4.22 0 001.3 5.63 4.18 4.18 0 01-1.9-.53v.05a4.21 4.21 0 003.38 4.13c-.47.13-.96.2-1.47.2-.36 0-.71-.03-1.05-.1a4.23 4.23 0 003.94 2.93A8.46 8.46 0 012 19.54 11.9 11.9 0 008.29 21c7.55 0 11.68-6.25 11.68-11.67 0-.18 0-.35-.01-.53A8.28 8.28 0 0022.46 6z"
-            />
-          </svg>
-          Twitter
-        </SocialPill>
+      <div class="kvns-ds-grid">
+        <!-- SocialPill demo -->
+        <div class="kvns-ds-card group">
+          <div class="kvns-ds-card__bar">SocialPill</div>
+          <div class="kvns-ds-card__preview">
+            <div class="flex flex-wrap items-center gap-3">
+              <SocialPill href="https://linkedin.com/in/kevinsimorangkir">
+                <LinkedInIcon class="w-4 h-4 md:w-5 md:h-5" />
+                LinkedIn
+              </SocialPill>
+
+              <SocialPill href="mailto:vin.simorangkir81@gmail.com">
+                <!-- Mail (inline) -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4 md:w-5 md:h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                  <path d="M3 7l9 6l9-6"></path>
+                </svg>
+                Email
+              </SocialPill>
+
+              <SocialPill href="https://twitter.com/">
+                <!-- X/Twitter (inline) -->
+                <svg
+                  class="w-4 h-4 md:w-5 md:h-5"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M22.46 6.01c-.77.35-1.6.59-2.46.69a4.26 4.26 0 0 0 1.87-2.35 8.35 8.35 0 0 1-2.68 1.03 4.21 4.21 0 0 0-7.17 3.84A12 12 0 0 1 3 4.79a4.22 4.22 0 0 0 1.3 5.63 4.18 4.18 0 0 1-1.9-.53v.05a4.21 4.21 0 0 0 3.38 4.13c-.47.13-.96.2-1.47.2-.36 0-.71-.03-1.05-.1a4.23 4.23 0 0 0 3.94 2.93A8.46 8.46 0 0 1 2 19.54 11.9 11.9 0 0 0 8.29 21c7.55 0 11.68-6.25 11.68-11.67 0-.18 0-.35-.01-.53a8.28 8.28 0 0 0 2.5-2.79z"
+                  ></path>
+                </svg>
+                Twitter
+              </SocialPill>
+            </div>
+          </div>
+          <footer class="kvns-ds-card__meta">
+            <span>States:</span>
+            <code>hover</code><code>focus</code><code>active</code>
+          </footer>
+        </div>
+      </div>
+    </article>
+
+    <!-- CATEGORY: Communication -->
+    <article class="kvns-ds-block">
+      <header class="kvns-ds-block__head">
+        <h2 class="kvns-ds-block__title">Communication</h2>
+        <p class="kvns-ds-block__desc">
+          Komponen untuk interaksi ringan & penyampaian info.
+        </p>
+      </header>
+
+      <div class="kvns-ds-grid">
+        <!-- Example info card w/ prose token style -->
+        <div class="kvns-ds-card group">
+          <div class="kvns-ds-card__bar">Info Block</div>
+          <div class="kvns-ds-card__preview">
+            <div
+              class="rounded-xl border border-[hsl(var(--brand-h)_62%_40%)/.25] bg-white/70 dark:bg-[#111]/70 backdrop-blur-xl p-4"
+            >
+              <h3 class="font-semibold mb-1 text-[hsl(var(--brand-h)_62%_40%)]">
+                Design Tokens
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                Warna & motion diorkestrasi oleh <code>--brand-h</code>, <code
+                  >--brand-500</code
+                >, dan <code>--ease</code>.
+              </p>
+            </div>
+          </div>
+          <footer class="kvns-ds-card__meta">
+            <span>Tokens:</span>
+            <code>--brand-h</code><code>--brand-500</code><code>--ease</code>
+          </footer>
+        </div>
       </div>
     </article>
   </SectionContainer>
 </Layout>
+
+<style is:global>
+  :root {
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --brand-h: 190; /* follow global brand */
+    --brand-300: hsl(var(--brand-h) 62% 68%);
+    --brand-500: hsl(var(--brand-h) 62% 40%);
+    --text-default: hsl(210 10% 18%);
+    --text-muted: hsl(210 7% 42%);
+  }
+  html.dark {
+    --text-default: hsl(0 0% 96%);
+    --text-muted: hsl(0 0% 70%);
+  }
+
+  /* ===== Hero ===== */
+  .kvns-ds-hero {
+    overflow: hidden;
+  }
+  .kvns-ds-hero__glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 50% -10%,
+      color-mix(in srgb, var(--brand-500) 18%, transparent) 0%,
+      transparent 55%
+    );
+    filter: blur(110px);
+    opacity: 0.75;
+  }
+  .kvns-ds-title {
+    font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.07;
+  }
+  .kvns-ds-title span {
+    background: linear-gradient(
+      105deg,
+      #b49c58 0%,
+      #d7c780 40%,
+      #e6dca2 60%,
+      #b49c58 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 22px rgba(230, 220, 162, 0.18);
+  }
+  .kvns-ds-sub {
+    margin-top: 0.75rem;
+    color: var(--text-muted);
+    font-size: clamp(1rem, 0.6vw + 0.9rem, 1.15rem);
+  }
+
+  /* ===== Blocks ===== */
+  .kvns-ds-block {
+    margin-bottom: 3.5rem;
+  }
+  .kvns-ds-block__head {
+    margin-bottom: 1rem;
+  }
+  .kvns-ds-block__title {
+    font-size: clamp(1.35rem, 1.1vw + 0.8rem, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    background: linear-gradient(120deg, var(--brand-500), var(--brand-300));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .kvns-ds-block__desc {
+    color: var(--text-muted);
+  }
+
+  .kvns-ds-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  @media (min-width: 768px) {
+    .kvns-ds-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .kvns-ds-card {
+    border-radius: 1.1rem;
+    background: color-mix(in srgb, var(--brand-500) 6%, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--brand-500) 14%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+      0 10px 26px -12px color-mix(in srgb, var(--brand-500) 20%, transparent),
+      inset 0 -1px 0 color-mix(in srgb, var(--brand-500) 10%, transparent);
+    transition:
+      transform 0.5s var(--ease),
+      box-shadow 0.5s var(--ease),
+      border-color 0.35s var(--ease);
+    overflow: hidden;
+  }
+  html.dark .kvns-ds-card {
+    background: rgba(17, 17, 17, 0.72);
+    border-color: color-mix(in srgb, var(--brand-500) 22%, transparent);
+  }
+  .kvns-ds-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--brand-500) 35%, transparent);
+    box-shadow: 0 20px 44px -18px
+      color-mix(in srgb, var(--brand-500) 42%, transparent);
+  }
+
+  .kvns-ds-card__bar {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--brand-500) 70%, var(--text-muted));
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--brand-500) 10%, transparent);
+  }
+  .kvns-ds-card__preview {
+    padding: 1rem;
+  }
+  .kvns-ds-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px dashed color-mix(in srgb, var(--brand-500) 14%, transparent);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .kvns-ds-card__meta code {
+    background: color-mix(in srgb, var(--brand-500) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--brand-500) 18%, transparent);
+    border-radius: 0.45rem;
+    padding: 0.12rem 0.45rem;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--brand-500) 80%, var(--text-default));
+  }
+</style>

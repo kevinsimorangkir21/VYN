@@ -1,6 +1,6 @@
 ---
 const {
-  size = 24,
+  size = 26,
   color = "currentColor",
   class: className = "",
 } = Astro.props;
@@ -8,48 +8,40 @@ const {
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
   width={size}
   height={size}
-  stroke-width="2"
-  stroke={color}
+  viewBox="0 0 24 24"
   fill="none"
+  stroke={color}
+  stroke-width="1.9"
   stroke-linecap="round"
   stroke-linejoin="round"
-  class={`icon icon-instagram ${className}`}
+  class={`kvns-icon-ig transition-all duration-300 ease-out ${className}`}
 >
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
   <rect x="4" y="4" width="16" height="16" rx="4"></rect>
   <circle cx="12" cy="12" r="3"></circle>
-  <path d="M16.5 7.5h.01"></path>
-</svg>
+  <path d="M16.5 7.5h0"></path>
 
-<style>
-  .icon-instagram {
-    transition:
-      transform 0.3s ease,
-      stroke 0.3s ease,
-      filter 0.3s ease;
-    cursor: pointer;
-  }
-
-  .icon-instagram:hover {
-    transform: scale(1.12);
-    stroke: url(#gold-gradient);
-    filter: drop-shadow(0 0 6px rgba(196, 176, 115, 0.4));
-  }
-
-  html.dark .icon-instagram:hover {
-    filter: drop-shadow(0 0 8px rgba(233, 217, 153, 0.5));
-  }
-</style>
-
-<!-- Gradient reusable -->
-<svg width="0" height="0">
   <defs>
-    <linearGradient id="gold-gradient" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c4b073"></stop>
-      <stop offset="100%" stop-color="#d9c98b"></stop>
+    <linearGradient id="kvnsGoldIG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9b676"></stop>
+      <stop offset="100%" stop-color="#e9dda5"></stop>
     </linearGradient>
   </defs>
 </svg>
+
+<style>
+  .kvns-icon-ig {
+    cursor: pointer;
+  }
+
+  .kvns-icon-ig:hover {
+    transform: translateY(-2px) scale(1.11);
+    stroke: url(#kvnsGoldIG);
+    filter: drop-shadow(0 0 7px rgba(201, 182, 118, 0.4));
+  }
+
+  html.dark .kvns-icon-ig:hover {
+    filter: drop-shadow(0 0 11px rgba(233, 217, 153, 0.55));
+  }
+</style>

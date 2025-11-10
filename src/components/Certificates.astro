@@ -4,130 +4,157 @@ const certificates = [
     title: "Front-End and Back-End Developer Training",
     issuer: "Badan Pariwisata dan Ekonomi Kreatif Republik Indonesia",
     year: "2024",
-    logo: "public/Baparekraf.svg",
-    link: "public/file/BaparekrafTraining.pdf",
+    logo: "/Baparekraf.svg",
+    link: "/file/BaparekrafTraining.pdf",
   },
   {
     title: "Becoming an Expert Front-End Web Developer",
     issuer: "Dicoding",
     year: "2024",
-    logo: "public/Dicoding.svg",
-    link: "public/file/DicodingFile1.pdf",
+    logo: "/Dicoding.svg",
+    link: "/file/DicodingFile1.pdf",
   },
   {
     title: "Learning to Build Back-End Applications for Beginners",
     issuer: "Dicoding",
     year: "2024",
-    logo: "public/Dicoding.svg",
-    link: "public/file/DicodingFile2.pdf",
+    logo: "/Dicoding.svg",
+    link: "/file/DicodingFile2.pdf",
   },
 ];
 ---
 
-<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-  {certificates.map(cert => (
-    <button
-      type="button"
-      class="cert-btn group relative p-6 rounded-2xl overflow-hidden
-             bg-white/70 dark:bg-[#0a0a0a]/70
-             backdrop-blur-xl border border-[#0f7095]/20
-             shadow-[0_4px_20px_rgba(0,0,0,0.05)]
-             hover:shadow-[0_6px_30px_rgba(15,112,149,0.25)]
-             hover:border-[#0f7095]/40
-             transition-all duration-500 hover:-translate-y-[3px]"
-      data-link={cert.link}
-    >
-      <!-- Gradient Accent -->
-      <div class="absolute inset-0 bg-gradient-to-br from-[#0f7095]/10 via-transparent to-[#74c0d9]/10
-                  opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"></div>
-
-      <!-- Logo & Title -->
-      <div class="relative flex items-center gap-2 mb-4">
-        <img
-          src={cert.logo}
-          alt={`${cert.issuer} logo`}
-          class="w-8 h-8 object-contain rounded-md bg-white/60 dark:bg-white/10 p-1
-                 ring-1 ring-[#0f7095]/30 shadow-sm transition-transform duration-300
-                 group-hover:scale-105"
+<section
+  aria-label="Certificates"
+  class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+>
+  {
+    certificates.map((cert) => (
+      <div
+        class="group relative p-6 rounded-2xl overflow-hidden
+             bg-white/70 dark:bg-[hsl(var(--brand-h)_24%_13%_/_0.65)]
+             backdrop-blur-xl border border-[hsl(var(--brand-h)_50%_50%_/_0.18)]
+             shadow-[0_4px_20px_hsl(210_30%_10%_/_0.08)]
+             hover:shadow-[0_10px_28px_hsl(var(--brand-h)_60%_20%_/_0.14)]
+             transition-all duration-400"
+      >
+        {/* Gradient Accent (subtle) */}
+        <div
+          class="pointer-events-none absolute inset-0 rounded-2xl opacity-0
+               bg-gradient-to-br from-[hsl(var(--brand-h)_60%_40%_/_0.10)]
+               via-transparent to-[hsl(var(--brand-h)_60%_40%_/_0.08)]
+               group-hover:opacity-100 transition-opacity duration-500"
+          aria-hidden="true"
         />
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200
-                   transition-colors duration-300 group-hover:text-[#0f7095]">
-          {cert.title}
-        </h3>
+
+        {/* Header: Logo + Title */}
+        <div class="relative flex items-center gap-3 mb-4">
+          <img
+            src={cert.logo}
+            alt={`${cert.issuer} logo`}
+            width="32"
+            height="32"
+            loading="lazy"
+            class="w-8 h-8 object-contain rounded-md
+                 bg-white/70 dark:bg-white/5 p-1
+                 ring-1 ring-[hsl(var(--brand-h)_60%_40%_/_0.28)]
+                 shadow-[0_2px_6px_hsl(210_30%_10%_/_0.08)]
+                 transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+          <h3
+            class="text-base md:text-lg font-semibold text-gray-800 dark:text-gray-100
+                 transition-colors duration-300
+                 group-hover:text-[hsl(var(--brand-h)_60%_40%)]"
+          >
+            {cert.title}
+          </h3>
+        </div>
+
+        {/* Issuer + Year */}
+        <p class="text-sm text-gray-600 dark:text-gray-400 relative z-10">
+          {cert.issuer}
+        </p>
+        <p class="text-xs text-gray-400 mt-1 relative z-10">{cert.year}</p>
+
+        {/* Divider */}
+        <div
+          class="mt-4 h-px w-full bg-gradient-to-r
+               from-transparent via-[hsl(var(--brand-h)_30%_60%_/_0.25)] to-transparent"
+          aria-hidden="true"
+        />
+
+        {/* CTA */}
+        <div class="mt-4 flex items-center justify-between">
+          <span class="text-xs text-gray-500 dark:text-gray-400">
+            PDF • {cert.year}
+          </span>
+
+          <a
+            href={cert.link}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium
+                 bg-[linear-gradient(120deg,var(--brand-400),var(--brand-500))]
+                 text-white shadow-[0_4px_14px_hsl(var(--brand-h)_60%_20%_/_0.18)]
+                 hover:shadow-[0_8px_24px_hsl(var(--brand-h)_60%_20%_/_0.24)]
+                 transition-all duration-300
+                 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[hsl(var(--brand-3-h)_80%_62%_/_0.35)]"
+            aria-label={`Open PDF: ${cert.title}`}
+          >
+            Open PDF
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                d="M7 17L17 7M7 7h10v10"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-
-      <p class="text-sm text-gray-600 dark:text-gray-400 relative z-10">{cert.issuer}</p>
-      <p class="text-xs text-gray-400 mt-1 relative z-10">{cert.year}</p>
-
-      <!-- Accent line -->
-      <div class="mt-4 w-16 h-[2px] bg-[#0f7095] rounded-full group-hover:w-24 transition-all duration-500"></div>
-    </button>
-  ))}
-</div>
-
-<!-- Modal -->
-<div id="modal" class="fixed inset-0 bg-black/50 items-center justify-center z-50" style="display: none;">
-  <div class="bg-white dark:bg-[#0a0a0a] rounded-xl p-6 max-w-xl w-full relative">
-    <button
-      id="close-modal"
-      class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 dark:hover:text-white text-2xl font-bold"
-    >
-      ✕
-    </button>
-    <iframe
-      id="modal-iframe"
-      src=""
-      class="w-full h-[400px] border rounded-lg"
-      frameborder="0"
-    ></iframe>
-  </div>
-</div>
-
-<script>
-  const modal = document.getElementById('modal') as HTMLDivElement;
-  const iframe = document.getElementById('modal-iframe') as HTMLIFrameElement;
-  const closeBtn = document.getElementById('close-modal') as HTMLButtonElement;
-
-  if (modal && iframe && closeBtn) {
-    document.querySelectorAll('.cert-btn').forEach((btn: Element) => {
-      btn.addEventListener('click', () => {
-        iframe.src = (btn as HTMLButtonElement).dataset.link || '';
-        modal.style.display = 'flex';
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-      iframe.src = '';
-    });
+    ))
   }
-</script>
+</section>
 
 <style is:global>
-  /* Entry Animation */
-  .grid button {
-    animation: fadeCardUp 0.8s ease-out both;
+  /* Entry animation (subtle enterprise) */
+  [aria-label="Certificates"] > div {
+    animation: kvnsCardIn 0.6s var(--ease, cubic-bezier(0.2, 0.6, 0.2, 1)) both;
+  }
+  @keyframes kvnsCardIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  @keyframes fadeCardUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Dark Mode */
-  html.dark .grid button {
-    background: rgba(10, 10, 10, 0.6);
-    border-color: rgba(15, 112, 149, 0.25);
-  }
-
-  html.dark .grid button:hover {
-    background: rgba(15, 112, 149, 0.1);
+  /* Hover lift (micro) */
+  [aria-label="Certificates"] > div:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--brand-h) 50% 50% / 0.26);
   }
 
   /* Responsive tweaks */
   @media (max-width: 640px) {
-    .grid button { padding: 1rem; }
-    .grid h3 { font-size: 1rem; }
-    .grid p { font-size: 0.9rem; }
+    [aria-label="Certificates"] h3 {
+      font-size: 1rem;
+    }
+    [aria-label="Certificates"] p {
+      font-size: 0.9rem;
+    }
+    [aria-label="Certificates"] > div {
+      padding: 1rem;
+    }
   }
 </style>

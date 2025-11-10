@@ -12,18 +12,18 @@ const THEMES = ["Light", "Dark", "System"];
     id="theme-toggle-btn"
     class="appearance-none border-none flex items-center justify-center p-2
            rounded-full hover:scale-110 active:scale-95
-           bg-white/60 dark:bg-[#0f7095]/10 backdrop-blur-md
-           shadow-[0_2px_8px_rgba(15,112,149,0.15)]
+           bg-white/60 dark:bg-[hsl(var(--brand-h)_40%_20%_/_0.10)] backdrop-blur-md
+           shadow-[0_2px_8px_hsl(var(--brand-h)_60%_20%_/_0.12)]
            transition-all duration-300 ease-out"
     aria-label="Ganti tema"
   >
     <SunIcon
       id="light"
-      class="theme-toggle-icon size-5 transition-all text-[#0f7095]"
+      class="theme-toggle-icon size-5 transition-all text-[hsl(var(--brand-h)_60%_40%)]"
     />
     <MoonIcon
       id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all text-[#7fd0ea]"
+      class="theme-toggle-icon absolute size-5 transition-all text-[hsl(var(--brand-h)_68%_62%)]"
     />
     <SystemIcon
       id="system"
@@ -35,9 +35,9 @@ const THEMES = ["Light", "Dark", "System"];
   <div
     id="themes-menu"
     class="absolute hidden top-10 right-0 text-sm min-w-[8.5rem] p-1
-           rounded-2xl border border-[#0f7095]/20 dark:border-[#7fd0ea]/20
-           bg-white/70 dark:bg-[#071d24]/80 backdrop-blur-xl
-           shadow-[0_4px_20px_rgba(15,112,149,0.15)]
+           rounded-2xl border border-[hsl(var(--brand-h)_50%_50%_/_0.20)]
+           bg-white/70 dark:bg-[hsl(var(--brand-h)_24%_13%_/_0.65)] backdrop-blur-xl
+           shadow-[0_4px_20px_hsl(var(--brand-h)_60%_20%_/_0.15)]
            transition-all duration-200 z-50"
   >
     <ul class="flex flex-col">
@@ -45,7 +45,7 @@ const THEMES = ["Light", "Dark", "System"];
         THEMES.map((theme) => (
           <li
             class="themes-menu-option px-3 py-2 cursor-pointer rounded-lg
-                   hover:bg-[#0f7095]/10 dark:hover:bg-[#0f7095]/30
+                   hover:bg-[hsl(var(--brand-h)_60%_40%_/_0.10)] dark:hover:bg-[hsl(var(--brand-h)_60%_40%_/_0.25)]
                    text-gray-700 dark:text-gray-200
                    transition-all duration-200"
           >
@@ -75,17 +75,17 @@ const THEMES = ["Light", "Dark", "System"];
     }
   }
 
-  /* 🌈 Active state highlight */
+  /* 🌈 Active state highlight (Enterprise V5) */
   .themes-menu-option.active {
-    background: linear-gradient(to right, #0f7095, #2ca1c4);
+    background: linear-gradient(120deg, var(--brand-400), var(--brand-500));
     color: white !important;
     font-weight: 600;
-    box-shadow: 0 0 10px rgba(15, 112, 149, 0.25);
+    box-shadow: 0 0 10px hsl(var(--brand-h) 60% 30% / 0.25);
   }
 
   html.dark .themes-menu-option.active {
-    background: linear-gradient(to right, #7fd0ea, #0f7095);
-    box-shadow: 0 0 8px rgba(127, 208, 234, 0.3);
+    background: linear-gradient(120deg, var(--brand-500), var(--brand-400));
+    box-shadow: 0 0 8px hsl(var(--brand-h) 60% 40% / 0.28);
   }
 
   /* 🌓 Icon animation */

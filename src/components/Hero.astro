@@ -13,31 +13,28 @@ const personalImageAlt = "Kevin Simorangkir";
 <section
   class="relative max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-20 text-center flex flex-col items-center justify-center"
 >
-  <!-- Foto Profil -->
-  <div class="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 mb-6">
+  <!-- Profile -->
+  <div class="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 mb-6 group">
     <img
-      class="rounded-full object-cover w-full h-full border border-gray-200/60 dark:border-white/10 shadow-sm transition-transform duration-700 hover:scale-105"
       src="/KVNS.webp"
       alt={personalImageAlt}
+      class="rounded-full object-cover w-full h-full shadow-[0_4px_16px_hsl(var(--brand-h)_60%_20%_/_0.18)] border border-[hsl(var(--brand-h)_50%_50%_/_0.22)]
+             transition-transform duration-700 group-hover:scale-[1.02]"
       loading="lazy"
     />
   </div>
 
   <!-- Badge -->
-  <Badge
-    class="px-4 py-2 text-xs sm:text-sm font-medium border border-[#0f7095]/30 text-[#0f7095] bg-[#0f7095]/10 rounded-full backdrop-blur-sm mb-6"
-  >
-    Open To Work — Data Analyst / UI/UX Designer
-  </Badge>
+  <Badge class="kvns-badge mb-6">Open To Work — Data & Product Design</Badge>
 
-  <!-- Nama dan Peran -->
+  <!-- Headline typing -->
   <h1
     id="typing-text"
-    class="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight mb-4"
+    class="kvns-hero-h1 text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4"
   >
   </h1>
 
-  <!-- Deskripsi -->
+  <!-- Desc -->
   <p
     id="hero-desc"
     class="opacity-0 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed transition-opacity duration-700"
@@ -49,48 +46,42 @@ const personalImageAlt = "Kevin Simorangkir";
     digital experiences.
   </p>
 
-  <!-- Tombol Sosial -->
+  <!-- Social CTA -->
   <nav
     id="hero-buttons"
     class="opacity-0 flex flex-wrap justify-center gap-3 sm:gap-4 mt-10 transition-opacity duration-700"
   >
-    <a href="mailto:vin.simorangkir81@gmail.com" class="social-btn">
-      <MailIcon class="size-4 sm:size-5" />
-      <span>Contact</span>
-    </a>
-    <a href="https://www.linkedin.com/in/kevinsimorangkir/" class="social-btn">
-      <LinkedInIcon class="size-4 sm:size-5" />
-      <span>LinkedIn</span>
-    </a>
-    <a href="https://www.instagram.com/vins.ch" class="social-btn">
-      <Instagram class="size-4 sm:size-5" />
-      <span>Instagram</span>
-    </a>
+    <a
+      href="mailto:vin.simorangkir81@gmail.com"
+      class="kvns-cta kvns-cta--ghost"
+      ><MailIcon class="size-4 sm:size-5" />Contact</a
+    >
+    <a
+      href="https://www.linkedin.com/in/kevinsimorangkir/"
+      class="kvns-cta kvns-cta--ghost"
+      ><LinkedInIcon class="size-4 sm:size-5" />LinkedIn</a
+    >
+    <a href="https://www.instagram.com/vins.ch" class="kvns-cta kvns-cta--ghost"
+      ><Instagram class="size-4 sm:size-5" />Instagram</a
+    >
     <a
       href="https://drive.google.com/file/d/1F9WT054aWFXBimIBtUKZUarpIro8BQZw/view?usp=sharing"
-      class="social-btn"
+      class="kvns-cta kvns-cta--solid"
+      ><Formulir class="size-4 sm:size-5" />CV</a
     >
-      <Formulir class="size-4 sm:size-5" />
-      <span>CV</span>
-    </a>
     <a
       href="https://drive.google.com/file/d/1bL9ht_Zh0IMhR8pXQYuVN-cvziKeppcj/view?usp=sharing"
-      class="social-btn"
+      class="kvns-cta kvns-cta--ghost"
+      ><Brush class="size-4 sm:size-5" />UI/UX Portfolio</a
     >
-      <Brush class="size-4 sm:size-5" />
-      <span>Portfolio (UI/UX)</span>
-    </a>
     <a
       href="https://drive.google.com/file/d/1p08WIXh4iXn74h3_A0N9yddU89fTXypx/view?usp=drive_link"
-      class="social-btn"
+      class="kvns-cta kvns-cta--ghost"
+      ><Data class="size-4 sm:size-5" />Data Portfolio</a
     >
-      <Data class="size-4 sm:size-5" />
-      <span>Portfolio (Data)</span>
-    </a>
   </nav>
 </section>
 
-<!-- Script Typing -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const el = document.getElementById("typing-text");
@@ -99,89 +90,40 @@ const personalImageAlt = "Kevin Simorangkir";
 
     if (!el || !desc || !buttons) return;
 
-    const texts = [
+    const phrases = [
       "Hello, I'm Kevin Simorangkir",
-      "I'm a Data Analyst",
-      "I'm a UI/UX Designer",
-      "I'm a Tech Enthusiast",
+      "Data Analyst",
+      "UI/UX Designer",
+      "Tech Enthusiast",
     ];
 
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+    let idx = 0;
 
-    const type = () => {
-      const currentText = texts[textIndex];
-      const displayedText = currentText.substring(0, charIndex);
-      el.innerHTML = `<span class='text-main'>${displayedText}</span><span class='cursor blink'>|</span>`;
-
-      if (!isDeleting && charIndex < currentText.length) {
-        charIndex++;
-        setTimeout(type, 70);
-      } else if (isDeleting && charIndex > 0) {
-        charIndex--;
-        setTimeout(type, 40);
-      } else {
-        if (!isDeleting) {
-          isDeleting = true;
-          setTimeout(type, 1500);
-        } else {
-          isDeleting = false;
-          textIndex = (textIndex + 1) % texts.length;
-          setTimeout(type, 400);
-        }
-      }
+    const showPhrase = () => {
+      el.innerHTML = `<span class="bg-[linear-gradient(120deg,var(--brand-400),var(--brand-500))] bg-clip-text text-transparent">${phrases[idx]}</span>`;
+      idx = (idx + 1) % phrases.length;
+      setTimeout(() => {
+        el.classList.add("opacity-0", "translate-y-1");
+        setTimeout(() => {
+          el.classList.remove("opacity-0", "translate-y-1");
+          showPhrase();
+        }, 280);
+      }, 1600);
     };
+
+    showPhrase();
 
     setTimeout(() => {
       desc.classList.remove("opacity-0");
       buttons.classList.remove("opacity-0");
-    }, 600);
-
-    type();
+    }, 500);
   });
 </script>
 
 <style is:global>
-  .social-btn {
-    @apply flex items-center justify-center gap-2 px-4 py-2 rounded-md border border-gray-300 dark:border-white/10
-    text-sm font-medium text-gray-800 dark:text-gray-200 transition-all duration-300 bg-white/60 dark:bg-white/5 backdrop-blur-sm;
-  }
-
-  .social-btn:hover {
-    @apply text-white shadow-md;
-    background-color: #0f7095;
-    border-color: #0f7095;
-    transform: translateY(-2px);
-  }
-
-  .social-btn svg {
-    transition: transform 0.3s ease;
-  }
-
-  .social-btn:hover svg {
-    transform: scale(1.1);
-  }
-
-  .text-main {
-    color: #0f7095;
-  }
-
-  .cursor.blink {
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  html.dark {
-    background-color: #161616;
+  .kvns-hero-h1 {
+    transition:
+      opacity 0.3s var(--ease),
+      transform 0.3s var(--ease);
   }
 </style>

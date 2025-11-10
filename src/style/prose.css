@@ -1,150 +1,377 @@
-/* ✨ Custom Prose Theme v4 — KVNS Modern Teal Edition */
+/* ✨ KVNS Prose Theme v5 — Enterprise Teal (Tone: Fintech) */
+/* ---------------------------------------------------------
+   Goals:
+   - Premium, subtle, balanced for longform
+   - Composable via CSS variables (HSL-based)
+   - Lighter motion, smaller hover scales
+   - Neutral dark, optional glass in dark mode
+   - Better semantics: strong/emphasis/blockquote/captions
+--------------------------------------------------------- */
 
-/* Base layout */
+/* ========== 1) Design Tokens (Root) ========== */
+:root {
+    /* Brand core — Primary A (teal default) */
+    --brand-h: 192;
+    /* teal leaning to cyan */
+    --brand-s: 70%;
+    --brand-l: 42%;
+
+    /* Support hues for gradient subtleties */
+    --brand-2-h: calc(var(--brand-h) - 6);
+    --brand-3-h: calc(var(--brand-h) + 8);
+
+    /* Neutrals tuned for fintech/enterprise */
+    --text-900: hsl(218 24% 12%);
+    --text-800: hsl(218 20% 18%);
+    --text-700: hsl(218 16% 28%);
+    --text-600: hsl(218 12% 38%);
+
+    --bg-0: hsl(210 20% 99%);
+    --bg-50: hsl(210 20% 98%);
+    --bg-100: hsl(210 18% 96%);
+
+    --surface-100: hsl(210 22% 97%);
+    --surface-200: hsl(210 20% 94%);
+    --surface-300: hsl(210 18% 90%);
+
+    /* Borders / dividers */
+    --line-200: hsl(210 15% 85%);
+    --line-300: hsl(210 14% 80%);
+
+    /* Brand assembled */
+    --brand: hsl(var(--brand-h) var(--brand-s) var(--brand-l));
+    --brand-600: hsl(var(--brand-h) var(--brand-s) calc(var(--brand-l) + 4%));
+    --brand-500: var(--brand);
+    --brand-400: hsl(var(--brand-h) calc(var(--brand-s) - 10%) calc(var(--brand-l) + 8%));
+    --brand-300: hsl(var(--brand-h) calc(var(--brand-s) - 18%) calc(var(--brand-l) + 14%));
+
+    /* Link + focus */
+    --link: var(--brand-500);
+    --link-hover: var(--brand-600);
+    --focus: hsl(var(--brand-3-h) 72% 56% / 0.35);
+
+    /* Code */
+    --code-bg: hsl(215 32% 14%);
+    --code-fg: hsl(210 20% 92%);
+    --inline-code-bg: hsl(var(--brand-h) 60% 88% / 0.5);
+    --inline-code-fg: hsl(var(--brand-h) 68% 34%);
+
+    /* Elevation */
+    --shadow-sm: 0 3px 10px hsl(var(--brand-h) 60% 20% / 0.08);
+    --shadow-md: 0 12px 28px hsl(var(--brand-h) 60% 18% / 0.12);
+
+    /* Typography */
+    --font-sans: "Onest Variable", "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    --leading: 1.82;
+    --measure: 78ch;
+
+    /* Motion */
+    --ease: cubic-bezier(.2, .6, .2, 1);
+    --t-fast: .18s;
+    --t-med: .28s;
+    --t-slow: .40s;
+
+    /* Heading gradient (subtle) */
+    --heading-grad-start: hsl(var(--brand-2-h) 62% calc(var(--brand-l) + 8%));
+    --heading-grad-end: hsl(var(--brand-3-h) 54% calc(var(--brand-l) + 20%));
+
+    /* Blockquote */
+    --quote-accent: hsl(var(--brand-h) 52% 46%);
+    --quote-bg: hsl(var(--brand-h) 35% 90% / 0.35);
+    --quote-fg: var(--text-700);
+
+    /* Images */
+    --img-radius: 16px;
+    --img-shadow: 0 10px 30px hsl(210 30% 10% / 0.12);
+    --img-shadow-hover: 0 16px 42px hsl(var(--brand-h) 40% 20% / 0.18);
+}
+
+/* Dark scheme + "glass" option */
+.dark,
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    --text-900: hsl(210 14% 92%);
+    --text-800: hsl(210 12% 86%);
+    --text-700: hsl(210 10% 78%);
+    --text-600: hsl(210 8% 70%);
+
+    --bg-0: hsl(215 25% 10%);
+    --bg-50: hsl(215 24% 11%);
+    --bg-100: hsl(215 22% 12%);
+
+    --surface-100: hsl(215 24% 13% / 0.65);
+    /* glass */
+    --surface-200: hsl(215 24% 13% / 0.5);
+    /* glass */
+    --surface-300: hsl(215 24% 13% / 0.35);
+    /* glass */
+
+    --line-200: hsl(210 12% 28% / 0.6);
+    --line-300: hsl(210 12% 36% / 0.65);
+
+    --link: hsl(var(--brand-h) 68% 62%);
+    --link-hover: hsl(var(--brand-h) 72% 68%);
+    --focus: hsl(var(--brand-3-h) 80% 62% / 0.5);
+
+    --code-bg: hsl(215 26% 12%);
+    /* neutral dark, not pure black */
+    --code-fg: hsl(210 22% 94%);
+    --inline-code-bg: hsl(var(--brand-h) 45% 28% / 0.38);
+    --inline-code-fg: hsl(var(--brand-h) 70% 72%);
+
+    --quote-bg: hsl(var(--brand-h) 30% 18% / 0.35);
+    --quote-fg: var(--text-700);
+
+    --img-shadow: 0 10px 28px hsl(210 30% 2% / 0.35);
+    --img-shadow-hover: 0 16px 40px hsl(var(--brand-h) 60% 40% / 0.28);
+}
+
+/* ========== 2) Base Layout ========== */
 .prose {
-    max-width: 780px;
-    line-height: 1.85;
-    color: #1e1e1e;
-    transition: color 0.4s ease, background 0.4s ease;
-    font-family: "Onest Variable", "Inter", system-ui, sans-serif;
+    max-width: var(--measure);
+    line-height: var(--leading);
+    color: var(--text-900);
+    font-family: var(--font-sans);
     letter-spacing: -0.01em;
+    transition: color var(--t-med) var(--ease), background var(--t-med) var(--ease);
 }
 
 .dark .prose {
-    color: #e5e5e5;
+    color: var(--text-800);
 }
 
-/* Headings: teal gradient with soft glow */
+/* Comfortable reading rhythm */
+.prose>*+* {
+    margin-top: 1.05em;
+}
+
+/* ========== 3) Headings (subtle luxe gradient) ========== */
 .prose h1,
 .prose h2,
 .prose h3 {
-    background: linear-gradient(120deg, #0f7095, #38c0dd);
+    background: linear-gradient(120deg, var(--heading-grad-start), var(--heading-grad-end));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     letter-spacing: -0.02em;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 1px 3px rgba(15, 112, 149, 0.25);
-    transition: all 0.3s ease;
+    margin-top: 2.6rem;
+    margin-bottom: 1.1rem;
+    text-shadow: 0 1px 2px hsl(var(--brand-h) 40% 20% / 0.15);
+    transition: text-shadow var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+}
+
+.prose h1 {
+    font-size: clamp(2rem, 2vw + 1.6rem, 3rem);
+}
+
+.prose h2 {
+    font-size: clamp(1.5rem, 1.2vw + 1.2rem, 2.1rem);
+}
+
+.prose h3 {
+    font-size: clamp(1.25rem, 0.8vw + 1rem, 1.5rem);
 }
 
 .prose h2:hover,
 .prose h3:hover {
-    text-shadow: 0 3px 8px rgba(15, 112, 149, 0.5);
+    text-shadow: 0 3px 10px hsl(var(--brand-h) 60% 30% / 0.22);
 }
 
-/* Paragraphs */
+/* ========== 4) Paragraphs & text emphasis ========== */
 .prose p {
+    opacity: 0.96;
     color: inherit;
-    opacity: 0.9;
 }
 
-/* Links */
+.dark .prose p {
+    opacity: 0.94;
+}
+
+.prose strong {
+    color: hsl(var(--brand-h) 46% 32%);
+    font-weight: 750;
+    background: linear-gradient(0deg, hsl(var(--brand-h) 80% 90% / .35), transparent);
+    padding: 0 .08em;
+    border-radius: 4px;
+}
+
+.dark .prose strong {
+    color: hsl(var(--brand-h) 74% 72%);
+    background: linear-gradient(0deg, hsl(var(--brand-h) 24% 20% / .35), transparent);
+}
+
+/* Small, captions & fineprint */
+.prose small,
+.prose figcaption {
+    color: var(--text-600);
+    font-size: .9rem;
+}
+
+/* ========== 5) Links (accessible focus) ========== */
 .prose a {
-    color: #0f7095;
+    color: var(--link);
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 3px;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color var(--t-fast) var(--ease), text-shadow var(--t-fast) var(--ease);
 }
 
 .prose a:hover {
-    color: #38c0dd;
-    text-shadow: 0 0 6px rgba(15, 112, 149, 0.3);
+    color: var(--link-hover);
+    text-shadow: 0 0 6px hsl(var(--brand-h) 60% 40% / 0.22);
 }
 
-/* Images: clean modern shadows */
+.prose a:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 4px var(--focus);
+    border-radius: 6px;
+}
+
+/* ========== 6) Images (editorial, reduced motion) ========== */
 .prose img {
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: var(--img-radius);
+    box-shadow: var(--img-shadow);
     margin: 2rem auto;
     max-width: 100%;
     height: auto;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transition: transform var(--t-slow) var(--ease), box-shadow var(--t-med) var(--ease);
+    display: block;
 }
 
 .prose img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 36px rgba(15, 112, 149, 0.25);
+    transform: scale(1.015);
+    box-shadow: var(--img-shadow-hover);
 }
 
-/* Code blocks: modern dark look with teal accents */
+/* ========== 7) Code (neutral dark, teal accents) ========== */
 .prose pre {
-    background: #0c0f14;
-    color: #e5e7eb;
+    background: var(--code-bg);
+    color: var(--code-fg);
     border-radius: 14px;
-    padding: 1.5rem 1.75rem;
+    padding: 1.25rem 1.5rem;
     overflow-x: auto;
     font-size: 0.95rem;
-    box-shadow: 0 8px 22px rgba(15, 112, 149, 0.2);
-    transition: box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow var(--t-med) var(--ease), background var(--t-med) var(--ease);
+    border: 1px solid hsl(210 10% 40% / .22);
 }
 
 .prose pre:hover {
-    box-shadow: 0 10px 30px rgba(15, 112, 149, 0.35);
+    box-shadow: 0 14px 34px hsl(var(--brand-h) 60% 20% / 0.22);
 }
 
-/* Inline code: subtle teal highlight */
 .prose code {
-    background: rgba(15, 112, 149, 0.15);
-    padding: 0.3em 0.5em;
+    background: var(--inline-code-bg);
+    color: var(--inline-code-fg);
+    padding: 0.28em 0.48em;
     border-radius: 6px;
     font-size: 0.9em;
-    color: #0f7095;
-    transition: background 0.3s ease;
+    transition: background var(--t-fast) var(--ease);
 }
 
 .prose code:hover {
-    background: rgba(15, 112, 149, 0.25);
+    background: color-mix(in hsl, var(--inline-code-bg) 100%, white 6%);
 }
 
-/* Blockquote: teal-accented minimal style */
+.dark .prose code:hover {
+    background: color-mix(in hsl, var(--inline-code-bg) 100%, black 6%);
+}
+
+/* ========== 8) Blockquote (citation reader aesthetic) ========== */
 .prose blockquote {
-    border-left: 4px solid #0f7095;
-    padding-left: 1.5rem;
-    font-style: italic;
-    color: #4b5563;
-    background: rgba(15, 112, 149, 0.05);
-    border-radius: 8px;
-    margin: 1.5rem 0;
-    transition: background 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    margin: 1.6rem 0;
+    padding: 1.1rem 1.25rem 1.1rem 1.1rem;
+    color: var(--quote-fg);
+    background: var(--quote-bg);
+    border-radius: 10px;
+    border: 1px solid color-mix(in hsl, var(--quote-bg) 40%, var(--line-300));
 }
 
-.dark .prose blockquote {
-    color: #d1d5db;
-    background: rgba(15, 112, 149, 0.12);
+.prose blockquote::before {
+    content: "";
+    position: absolute;
+    left: 0.9rem;
+    top: 0.95rem;
+    width: 3px;
+    height: calc(100% - 1.9rem);
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--quote-accent), color-mix(in hsl, var(--quote-accent), transparent 40%));
+    box-shadow: 0 0 0 1px color-mix(in hsl, var(--quote-accent), transparent 60%);
 }
 
-/* Back-link button: glassy teal with glow */
+.prose blockquote cite {
+    display: block;
+    margin-top: .75rem;
+    font-style: normal;
+    color: var(--text-600);
+    font-size: .9rem;
+}
+
+/* ========== 9) Lists & tables (quiet, enterprise) ========== */
+.prose ul li::marker {
+    color: var(--brand-400);
+}
+
+.prose ol li::marker {
+    color: var(--brand-400);
+}
+
+.prose li {
+    margin-top: .4em;
+}
+
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2rem 0;
+    font-size: .98rem;
+}
+
+.prose thead th {
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 1px solid var(--line-300);
+    padding: .7rem .6rem;
+}
+
+.prose tbody td {
+    border-bottom: 1px solid var(--line-200);
+    padding: .65rem .6rem;
+}
+
+/* ========== 10) Back-link / CTA (subtle) ========== */
 .back-link {
     display: inline-block;
-    margin-top: 3rem;
-    padding: 1rem 2rem;
-    border-radius: 14px;
-    font-weight: 600;
+    margin-top: 2.2rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: 12px;
+    font-weight: 650;
     text-decoration: none;
-    background: linear-gradient(135deg, #0f7095, #38c0dd);
+    background: linear-gradient(135deg, var(--brand-500), var(--brand-400));
     color: #ffffff;
-    box-shadow: 0 6px 20px rgba(15, 112, 149, 0.35);
-    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px hsl(var(--brand-h) 60% 20% / 0.22);
+    transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), background var(--t-med) var(--ease);
+    border: 1px solid color-mix(in hsl, var(--brand-500) 60%, white 20%);
 }
 
 .back-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(15, 112, 149, 0.45);
-    background: linear-gradient(135deg, #38c0dd, #0f7095);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px hsl(var(--brand-h) 60% 20% / 0.28);
+    background: linear-gradient(135deg, var(--brand-400), var(--brand-500));
 }
 
-/* Responsive adjustments */
+/* ========== 11) Responsive tweaks ========== */
 @media (max-width: 768px) {
     .prose {
         padding: 0 1rem;
-        line-height: 1.75;
+        line-height: 1.78;
     }
 
     .prose h1 {
-        font-size: 2rem;
+        font-size: clamp(1.75rem, 4.5vw, 2.25rem);
     }
 
     .prose img {
@@ -152,7 +379,36 @@
     }
 }
 
-/* ✨ Subtle transition for all prose elements */
-.prose * {
-    transition: all 0.25s ease;
+/* ========== 12) Reduced motion ========== */
+@media (prefers-reduced-motion: reduce) {
+    .prose * {
+        transition: none !important;
+    }
+
+    .prose img:hover {
+        transform: none;
+    }
+}
+
+/* ========== 13) Print (clean) ========== */
+@media print {
+    .prose {
+        color: #000;
+        text-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    .prose a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    .prose img {
+        box-shadow: none;
+    }
+
+    .prose pre {
+        border: 1px solid #000;
+        box-shadow: none;
+    }
 }

@@ -17,12 +17,12 @@ const navItems = [
 <header class="fixed top-5 z-50 w-full flex justify-center px-4">
   <nav
     id="navbar"
-    class="relative flex items-center justify-between gap-4 px-6 py-3 text-sm font-medium
-           rounded-full border border-white/10 dark:border-gray-800/60
-           shadow-lg transition-all duration-500 backdrop-blur-xl
-           bg-white/70 dark:bg-[#0b0b0b]/70 w-fit"
+    class="relative flex items-center justify-between gap-4 px-7 py-3 text-[13px] font-medium
+           rounded-full border border-white/10 dark:border-white/5
+           shadow-[0_4px_25px_-2px_rgba(0,0,0,0.25)]
+           transition-all duration-500 backdrop-blur-[14px]
+           bg-white/60 dark:bg-black/40 w-fit"
   >
-    <!-- 🌐 Mobile Menu Toggle -->
     <button
       id="menu-toggle"
       class="sm:hidden p-2 rounded-md hover:bg-[#0f7095]/10 dark:hover:bg-[#0f7095]/20 transition"
@@ -43,11 +43,10 @@ const navItems = [
       </svg>
     </button>
 
-    <!-- 🧭 Desktop Navigation -->
     <div id="menu" class="hidden sm:flex items-center gap-2 relative">
       <span
         id="active-indicator"
-        class="absolute bottom-0 h-[2px] bg-[#0f7095] rounded-full transition-all duration-300 ease-out opacity-0"
+        class="absolute bottom-0 h-[2px] bg-[#0f7095] rounded-full transition-all duration-300 ease-out opacity-0 shadow-[0_0_8px_#0f7095]"
       ></span>
 
       {
@@ -55,9 +54,9 @@ const navItems = [
           <a
             href={link.url}
             aria-label={link.label}
-            class="relative flex items-center justify-center px-3 py-1.5 rounded-full
+            class="relative flex items-center justify-center px-4 py-1.5 rounded-full
                    text-gray-700 dark:text-gray-200 transition-all duration-300
-                   hover:text-[#0f7095] hover:bg-[#0f7095]/10"
+                   hover:text-[#0f7095] hover:bg-[#0f7095]/8 active:scale-[0.97]"
           >
             {link.title}
           </a>
@@ -65,18 +64,16 @@ const navItems = [
       }
     </div>
 
-    <!-- 🌙 Theme Toggle -->
     <div class="flex items-center">
       <ThemeToggle />
     </div>
   </nav>
 
-  <!-- 📱 Mobile Dropdown Menu -->
   <div
     id="mobile-menu"
-    class="hidden fixed top-20 left-1/2 -translate-x-1/2 flex-col items-center gap-3 p-4 rounded-2xl
-           border border-white/20 dark:border-gray-700/40 bg-white/80 dark:bg-[#0b0b0b]/90
-           backdrop-blur-xl shadow-2xl transition-all duration-300 opacity-0 sm:hidden"
+    class="hidden fixed top-20 left-1/2 -translate-x-1/2 flex-col items-center gap-3 p-4 rounded-3xl
+           border border-white/15 dark:border-white/5 bg-white/80 dark:bg-black/80
+           backdrop-blur-xl shadow-[0_25px_60px_-12px_rgba(0,0,0,0.35)] transition-all duration-300 opacity-0 sm:hidden"
   >
     {
       navItems.map((link) => (
@@ -106,22 +103,18 @@ const navItems = [
 
     if (!nav || !indicator || !menuToggle || !mobileMenu) return;
 
-    // 🧭 aktif link
-    let activeLink: HTMLAnchorElement | null = null;
-
-    // 🪄 fungsi indikator aktif
+    let activeLink: HTMLElement | null = null;
     function moveIndicator(target: HTMLElement | null) {
       if (!target || !indicator) return;
       const rect = target.getBoundingClientRect();
       const parentRect =
         target.parentElement && target.parentElement.getBoundingClientRect();
       if (!parentRect) return;
-      indicator.style.width = `${rect.width}px`;
-      indicator.style.left = `${rect.left - parentRect.left}px`;
+      indicator.style.width = rect.width + "px";
+      indicator.style.left = rect.left - parentRect.left + "px";
       indicator.style.opacity = "1";
     }
 
-    // 🔍 observer untuk scroll section
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -130,7 +123,7 @@ const navItems = [
               const match = link.getAttribute("aria-label") === entry.target.id;
               link.classList.toggle("text-[#0f7095]", match);
               if (match) {
-                activeLink = link as HTMLAnchorElement;
+                activeLink = link;
                 moveIndicator(link);
               }
             });
@@ -143,9 +136,7 @@ const navItems = [
     sections.forEach((s) => observer.observe(s));
     window.addEventListener("resize", () => moveIndicator(activeLink));
 
-    // 📱 Toggle mobile menu
     menuToggle.addEventListener("click", () => {
-      if (!mobileMenu) return;
       const isVisible = !mobileMenu.classList.contains("hidden");
       if (isVisible) {
         mobileMenu.classList.add("opacity-0");
@@ -156,53 +147,47 @@ const navItems = [
       }
     });
 
-    // ✨ Inisialisasi awal
+    // scroll direction aware
+    let lastScroll = 0;
+    const threshold = 15;
+    window.addEventListener("scroll", () => {
+      const current = window.scrollY;
+      if (Math.abs(current - lastScroll) < threshold) return;
+
+      if (current > lastScroll) {
+        nav.style.transform = "translateY(-75px)";
+        nav.style.opacity = "0";
+      } else {
+        nav.style.transform = "translateY(0)";
+        nav.style.opacity = "1";
+      }
+      lastScroll = current;
+    });
+
     setTimeout(() => {
       if (navLinks.length > 0) {
-        activeLink = navLinks[0] as HTMLAnchorElement;
+        activeLink = navLinks[0];
         moveIndicator(activeLink);
       }
     }, 250);
   });
 </script>
 
-<!-- 🎨 Styling -->
 <style>
   header {
     animation: fadeDown 0.8s ease-out both;
   }
-
   @keyframes fadeDown {
     from {
       opacity: 0;
-      transform: translateY(-8px);
+      transform: translateY(-14px) scale(0.98);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
   }
-
   nav {
-    animation: navShadow linear both;
-    animation-timeline: scroll();
-    animation-range: 0 100px;
-  }
-
-  @keyframes navShadow {
-    0% {
-      box-shadow: none;
-      backdrop-filter: blur(10px);
-    }
-    100% {
-      box-shadow: 0 4px 25px rgba(15, 112, 149, 0.2);
-      backdrop-filter: blur(20px);
-    }
-  }
-
-  #mobile-menu {
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease;
+    will-change: transform, opacity;
   }
 </style>

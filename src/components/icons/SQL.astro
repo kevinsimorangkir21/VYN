@@ -1,6 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="24" height="24">
-  <ellipse cx="64" cy="27" rx="55" ry="20" fill="#4479A1"/>
-  <path d="M9 27v74c0 11 24 20 55 20s55-9 55-20V27c0 11-24 20-55 20S9 38 9 27z" fill="#4479A1"/>
-  <ellipse cx="64" cy="27" rx="55" ry="20" fill="#4479A1"/>
-  <path fill="#fff" d="M64 64c-31 0-55-9-55-20v20c0 11 24 20 55 20s55-9 55-20V44c0 11-24 20-55 20z"/>
+---
+const {
+  size = 26,
+  color = "currentColor",
+  class: className = "",
+} = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={color}
+  stroke-width="1.9"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={`kvns-icon-sql transition-all duration-300 ease-out ${className}`}
+>
+  <!-- top disk -->
+  <ellipse cx="12" cy="5.5" rx="7" ry="2.8"></ellipse>
+
+  <!-- middle segment -->
+  <path d="M5 5.5v6c0 1.6 3.2 2.8 7 2.8s7-1.2 7-2.8v-6"></path>
+
+  <!-- bottom segment -->
+  <path d="M5 11.5v6c0 1.6 3.2 2.8 7 2.8s7-1.2 7-2.8v-6"></path>
+
+  <defs>
+    <linearGradient id="kvnsSQLGF" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9b676"></stop>
+      <stop offset="100%" stop-color="#e9dda5"></stop>
+    </linearGradient>
+  </defs>
 </svg>
+
+<style>
+  .kvns-icon-sql {
+    cursor: pointer;
+  }
+  .kvns-icon-sql:hover {
+    transform: translateY(-2px) scale(1.11);
+    stroke: url(#kvnsSQLGF);
+    filter: drop-shadow(0 0 7px rgba(201, 182, 118, 0.42));
+  }
+  html.dark .kvns-icon-sql:hover {
+    filter: drop-shadow(0 0 11px rgba(233, 217, 153, 0.55));
+  }
+</style>

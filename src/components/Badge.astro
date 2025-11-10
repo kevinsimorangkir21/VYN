@@ -1,39 +1,36 @@
 ---
 /**
- * Minimal Modern Premium Badge
- * Author: KVNS Design System
- * Palette: #0f7095 (primary teal)
+ * KVNS Design System V5 — Badge Component
+ * Brand: var(--brand-h) var(--brand-s) var(--brand-l)
  */
 ---
 
-<div class="flex items-center justify-center">
+<div class="kvns-badge-wrapper flex items-center justify-center">
   <span class="relative inline-flex overflow-hidden rounded-full p-[1.5px]">
-    <!-- 🌊 Border Gradasi Halus (Teal x Soft Blue) -->
+    <!-- Border Glow Conic -->
     <span
-      class="absolute inset-[-150%] animate-[spin_6s_linear_infinite]
-             bg-[conic-gradient(from_0deg_at_50%_50%,#0f7095_0%,#89c2d9_40%,#0f7095_80%,#0f7095_100%)]
-             opacity-60 dark:opacity-50 blur-[0.4px]"
+      class="absolute inset-[-150%] animate-[kvnsSpin_8s_linear_infinite]
+        bg-[conic-gradient(from_0deg_at_50%_50%,hsl(var(--brand-h)_68%_38%)_0%,hsl(var(--brand-h)_60%_70%)_40%,hsl(var(--brand-h)_68%_38%)_80%,hsl(var(--brand-h)_68%_38%)_100%)]
+        opacity-[.40] dark:opacity-[.30] blur-[0.5px]"
     ></span>
 
-    <!-- 💎 Isi Badge -->
+    <!-- Core -->
     <div
-      class="inline-flex items-center justify-center px-4 py-1.5 text-sm font-semibold
-             text-[#0f7095] dark:text-[#b7e4f9]
-             bg-white/70 dark:bg-[#0b0b0b]/90
-             rounded-full cursor-default whitespace-nowrap
-             backdrop-blur-xl border border-[#0f7095]/25
-             shadow-[0_0_10px_rgba(15,112,149,0.08)]
-             transition-all duration-500 ease-out
-             hover:scale-105 hover:shadow-[0_0_20px_rgba(15,112,149,0.2)]
-             hover:text-[#09546e]"
       id="badge-core"
+      class="inline-flex items-center justify-center px-4 py-1.5 text-sm font-semibold
+        text-[hsl(var(--brand-h)_60%_34%)] dark:text-[hsl(var(--brand-h)_70%_82%)]
+        bg-white/70 dark:bg-[hsl(var(--brand-h)_24%_13%_/_0.90)]
+        rounded-full cursor-default whitespace-nowrap
+        backdrop-blur-xl border border-[hsl(var(--brand-h)_50%_50%_/_0.28)]
+        shadow-[0_0_10px_hsl(var(--brand-h)_40%_30%_/_0.08)]
+        transition-all duration-400 ease-out
+        hover:scale-[1.04] hover:shadow-[0_0_22px_hsl(var(--brand-h)_60%_20%_/_0.18)]"
     >
       <slot />
     </div>
   </span>
 </div>
 
-<!-- 🌈 Efek Interaktif Glow Mengikuti Mouse -->
 <script>
   document.addEventListener("astro:page-load", () => {
     const badge = document.getElementById("badge-core");
@@ -43,12 +40,8 @@
       const rect = badge.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
-      badge.style.background = `
-        radial-gradient(circle at ${x}px ${y}px, rgba(15,112,149,0.25), transparent 70%)
-      `;
+      badge.style.background = `radial-gradient(circle at ${x}px ${y}px, hsl(var(--brand-h)_60%_40%_/_0.20), transparent 70%)`;
     });
-
     badge.addEventListener("mouseleave", () => {
       badge.style.background = "";
     });
@@ -56,8 +49,7 @@
 </script>
 
 <style is:global>
-  /* 🎡 Animasi Border Gradient */
-  @keyframes spin {
+  @keyframes kvnsSpin {
     0% {
       transform: rotate(0deg);
     }
@@ -66,46 +58,24 @@
     }
   }
 
-  /* 🌙 Dark Mode Refinement */
-  html.dark .flex .inline-flex div {
-    background: rgba(8, 8, 8, 0.85);
-    color: #b7e4f9;
-    border-color: rgba(15, 112, 149, 0.25);
-  }
-
-  html.dark .flex .inline-flex div:hover {
-    background: rgba(10, 10, 10, 0.9);
-    color: #d4f1fa;
-  }
-
-  /* 📱 Responsif */
-  @media (max-width: 640px) {
-    .flex span div {
-      font-size: 0.85rem;
-      padding: 0.3rem 0.8rem;
+  /* reduced motion safety */
+  @media (prefers-reduced-motion: reduce) {
+    [class*="kvnsSpin"] {
+      animation: none !important;
     }
   }
 
-  /* ✨ Hover Glow Efek */
-  #badge-core:hover {
-    box-shadow:
-      0 0 10px rgba(15, 112, 149, 0.2),
-      0 0 25px rgba(15, 112, 149, 0.25);
-  }
-
-  /* 🌬️ Smooth entry */
-  .flex {
-    animation: fadeInBadge 0.8s ease-out both;
-  }
-
-  @keyframes fadeInBadge {
-    from {
+  @keyframes kvnsBadgeIn {
+    0% {
       opacity: 0;
-      transform: translateY(10px) scale(0.98);
+      transform: translateY(10px) scale(0.97);
     }
-    to {
+    100% {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
+  }
+  .kvns-badge-wrapper {
+    animation: kvnsBadgeIn 0.7s var(--ease) both;
   }
 </style>

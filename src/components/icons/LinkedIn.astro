@@ -1,6 +1,6 @@
 ---
 const {
-  size = 24,
+  size = 26,
   color = "currentColor",
   class: className = "",
 } = Astro.props;
@@ -8,52 +8,39 @@ const {
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
   width={size}
   height={size}
-  stroke-width="2"
-  stroke={color}
+  viewBox="0 0 24 24"
   fill="none"
+  stroke={color}
+  stroke-width="1.9"
   stroke-linecap="round"
   stroke-linejoin="round"
-  class={`icon icon-linkedin ${className}`}
+  class={`kvns-icon-linkedin transition-all duration-300 ease-out ${className}`}
 >
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-  <path
-    d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
-  ></path>
-  <path d="M8 11l0 5"></path>
-  <path d="M8 8l0 .01"></path>
-  <path d="M12 16l0 -5"></path>
-  <path d="M16 16v-3a2 2 0 0 0 -4 0"></path>
-</svg>
+  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+  <path d="M8 11v5"></path>
+  <path d="M8 8h.01"></path>
+  <path d="M12 16v-3a2 2 0 0 1 4 0v3"></path>
 
-<style>
-  .icon-linkedin {
-    transition:
-      transform 0.3s ease,
-      stroke 0.3s ease,
-      filter 0.3s ease;
-    cursor: pointer;
-  }
-
-  .icon-linkedin:hover {
-    transform: scale(1.12) rotate(3deg);
-    stroke: url(#gold-gradient);
-    filter: drop-shadow(0 0 6px rgba(196, 176, 115, 0.4));
-  }
-
-  html.dark .icon-linkedin:hover {
-    filter: drop-shadow(0 0 8px rgba(233, 217, 153, 0.5));
-  }
-</style>
-
-<!-- Gradient reusable -->
-<svg width="0" height="0">
   <defs>
-    <linearGradient id="gold-gradient" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c4b073"></stop>
-      <stop offset="100%" stop-color="#d9c98b"></stop>
+    <linearGradient id="kvnsGoldLN" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9b676"></stop>
+      <stop offset="100%" stop-color="#e9dda5"></stop>
     </linearGradient>
   </defs>
 </svg>
+
+<style>
+  .kvns-icon-linkedin {
+    cursor: pointer;
+  }
+  .kvns-icon-linkedin:hover {
+    transform: translateY(-2px) scale(1.11);
+    stroke: url(#kvnsGoldLN);
+    filter: drop-shadow(0 0 7px rgba(201, 182, 118, 0.42));
+  }
+  html.dark .kvns-icon-linkedin:hover {
+    filter: drop-shadow(0 0 11px rgba(233, 217, 153, 0.55));
+  }
+</style>

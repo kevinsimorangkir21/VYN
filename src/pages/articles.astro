@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 interface Article {
   title: string;
   description: string;
-  date: string;
+  date: string; // ISO
   slug: string;
 }
 
@@ -34,50 +34,38 @@ const articles: Article[] = [
 ];
 ---
 
-<Layout title="Articles" description="Daftar artikel terbaru">
-  <main
-    class="flex-1 bg-white dark:bg-[#161616] text-gray-800 dark:text-gray-200 transition-colors duration-300"
-  >
+<Layout
+  title="Insights & Articles"
+  description="Daftar artikel terbaru dari KVNS — insights, tutorial, dan catatan proses."
+>
+  <main class="kvns-articles">
     <!-- Header -->
-    <section
-      class="text-center py-20 px-6 border-b border-gray-200 dark:border-[#0b868e]/20 transition-colors duration-300"
-    >
-      <h1
-        class="text-5xl sm:text-6xl font-extrabold mb-4 text-gray-900 dark:text-gray-100"
-      >
-        The <span class="text-[#0b868e]">Article</span>
+    <section class="kvns-hero">
+      <div class="kvns-hero-bg"></div>
+
+      <h1 class="kvns-hero-title">
+        <span>Insights</span> &amp; Articles
       </h1>
-      <p
-        class="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
-      >
-        A modern blog featuring news, tutorials, resources, and insights — built
-        with
-        <span class="text-[#0b868e] font-medium"> KVNS</span>.
+      <p class="kvns-hero-sub">
+        News, tutorials, and deep-dives — crafted with <strong>Astro</strong> and
+        the
+        <span class="text-brand">KVNS</span> design system.
       </p>
     </section>
 
-    <!-- Daftar Artikel -->
-    <section class="max-w-6xl mx-auto px-6 py-16">
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- List -->
+    <section class="kvns-wrap kvns-list">
+      <div class="kvns-grid">
         {
           articles.map((article, i) => (
             <a
               href={`/articles/${article.slug}`}
-              class="article-card group relative p-6 rounded-2xl border 
-                   border-gray-200 dark:border-[#0b868e]/20 
-                   bg-white dark:bg-[#1c1c1c]
-                   hover:bg-gray-50 dark:hover:bg-[#202020]
-                   shadow-[0_0_10px_rgba(0,0,0,0.05)] dark:shadow-[0_0_10px_rgba(11,134,142,0.1)]
-                   hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_0_20px_rgba(11,134,142,0.25)]
-                   hover:border-[#0b868e]/70 hover:scale-[1.02]
-                   transition-all duration-300"
-              style={{ animationDelay: `${i * 0.15}s` }}
+              class="kvns-card group"
+              style={{ animationDelay: `${i * 90}ms` }}
             >
-              <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100 group-hover:text-[#0b868e]">
-                {article.title}
-              </h2>
+              <h2 class="kvns-card-title">{article.title}</h2>
 
-              <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 italic">
+              <p class="kvns-card-date">
                 {new Date(article.date).toLocaleDateString("id-ID", {
                   year: "numeric",
                   month: "long",
@@ -85,27 +73,24 @@ const articles: Article[] = [
                 })}
               </p>
 
-              <p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                {article.description}
-              </p>
+              <p class="kvns-card-desc">{article.description}</p>
 
-              <div class="mt-auto text-sm font-medium text-[#0b868e] group-hover:underline flex items-center gap-1">
+              <span class="kvns-card-cta">
                 Baca Selengkapnya
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
+                  class="kvns-arrow"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  fill="none"
                   stroke="currentColor"
-                  class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  stroke-width="1.9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                  />
+                  <path d="M5 12h14" />
+                  <path d="M12 5l7 7-7 7" />
                 </svg>
-              </div>
+              </span>
             </a>
           ))
         }
@@ -114,21 +99,200 @@ const articles: Article[] = [
   </main>
 </Layout>
 
-<style>
-  main {
+<style is:global>
+  :root {
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --brand-h: 190; /* global hue (follow system) */
+    --brand-300: hsl(var(--brand-h) 62% 68%);
+    --brand-500: hsl(var(--brand-h) 62% 40%);
+    --text-default: hsl(210 10% 18%);
+    --text-muted: hsl(210 7% 42%);
+    --surface-0: #fff;
+    --card-bg: color-mix(in srgb, var(--brand-500) 6%, #ffffff);
+    --card-border: color-mix(in srgb, var(--brand-500) 14%, transparent);
+  }
+  html.dark {
+    --text-default: hsl(0 0% 96%);
+    --text-muted: hsl(0 0% 70%);
+    --surface-0: #0b0b0b;
+    --card-bg: rgba(17, 17, 17, 0.72);
+    --card-border: color-mix(in srgb, var(--brand-500) 22%, transparent);
+  }
+
+  .text-brand {
+    color: var(--brand-500);
+  }
+
+  .kvns-articles {
     min-height: calc(100vh - 120px);
+    background: var(--surface-0);
+    color: var(--text-default);
+    transition:
+      background-color 0.35s var(--ease),
+      color 0.35s var(--ease);
+  }
+  .kvns-wrap {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
   }
 
-  .article-card {
+  /* ===== Header ===== */
+  .kvns-hero {
+    position: relative;
+    text-align: center;
+    padding: clamp(3rem, 7vw, 6rem) 1.5rem 3rem;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--brand-500) 12%, transparent);
+    overflow: hidden;
+  }
+  .kvns-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 50% -10%,
+      color-mix(in srgb, var(--brand-500) 16%, transparent) 0%,
+      transparent 60%
+    );
+    filter: blur(90px);
+    opacity: 0.7;
+  }
+  .kvns-hero-title {
+    position: relative;
+    font-size: clamp(2.2rem, 3.6vw + 1rem, 4rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 0.5rem 0;
+  }
+  .kvns-hero-title span {
+    background: linear-gradient(
+      105deg,
+      #b49c58 0%,
+      #d7c780 40%,
+      #e6dca2 60%,
+      #b49c58 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 22px rgba(230, 220, 162, 0.18);
+  }
+  .kvns-hero-sub {
+    position: relative;
+    max-width: 44rem;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: clamp(1rem, 0.6vw + 0.9rem, 1.15rem);
+  }
+
+  /* ===== Grid ===== */
+  .kvns-list {
+    padding-block: clamp(2rem, 6vw, 4rem);
+  }
+  .kvns-grid {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  @media (min-width: 640px) {
+    .kvns-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .kvns-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ===== Card ===== */
+  .kvns-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border-radius: 1.1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    text-decoration: none;
+    color: inherit;
+    box-shadow:
+      0 10px 26px -12px color-mix(in srgb, var(--brand-500) 20%, transparent),
+      inset 0 -1px 0 color-mix(in srgb, var(--brand-500) 10%, transparent);
+    transition:
+      transform 0.5s var(--ease),
+      box-shadow 0.5s var(--ease),
+      border-color 0.35s var(--ease),
+      background 0.35s var(--ease),
+      opacity 0.35s var(--ease);
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s ease forwards;
+    transform: translateY(16px);
+    animation: kvnsFadeUp 0.7s var(--ease) forwards;
   }
-
-  @keyframes fadeInUp {
+  .kvns-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--brand-500) 35%, transparent);
+    box-shadow: 0 20px 44px -18px
+      color-mix(in srgb, var(--brand-500) 42%, transparent);
+  }
+  @keyframes kvnsFadeUp {
     to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .kvns-card-title {
+    font-size: clamp(1.05rem, 0.45vw + 1rem, 1.35rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0.15rem 0 0.25rem 0;
+    transition: color 0.35s var(--ease);
+  }
+  .kvns-card:hover .kvns-card-title {
+    color: var(--brand-500);
+  }
+
+  .kvns-card-date {
+    color: color-mix(in srgb, var(--brand-500) 66%, var(--text-muted));
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.15rem;
+  }
+
+  .kvns-card-desc {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 0.15rem;
+  }
+
+  .kvns-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.35rem;
+    color: var(--brand-500);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition:
+      color 0.3s var(--ease),
+      transform 0.3s var(--ease);
+  }
+  .kvns-card:hover .kvns-card-cta {
+    transform: translateX(2px);
+  }
+  .kvns-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s var(--ease);
+  }
+  .kvns-card:hover .kvns-arrow {
+    transform: translateX(2px);
   }
 </style>

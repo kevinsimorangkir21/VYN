@@ -1,7 +1,13 @@
 ---
 import LinkInline from "./LinkInline.astro";
 
-type StatusType = "Freelance" | "Internship" | "Ongoing" | "Project";
+type StatusType =
+  | "Freelance"
+  | "Internship"
+  | "Ongoing"
+  | "Project"
+  | "Internal"
+  | "External";
 
 interface Props {
   title: string;
@@ -25,113 +31,111 @@ const {
   isLast = false,
 } = Astro.props as Props;
 
-// 🎨 Warna badge berdasarkan status
-const statusColors = {
-  Freelance: "bg-[#0f7095]/20 text-[#0f7095] border border-[#0f7095]/40",
-  Internship: "bg-[#a19665]/20 text-[#a19665] border border-[#a19665]/40",
-  Ongoing: "bg-yellow-200/20 text-yellow-700 border border-yellow-500/30",
-  Project: "bg-blue-200/20 text-blue-700 border border-blue-500/30",
-  Internal: "bg-[#6b9080]/20 text-[#6b9080] border border-[#6b9080]/40",
-  External: "bg-[#b85c38]/20 text-[#b85c38] border border-[#b85c38]/40",
-};
-
-const badgeClass =
-  statusColors[status] ||
-  "bg-gray-100/30 text-gray-800 dark:bg-gray-800/40 dark:text-gray-200";
+// namespace helper for status modifier class
+const statusKey = String(status).toLowerCase();
+const badgeClass = `kvns-badge-status kvns-badge-status--${statusKey}`;
 ---
 
 <div
-  class={`timeline-item relative mx-5 sm:mx-8 pb-14 grid opacity-0 translate-y-8 
+  class={`timeline-item kvns-timeline relative mx-5 sm:mx-8 pb-14 grid opacity-0 translate-y-8 
   transition-all duration-700 ease-out
-  before:absolute before:left-[-14px] before:top-[14px] before:block 
-  before:w-[2px] before:bg-[#0f7095]/50 dark:before:bg-[#0f7095]/30
   md:grid-cols-5 md:gap-12
   ${index % 2 === 0 ? "slide-left" : "slide-right"}
   ${isLast ? "before:h-[2rem]" : "before:h-full"}`}
 >
-  <!-- ✨ Kiri -->
-  <div class="relative pb-8 md:col-span-2 group">
-    <div class="relative">
-      <!-- Titik Timeline -->
-      <span
-        class="absolute -left-[19px] top-[6px] z-10 w-4 h-4 rounded-full
-        bg-[#0f7095] border-2 border-white dark:border-[#0b0b0b]
-        shadow-[0_0_12px_rgba(15,112,149,0.7)]
-        pulse-dot"
-      ></span>
+</div>
+<!-- ✨ Kiri -->
+<div class="relative pb-8 md:col-span-2 group">
+  <div class="relative">
+    <!-- Titik Timeline -->
+    <span
+      class="absolute -left-[19px] top-[6px] z-10 w-4 h-4 rounded-full
+               bg-[hsl(var(--brand-h)_60%_40%)]
+               border-2 border-white dark:border-[hsl(215_25%_10%)]
+               kvns-pulse-dot"
+      aria-hidden="true"></span>
 
-      <!-- Judul -->
-      <h3
-        class="text-xl sm:text-2xl font-bold text-[#0f7095] group-hover:text-[#a19665]
+    <!-- Judul -->
+    <h3
+      class="text-xl sm:text-2xl font-bold
+               bg-[linear-gradient(120deg,var(--brand-400),var(--brand-500))]
+               bg-clip-text text-transparent
                transition-all duration-500 tracking-wide"
-      >
-        {title}
-      </h3>
-
-      <h4
-        class="font-medium text-base sm:text-lg text-gray-700 dark:text-gray-200 italic"
-      >
-        {company}
-      </h4>
-
-      <!-- Status -->
-      <span
-        class={`inline-block mt-2 px-3 py-0.5 text-xs font-medium rounded-full shadow-sm backdrop-blur ${badgeClass}`}
-      >
-        {status}
-      </span>
-
-      <time
-        class="block mt-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-light"
-      >
-        {date}
-      </time>
-    </div>
-  </div>
-
-  <!-- ✨ Kanan -->
-  <div
-    class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300
-           md:col-span-3 leading-relaxed text-sm sm:text-base transition-all duration-700"
-  >
-    <div
-      class="relative p-4 rounded-2xl bg-white/10 dark:bg-[#111]/40
-             border border-[#0f7095]/30
-             hover:border-[#a19665]/50 hover:shadow-[0_0_25px_rgba(15,112,149,0.25)]
-             shadow-[0_0_10px_rgba(15,112,149,0.1)]
-             transition-all duration-700 backdrop-blur-md hover:translate-x-1 hover:scale-[1.01]"
     >
-      <div class="text-justify">
-        {description}
-        {link && <LinkInline href={link} />}
-      </div>
+      {title}
+    </h3>
+
+    <h4
+      class="font-medium text-base sm:text-lg text-gray-700 dark:text-gray-200 italic"
+    >
+      {company}
+    </h4>
+
+    <!-- Status -->
+    <span
+      class={`inline-block mt-2 px-3 py-0.5 text-xs font-semibold rounded-full shadow-sm backdrop-blur ${badgeClass}`}
+    >
+      {status}
+    </span>
+
+    <time
+      class="block mt-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-light"
+    >
+      {date}
+    </time>
+  </div>
+</div>
+
+<!-- ✨ Kanan -->
+<div
+  class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300
+           md:col-span-3 leading-relaxed text-sm sm:text-base transition-all duration-700"
+>
+  <div
+    class="relative p-4 rounded-2xl
+             bg-white/70 dark:bg-[hsl(var(--brand-h)_24%_13%_/_0.40)]
+             border border-[hsl(var(--brand-h)_50%_50%_/_0.22)]
+             hover:border-[hsl(var(--brand-h)_60%_40%_/_0.36)]
+             shadow-[0_4px_16px_hsl(210_30%_10%_/_0.08)]
+             hover:shadow-[0_10px_26px_hsl(var(--brand-h)_60%_20%_/_0.16)]
+             transition-all duration-700 backdrop-blur-md
+             hover:translate-x-0.5 hover:scale-[1.01]"
+  >
+    <div class="text-justify">
+      {description}
+      {link && <LinkInline href={link} />}
     </div>
   </div>
 </div>
 
 <style is:global>
-  /* 🌟 Pulse titik timeline */
-  @keyframes pulseGlow {
+  /* ===== KVNS Timeline Tokens (fallback minimal if root vars not ready early) ===== */
+  .kvns-timeline {
+    --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+
+  /* 🌟 Pulse titik timeline — PD1 (brand teal only, depth variants) */
+  @keyframes kvnsPulse {
     0%,
     100% {
       box-shadow:
-        0 0 8px rgba(15, 112, 149, 0.6),
-        0 0 16px rgba(161, 150, 101, 0.3);
+        0 0 10px hsl(var(--brand-h) 60% 40% / 0.45),
+        0 0 22px hsl(var(--brand-h) 60% 30% / 0.22);
       transform: scale(1);
     }
     50% {
       box-shadow:
-        0 0 20px rgba(15, 112, 149, 0.9),
-        0 0 35px rgba(161, 150, 101, 0.5);
+        0 0 22px hsl(var(--brand-h) 68% 55% / 0.55),
+        0 0 36px hsl(var(--brand-h) 60% 30% / 0.28);
       transform: scale(1.15);
     }
   }
-  .pulse-dot {
-    animation: pulseGlow 3s ease-in-out infinite;
+  .kvns-pulse-dot {
+    animation: kvnsPulse 3s var(--ease) infinite;
   }
 
   /* 🌀 Slide animations */
-  @keyframes fadeSlideLeft {
+  @keyframes kvnsFadeSlideLeft {
     from {
       opacity: 0;
       transform: translate(-60px, 20px);
@@ -141,7 +145,7 @@ const badgeClass =
       transform: translate(0, 0);
     }
   }
-  @keyframes fadeSlideRight {
+  @keyframes kvnsFadeSlideRight {
     from {
       opacity: 0;
       transform: translate(60px, 20px);
@@ -152,10 +156,21 @@ const badgeClass =
     }
   }
   .timeline-item.show.slide-left {
-    animation: fadeSlideLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: kvnsFadeSlideLeft 0.9s var(--ease) forwards;
   }
   .timeline-item.show.slide-right {
-    animation: fadeSlideRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: kvnsFadeSlideRight 0.9s var(--ease) forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-item {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    .kvns-pulse-dot {
+      animation: none !important;
+    }
   }
 
   /* 📱 Responsif */
@@ -167,25 +182,88 @@ const badgeClass =
       left: -15px !important;
     }
   }
+
+  /* ===== Status Badge — E-S3 (brand base + subtle accent per status) ===== */
+  .kvns-badge-status {
+    border: 1px solid hsl(var(--brand-h) 50% 50% / 0.26);
+    color: hsl(var(--brand-h) 60% 30%);
+    background: linear-gradient(
+      120deg,
+      hsl(
+        var(--brand-h) calc(var(--brand-s) - 18%) calc(var(--brand-l) + 16%) /
+          0.28
+      ),
+      hsl(var(--brand-h) var(--brand-s) calc(var(--brand-l) + 8%) / 0.22)
+    );
+    box-shadow: 0 2px 8px hsl(var(--brand-h) 60% 20% / 0.14);
+    backdrop-filter: blur(6px);
+  }
+  .dark .kvns-badge-status {
+    color: hsl(var(--brand-h) 72% 70%);
+  }
+  /* subtle per-status tint (accent only) */
+  .kvns-badge-status--freelance {
+    --_t: 0;
+  } /* base teal */
+  .kvns-badge-status--internship {
+    --_t: -6;
+  } /* slightly cooler */
+  .kvns-badge-status--ongoing {
+    --_t: 8;
+  } /* slightly warmer */
+  .kvns-badge-status--project {
+    --_t: 3;
+  }
+  .kvns-badge-status--internal {
+    --_t: -10;
+  }
+  .kvns-badge-status--external {
+    --_t: 12;
+  }
+  .kvns-badge-status[class*="kvns-badge-status--"] {
+    background-image: linear-gradient(
+      120deg,
+      hsl(
+        calc(var(--brand-h) + var(--_t, 0)) calc(var(--brand-s) - 18%)
+          calc(var(--brand-l) + 16%) / 0.3
+      ),
+      hsl(
+        calc(var(--brand-h) + var(--_t, 0)) var(--brand-s)
+          calc(var(--brand-l) + 8%) / 0.24
+      )
+    );
+    border-color: hsl(calc(var(--brand-h) + var(--_t, 0)) 50% 50% / 0.3);
+  }
 </style>
 
 <script>
   if (typeof window !== "undefined") {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, i) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.animationDelay = `${i * 0.15}s`;
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    document
-      .querySelectorAll(".timeline-item")
-      .forEach((el) => observer.observe(el));
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const items = document.querySelectorAll(".timeline-item");
+    if (prefersReduced) {
+      items.forEach((el) => {
+        el.classList.add("show");
+        el.setAttribute("style", "opacity:1; transform:none");
+      });
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              entry.target.setAttribute(
+                "style",
+                `animation-delay:${i * 0.12}s`
+              );
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      items.forEach((el) => io.observe(el));
+    }
   }
 </script>

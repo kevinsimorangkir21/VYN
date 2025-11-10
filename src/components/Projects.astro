@@ -10,23 +10,25 @@ import Tableau from "./icons/Tableau.astro";
 import Excel from "./icons/Excel.astro";
 import Prototype from "./icons/Pro.astro";
 
+/* ===== Global tag registry (style moved to .kvns-badge) ===== */
 const TAGS = {
-  NEXT: { name: "Next.js", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: NextJS, iconSize: "w-4 h-4" },
-  TAILWIND: { name: "Tailwind CSS", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Tailwind, iconSize: "w-4 h-4" },
-  GITHUB: { name: "GitHub", class: "bg-gradient-to-r from-[#0a516c] to-[#39a3c1] text-white", icon: GitHub, iconSize: "w-4 h-4" },
-  LINK: { name: "Live", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Link, iconSize: "w-4 h-4" },
-  SQL: { name: "SQL", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: SQL, iconSize: "w-4 h-4" },
-  FIGMA: { name: "Figma", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Figma, iconSize: "w-4 h-4" },
-  TABLEAU: { name: "Tableau", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Tableau, iconSize: "w-4 h-4" },
-  EXCEL: { name: "Excel", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Excel, iconSize: "w-3.5 h-3.5" },
-  PROTOTYPE: { name: "Prototype", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white", icon: Prototype, iconSize: "w-4 h-4" },
+  NEXT: { name: "Next.js", icon: NextJS, iconSize: "w-4 h-4" },
+  TAILWIND: { name: "Tailwind CSS", icon: Tailwind, iconSize: "w-4 h-4" },
+  GITHUB: { name: "GitHub", icon: GitHub, iconSize: "w-4 h-4" },
+  LINK: { name: "Live", icon: Link, iconSize: "w-4 h-4" },
+  SQL: { name: "SQL", icon: SQL, iconSize: "w-4 h-4" },
+  FIGMA: { name: "Figma", icon: Figma, iconSize: "w-4 h-4" },
+  TABLEAU: { name: "Tableau", icon: Tableau, iconSize: "w-4 h-4" },
+  EXCEL: { name: "Excel", icon: Excel, iconSize: "w-3.5 h-3.5" },
+  PROTOTYPE: { name: "Prototype", icon: Prototype, iconSize: "w-4 h-4" },
 };
 
+/* ===== Global category registry (also uses .kvns-badge) ===== */
 const CATEGORIES = {
-  WEB_DEV: { name: "Web Development", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white" },
-  DATA_ANALYST: { name: "Data Analyst", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white" },
-  UIUX: { name: "UI/UX Designer", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white" },
-  GRAPHIC: { name: "Graphic Design", class: "bg-gradient-to-r from-[#0f7095] to-[#39a3c1] text-white" },
+  WEB_DEV: { name: "Web Development" },
+  DATA_ANALYST: { name: "Data Analyst" },
+  UIUX: { name: "UI/UX Designer" },
+  GRAPHIC: { name: "Graphic Design" },
 };
 
 const PROJECTS = [
@@ -67,120 +69,255 @@ const PROJECTS = [
 ];
 ---
 
-<div class="relative flex flex-col gap-y-24 md:gap-y-32">
-  {PROJECTS.map((project, index) => {
-    const reverse = index % 2 === 1;
-    return (
-      <article
-        class={`group relative flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16 ${
-          reverse ? "md:flex-row-reverse" : ""
-        } opacity-0 translate-y-10 transition-all duration-700 ease-out`}
-      >
-        <!-- Image -->
-        <div class="w-full md:w-1/2 relative">
-          <div
-            class="relative overflow-hidden rounded-3xl border border-[#0f7095]/30 
-                   bg-gradient-to-b from-[#0f7095]/10 to-transparent 
-                   backdrop-blur-xl shadow-[0_0_25px_-10px_rgba(15,112,149,0.4)] 
-                   hover:shadow-[0_0_40px_-5px_rgba(15,112,149,0.6)] 
-                   transition-all duration-700 ease-out hover:-translate-y-1 hover:scale-[1.01]"
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              class="object-cover w-full h-64 sm:h-72 md:h-[22rem] transition-transform duration-700 ease-out group-hover:scale-105"
+<div id="kvns-projects" class="relative flex flex-col gap-y-24 md:gap-y-32">
+  {
+    PROJECTS.map((project, index) => {
+      const reverse = index % 2 === 1;
+      return (
+        <article
+          class={`kvns-project group relative flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16 ${
+            reverse ? "md:flex-row-reverse" : ""
+          } opacity-0 translate-y-6 transition-all duration-700 ease-out`}
+        >
+          {/* Image */}
+          <div class="w-full md:w-1/2 relative">
+            <div
+              class="relative overflow-hidden rounded-3xl
+                   border border-[hsl(var(--brand-h)_50%_50%_/_0.22)]
+                   bg-[hsl(var(--brand-h)_60%_40%_/_0.06)]
+                   backdrop-blur-xl
+                   shadow-[0_6px_22px_hsl(210_30%_10%_/_0.08)]
+                   hover:shadow-[0_12px_34px_hsl(var(--brand-h)_60%_20%_/_0.14)]
+                   transition-all duration-600 ease-out
+                   hover:-translate-y-1 hover:scale-[1.01]"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                class="object-cover w-full h-64 sm:h-72 md:h-[22rem]
+                     transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-0 rounded-3xl
+                     bg-gradient-to-t from-black/30 via-transparent to-transparent
+                     opacity-0 group-hover:opacity-50
+                     transition-opacity duration-700"
+                aria-hidden="true"
+              />
+            </div>
+
+            {/* Subtle brand underline */}
+            <div
+              class="absolute -bottom-3 left-0 right-0 h-[2px]
+                   bg-gradient-to-r from-transparent via-[hsl(var(--brand-h)_60%_40%_/_0.35)] to-transparent
+                   blur-md opacity-80"
+              aria-hidden="true"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-3xl"></div>
           </div>
-          <div class="absolute -bottom-3 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0f7095]/60 via-[#0f7095]/20 to-[#0f7095]/60 blur-md opacity-70"></div>
-        </div>
 
-        <!-- Info -->
-        <div class="w-full md:w-1/2 space-y-4 relative">
-          <div class="absolute -top-10 right-10 w-24 h-24 bg-gradient-to-br from-[#0f7095]/25 to-transparent rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+          {/* Info */}
+          <div class="w-full md:w-1/2 space-y-4 relative">
+            <div
+              class="absolute -top-10 right-10 w-24 h-24
+                   bg-[radial-gradient(40%_40%_at_70%_30%,hsl(var(--brand-h)_60%_40%_/_0.22),transparent)]
+                   rounded-full blur-3xl opacity-60 pointer-events-none"
+              aria-hidden="true"
+            />
 
-          <h3 class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#0f7095] via-[#39a3c1] to-[#0f7095] bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(15,112,149,0.4)] tracking-tight">
-            {project.title}
-          </h3>
+            <h3
+              class="text-3xl sm:text-4xl font-extrabold
+                   bg-[linear-gradient(120deg,var(--brand-400),var(--brand-500))]
+                   bg-clip-text text-transparent
+                   drop-shadow-[0_1px_2px_hsl(var(--brand-h)_40%_20%_/_0.15)]
+                   tracking-tight"
+            >
+              {project.title}
+            </h3>
 
-          <ul class="flex flex-wrap gap-2 mb-3">
-            {project.categories.map((cat) => (
-              <li>
-                <span class={`rounded-full text-xs ${cat.class} py-1.5 px-3 font-semibold shadow-sm hover:shadow-md hover:scale-103 transition-all`}>
-                  {cat.name}
-                </span>
-              </li>
-            ))}
-          </ul>
+            {/* Categories */}
+            <ul class="flex flex-wrap gap-2 mb-3">
+              {project.categories.map((cat) => (
+                <li>
+                  <span class="kvns-badge kvns-badge--cat">{cat.name}</span>
+                </li>
+              ))}
+            </ul>
 
-          <ul class="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <li>
-                <span class={`flex items-center gap-1.5 rounded-full text-xs ${tag.class} py-1.5 px-3 font-medium shadow-sm hover:shadow-lg hover:scale-103 transition-all`}>
-                  <tag.icon class={`${tag.iconSize} drop-shadow-sm`} />
-                  {tag.name}
-                </span>
-              </li>
-            ))}
-          </ul>
+            {/* Tags */}
+            <ul class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <li>
+                  <span class="kvns-badge kvns-badge--tag flex items-center gap-1.5">
+                    <tag.icon class={`${tag.iconSize} drop-shadow-sm`} />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
-          <p class="text-gray-600 dark:text-gray-400 leading-relaxed mt-4 text-sm sm:text-base">
-            {project.description}
-          </p>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mt-4 text-sm sm:text-base">
+              {project.description}
+            </p>
 
-          <footer class="flex flex-wrap gap-3 mt-6">
-            {project.github && (
-              <LinkButton href={project.github} class="border border-[#0f7095]/50 text-[#0f7095]/80 hover:bg-[#0f7095]/90 hover:text-white transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-medium shadow-sm hover:shadow-md hover:scale-103">
-                <GitHub class="w-5 h-5" /> Code
-              </LinkButton>
-            )}
-            {project.link && (
-              <LinkButton href={project.link} class="border border-[#0f7095]/50 text-[#0f7095]/80 hover:bg-[#0f7095]/90 hover:text-white transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-medium shadow-sm hover:shadow-md hover:scale-103">
-                <Link class="w-5 h-5" /> Preview
-              </LinkButton>
-            )}
-            {project.prototype && (
-              <LinkButton href={project.prototype} class="bg-[#0f7095]/90 text-white hover:brightness-105 hover:scale-103 transition-all px-4 py-2 rounded-xl flex items-center gap-2 font-semibold shadow-md hover:shadow-lg">
-                <Prototype class="w-5 h-5" /> Prototype
-              </LinkButton>
-            )}
-          </footer>
-        </div>
-      </article>
-    );
-  })}
+            {/* CTAs */}
+            <footer class="flex flex-wrap gap-3 mt-6">
+              {project.github && (
+                <LinkButton
+                  href={project.github}
+                  class="kvns-cta kvns-cta--ghost"
+                >
+                  <GitHub class="w-5 h-5" /> Code
+                </LinkButton>
+              )}
+              {project.link && (
+                <LinkButton
+                  href={project.link}
+                  class="kvns-cta kvns-cta--ghost"
+                >
+                  <Link class="w-5 h-5" /> Preview
+                </LinkButton>
+              )}
+              {project.prototype && (
+                <LinkButton
+                  href={project.prototype}
+                  class="kvns-cta kvns-cta--solid"
+                >
+                  <Prototype class="w-5 h-5" /> Prototype
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </article>
+      );
+    })
+  }
 </div>
 
 <style is:global>
-  @keyframes fadeUp {
+  /* =======================
+   Global Tokens Assumed:
+   --brand-h/s/l, --brand-400/500 already defined in your V5 theme
+   ======================= */
+
+  /* Reusable badge (TG2: subtle gradient) */
+  .kvns-badge {
+    --_bg: linear-gradient(
+      120deg,
+      hsl(
+        var(--brand-h) calc(var(--brand-s) - 18%) calc(var(--brand-l) + 14%) /
+          0.95
+      ),
+      hsl(var(--brand-h) var(--brand-s) calc(var(--brand-l) + 8%) / 0.95)
+    );
+    color: white;
+    padding: 0.4rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--_bg);
+    box-shadow: 0 2px 8px hsl(var(--brand-h) 60% 20% / 0.14);
+    transition:
+      transform 0.25s var(--ease, cubic-bezier(0.2, 0.6, 0.2, 1)),
+      box-shadow 0.25s var(--ease, cubic-bezier(0.2, 0.6, 0.2, 1));
+  }
+  .kvns-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px hsl(var(--brand-h) 60% 20% / 0.18);
+  }
+  .kvns-badge--cat {
+    opacity: 0.95;
+  }
+  .kvns-badge--tag {
+    opacity: 1;
+  }
+
+  /* CTA variants (cohesive with “Open PDF”) */
+  .kvns-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.9rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition:
+      transform 0.25s var(--ease, cubic-bezier(0.2, 0.6, 0.2, 1)),
+      box-shadow 0.25s var(--ease, cubic-bezier(0.2, 0.6, 0.2, 1)),
+      background 0.25s,
+      color 0.25s;
+  }
+  .kvns-cta--ghost {
+    border: 1px solid hsl(var(--brand-h) 50% 50% / 0.3);
+    color: hsl(var(--brand-h) 60% 40%);
+    background: transparent;
+  }
+  .kvns-cta--ghost:hover {
+    background: linear-gradient(120deg, var(--brand-400), var(--brand-500));
+    color: #fff;
+    box-shadow: 0 8px 24px hsl(var(--brand-h) 60% 20% / 0.22);
+    transform: translateY(-1px);
+  }
+  .kvns-cta--solid {
+    background: linear-gradient(120deg, var(--brand-400), var(--brand-500));
+    color: #fff;
+    box-shadow: 0 6px 18px hsl(var(--brand-h) 60% 20% / 0.18);
+  }
+  .kvns-cta--solid:hover {
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px hsl(var(--brand-h) 60% 20% / 0.22);
+  }
+
+  /* Appear animation (subtle) */
+  @keyframes kvnsFadeUp {
     from {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  article.show {
-    animation: fadeUp 0.9s ease-out forwards;
+  .kvns-project.show {
+    animation: kvnsFadeUp 0.7s var(--ease, cubic-bezier(0.2, 0.6, 0.2, 1)) both;
+  }
+
+  /* Responsive micro-tweaks */
+  @media (max-width: 640px) {
+    #kvns-projects h3 {
+      font-size: 1.75rem;
+    }
   }
 </style>
 
 <script>
+  /* IntersectionObserver — safer scope + reduced motion support */
   if (typeof window !== "undefined") {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, i) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.animationDelay = `${i * 0.1}s`;
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    document.querySelectorAll("article").forEach((el) => observer.observe(el));
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const articles = document.querySelectorAll("#kvns-projects .kvns-project");
+    if (prefersReduced) {
+      articles.forEach((el) => {
+        el.classList.add("show");
+        (el as HTMLElement).style.opacity = "1";
+        (el as HTMLElement).style.transform = "none";
+      });
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.18 }
+      );
+      articles.forEach((el) => io.observe(el));
+    }
   }
 </script>
