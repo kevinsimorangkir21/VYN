@@ -10,85 +10,39 @@ export const prerender = true;
   hideFooter={true}
 >
   <main
-    class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#0D0D0D] via-[#161616] to-[#1A1A1A] text-gray-100 text-center px-6 relative overflow-hidden"
+    class="relative flex flex-col items-center justify-center min-h-screen px-6 text-center overflow-hidden bg-white text-neutral-900"
   >
-    <!-- Decorative Teal Glow -->
+    <!-- subtle teal glow -->
     <div
-      class="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-gradient-to-tr from-[#58c4c1]/40 via-transparent to-[#58c4c1]/10 rounded-full blur-3xl pointer-events-none animate-pulse"
-    >
-    </div>
-    <div
-      class="absolute bottom-1/4 right-1/2 translate-x-1/2 w-64 h-64 bg-gradient-to-bl from-[#58c4c1]/30 via-transparent to-[#58c4c1]/5 rounded-full blur-3xl pointer-events-none animate-pulse"
+      class="absolute inset-0 pointer-events-none
+             bg-[radial-gradient(circle_at_50%_0%,rgba(15,112,149,0.07),transparent_60%)]
+             blur-[110px]"
     >
     </div>
 
-    <!-- 404 Text -->
     <h1
-      class="text-7xl sm:text-8xl font-extrabold text-[#58c4c1] mb-4 drop-shadow-lg animate-fadeIn"
+      class="text-[110px] sm:text-[140px] font-bold leading-none tracking-tight text-neutral-800 drop-shadow-sm"
+      style="font-family:'Inter Tight', system-ui, sans-serif"
     >
       404
     </h1>
-    <h2
-      class="text-2xl sm:text-3xl font-semibold mb-3 text-gray-200 animate-fadeIn delay-200"
-    >
+
+    <h2 class="text-xl sm:text-2xl font-semibold text-neutral-600 mt-3">
       Oops! Page Not Found.
     </h2>
-    <p class="text-gray-400 max-w-md mb-8 animate-fadeIn delay-400">
+
+    <p class="text-neutral-500 max-w-md mt-3 mb-10">
       The page you’re looking for might have been moved, deleted, or never
       existed.
     </p>
 
-    <!-- Back to Home Button -->
     <a
       href="/"
-      class="inline-flex items-center gap-2 border border-[#58c4c1] text-[#58c4c1] px-6 py-3 rounded-xl
-             hover:bg-[#58c4c1] hover:text-[#161616]
-             shadow-lg hover:shadow-2xl transition-all duration-300 text-lg font-medium animate-fadeIn delay-600"
+      class="inline-flex items-center gap-2 px-6 py-3 text-base font-medium
+             text-[#0f7095] border border-[#0f7095]/30 rounded-xl transition-all duration-300
+             bg-[#0f7095]/8 hover:bg-[#0f7095] hover:text-white hover:border-[#0f7095]"
     >
       ← Back to Home
     </a>
   </main>
 </Layout>
-
-<style is:global>
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fadeIn {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-
-  .animate-fadeIn.delay-200 {
-    animation-delay: 0.2s;
-  }
-  .animate-fadeIn.delay-400 {
-    animation-delay: 0.4s;
-  }
-  .animate-fadeIn.delay-600 {
-    animation-delay: 0.6s;
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 0.4;
-    }
-    50% {
-      transform: scale(1.1);
-      opacity: 0.6;
-    }
-  }
-
-  .animate-pulse {
-    animation: pulse 4s ease-in-out infinite;
-  }
-</style>
