@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = "Terms and Conditions",
-  description = "Syarat dan ketentuan penggunaan situs ini.",
+  description = "Terms of use for this website.",
   date = "2025-11-06",
 } = Astro.props;
 ---
@@ -54,7 +54,7 @@ const {
 
       <p class="text-sm md:text-base text-gray-500 dark:text-gray-400 mb-10">
         {
-          new Date(date).toLocaleDateString("id-ID", {
+          new Date(date).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -65,41 +65,39 @@ const {
       <div
         class="max-w-3xl mx-auto leading-relaxed text-gray-800 dark:text-gray-300 text-left prose-headings:font-semibold prose-a:text-[#0f7095] prose-a:no-underline prose-a:hover:text-[#2fbad1] prose-a:transition-colors"
       >
-        <h2>1. Penggunaan Website</h2>
+        <h2>1. Use of Website</h2>
         <p>
-          Dengan mengakses situs ini (<strong>kvn-code.asia</strong>), Anda
-          setuju untuk mematuhi syarat dan ketentuan yang berlaku. Konten situs
-          ini hanya untuk tujuan informasi dan portofolio pribadi.
+          By accessing this website (<strong>kvn-code.asia</strong>), you agree
+          to comply with these terms and conditions. All content on this site is
+          provided for informational and personal portfolio purposes only.
         </p>
 
-        <h2>2. Hak Kekayaan Intelektual</h2>
+        <h2>2. Intellectual Property</h2>
         <p>
-          Seluruh konten, termasuk desain, kode, dan media, merupakan milik <strong
-            >Kevin Simorangkir</strong
-          >
-          kecuali disebutkan lain. Dilarang menyalin atau mendistribusikan tanpa
-          izin tertulis.
+          All materials, including design, code, and media, are owned by
+          <strong> Kevin Simorangkir</strong> unless otherwise stated. Copying or
+          redistributing without prior written consent is strictly prohibited.
         </p>
 
-        <h2>3. Tanggung Jawab Pengguna</h2>
+        <h2>3. User Responsibility</h2>
         <p>
-          Pengguna bertanggung jawab atas penggunaan informasi dari situs ini.
-          Kami tidak bertanggung jawab atas kerugian yang timbul akibat
-          penggunaan data atau materi di situs ini.
+          Users are responsible for how they use the information provided on
+          this website. We are not liable for any damages or losses resulting
+          from the use of data or materials from this site.
         </p>
 
-        <h2>4. Perubahan Syarat</h2>
+        <h2>4. Changes to Terms</h2>
         <p>
-          Kami berhak mengubah syarat dan ketentuan kapan saja tanpa
-          pemberitahuan terlebih dahulu. Versi terbaru akan selalu tersedia di
-          halaman ini.
+          We reserve the right to update or modify these terms at any time
+          without prior notice. The most recent version will always be available
+          on this page.
         </p>
 
-        <h2>5. Kontak</h2>
+        <h2>5. Contact</h2>
         <p>
-          Untuk pertanyaan terkait kebijakan ini, Anda dapat menghubungi melalui
-          email:
-          <a href="mailto:kvnsimorangkir@gmail.com">kvnsimorangkir@gmail.com</a
+          For questions or concerns about these terms, please contact us at:
+          <a href="mailto:kvnsimorangkir@gmail.com">
+            kvnsimorangkir@gmail.com</a
           >.
         </p>
       </div>

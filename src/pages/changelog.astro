@@ -1,0 +1,92 @@
+---
+import "@fontsource-variable/onest";
+import "../style/prose.css";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.jsx";
+import { ViewTransitions } from "astro:transitions";
+
+interface Props {
+  title: string;
+  description: string;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
+}
+
+const {
+  description,
+  title,
+  hideHeader = false,
+  hideFooter = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/V.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+
+  <body class="relative text-black dark:text-white selection:bg-[#0f7095]/30">
+    <!-- BG GLOBAL -->
+    <div
+      class="absolute inset-0 -z-10 w-full min-h-screen
+             bg-white
+             dark:bg-gradient-to-b dark:from-[#050505] dark:via-[#0c0c0c] dark:to-[#050505]"
+    >
+      <div
+        class="absolute inset-0 pointer-events-none
+               bg-[radial-gradient(circle_at_50%_0%,rgba(15,112,149,0.18),transparent_60%)]
+               blur-[110px] opacity-70"
+      >
+      </div>
+    </div>
+
+    {!hideHeader && <Header />}
+
+    <slot />
+
+    {!hideFooter && <Footer />}
+
+    <CookieBanner client:load />
+
+    <style is:global>
+      :root {
+        color-scheme: light dark;
+        --brand-h: 190;
+        --brand-500: hsl(var(--brand-h) 62% 40%);
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html {
+        font-family: "Onest Variable", system-ui, sans-serif;
+        scroll-behavior: smooth;
+        transition:
+          background-color 0.35s var(--ease),
+          color 0.35s var(--ease);
+        font-feature-settings:
+          "liga" 1,
+          "calt" 1;
+        font-synthesis-weight: none;
+      }
+
+      body {
+        color: rgba(17, 17, 17, 0.9);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        overscroll-behavior: none;
+        transition:
+          background-color 0.35s var(--ease),
+          color 0.35s var(--ease);
+      }
+    </style>
+  </body>
+</html>

@@ -1,162 +1,305 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+interface Related {
+  title: string;
+  slug: string;
+  image: string;
+}
 interface Props {
   title: string;
   description: string;
-  date: string;
-  related?: { title: string; slug: string; image: string }[];
+  date: string;               // ISO string prefered
+  related?: Related[];
 }
 
-const { title, description, date, related = [] } = Astro.props;
+const { title, description, date, related = [] } = Astro.props as Props;
+
+const formatted = new Date(date).toLocaleDateString("id-ID", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <Layout title={title} description={description}>
-  <main
-    class="flex-1 bg-white dark:bg-[#0b0b0b] text-gray-800 dark:text-gray-100 transition-colors duration-300"
-  >
-    <!-- 🔙 Header Navigasi -->
-    <div class="max-w-6xl mx-auto px-6 pt-16">
-      <a
-        href="/articles"
-        class="inline-flex items-center gap-2 text-[#0f7095] hover:text-[#2fbad1]
-               font-medium transition-all duration-300 hover:-translate-x-1 group"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+  <!-- Reading progress (R1 – micro 2px) -->
+  <div id="read-progress" class="kvns-read-progress"></div>
+
+  <main class="kvns-article">
+    <!-- Back link -->
+    <div class="kvns-wrap">
+      <a href="/articles" class="kvns-back group" aria-label="Back to Blog">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4 transition-transform duration-300 group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6"/>
         </svg>
-        Back to Blog
+        <span>Back to Blog</span>
       </a>
     </div>
 
-    <!-- 📝 Konten Artikel -->
-    <article
-      class="prose dark:prose-invert lg:prose-lg mx-auto px-6 py-12 text-center transition-colors duration-300"
-    >
-      <h1
-        class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6
-               bg-gradient-to-r from-[#0f7095] to-[#2fbad1]
-               bg-clip-text text-transparent leading-tight"
-      >
-        {title}
-      </h1>
+    <!-- Header -->
+    <header class="kvns-wrap kvns-header">
+      <h1 class="kvns-article-title">{title}</h1>
+      <p class="kvns-article-date">{formatted}</p>
+    </header>
 
-      <p class="text-sm md:text-base text-gray-500 dark:text-gray-400 mb-10">
-        {
-          new Date(date).toLocaleDateString("id-ID", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
-        }
-      </p>
-
-      <div
-        class="max-w-3xl mx-auto leading-relaxed text-gray-800 dark:text-gray-300 text-left prose-headings:font-semibold prose-a:text-[#0f7095] prose-a:no-underline prose-a:hover:text-[#2fbad1] prose-a:transition-colors"
-      >
+    <!-- Body -->
+    <article class="kvns-wrap">
+      <div class="kvns-article-body prose">
         <slot />
       </div>
     </article>
 
-    <!-- 🧩 Related Posts -->
-    {
-      related.length > 0 && (
-        <section class="max-w-6xl mx-auto px-6 pb-20">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-3">
-            <h2
-              class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#0f7095] to-[#2fbad1]
-                     bg-clip-text text-transparent"
-            >
-              Related Posts
-            </h2>
-            <a
-              href="/articles"
-              class="text-[#0f7095] hover:text-[#2fbad1] font-medium transition-all duration-300"
-            >
-              View All Posts »
-            </a>
-          </div>
+    <!-- Related -->
+    {related.length > 0 && (
+      <section class="kvns-wrap kvns-related">
+        <div class="kvns-related-top">
+          <h2 class="kvns-related-title">Related Posts</h2>
+          <a href="/articles" class="kvns-related-more">View All Posts »</a>
+        </div>
 
-          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {related.map((post) => (
-              <a
-                href={`/articles/${post.slug}`}
-                class="group block rounded-xl overflow-hidden 
-                       bg-gray-50/80 dark:bg-[#141414] 
-                       border border-gray-200 dark:border-[#1f1f1f]
-                       hover:border-[#0f7095] hover:shadow-lg hover:shadow-[#0f7095]/10
-                       hover:-translate-y-1 transition-all duration-300"
-              >
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  class="w-full h-48 object-cover group-hover:opacity-85 transition duration-300"
-                  loading="lazy"
-                />
-                <div class="p-5">
-                  <h3
-                    class="font-semibold text-lg text-gray-800 dark:text-gray-100 
-                           group-hover:text-[#0f7095] transition-colors duration-300"
-                  >
-                    {post.title}
-                  </h3>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-      )
-    }
+        <div class="kvns-related-grid">
+          {related.map((post) => (
+            <a href={`/articles/${post.slug}`} class="kvns-related-card group">
+              <div class="kvns-related-media">
+                <img src={post.image} alt={post.title} loading="lazy" />
+              </div>
+              <div class="kvns-related-content">
+                <h3 class="kvns-related-name">{post.title}</h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
   </main>
 </Layout>
 
-<style>
-  .prose {
-    max-width: 60ch;
+<style is:global>
+  /* ====== Tokens (fallback bila belum ada) ====== */
+  :root{
+    --ease:cubic-bezier(.22,1,.36,1);
+    --brand-h:190;
+    --brand-200:hsl(var(--brand-h) 62% 82%);
+    --brand-300:hsl(var(--brand-h) 62% 68%);
+    --brand-500:hsl(var(--brand-h) 62% 40%);
+    --text-default: hsl(210 10% 18%);
+    --text-muted: hsl(210 8% 46%);
+    --surface-0:#fff;
+    --surface-1:color-mix(in srgb, var(--brand-500) 6%, #ffffff);
+    --surface-1-dark:rgba(11,11,11,.82);
+    --line-soft: color-mix(in srgb, var(--brand-500) 14%, transparent);
+  }
+  html.dark{
+    --text-default: hsl(0 0% 96%);
+    --text-muted: hsl(0 0% 70%);
+    --surface-0:#0b0b0b;
+    --surface-1: var(--surface-1-dark);
   }
 
-  /* ✨ Link di dalam artikel */
-  .prose a {
-    color: #0f7095;
-    transition: color 0.25s ease;
+  /* ====== Page ====== */
+  .kvns-article{
+    background: var(--surface-0);
+    color: var(--text-default);
+    transition: background-color .35s var(--ease), color .35s var(--ease);
   }
-  .prose a:hover {
-    color: #2fbad1;
-  }
-
-  /* ✨ Heading berwarna gradien */
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4 {
-    background: linear-gradient(to right, #0f7095, #2fbad1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  .kvns-wrap{
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
   }
 
-  /* 💫 Smooth fade saat halaman dimuat */
-  main {
-    animation: fadeIn 0.4s ease-in-out;
+  /* Reading progress (R1) */
+  .kvns-read-progress{
+    position: fixed; inset: 0 0 auto 0;
+    height: 2px; width: 0%;
+    z-index: 60;
+    background: linear-gradient(90deg, var(--brand-300), var(--brand-500));
+    box-shadow: 0 0 16px color-mix(in srgb, var(--brand-500) 45%, transparent);
+    transition: width .1s linear;
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Back */
+  .kvns-back{
+    display:inline-flex; align-items:center; gap:.5rem;
+    margin-top: 1.25rem;
+    color: var(--brand-500);
+    font-weight: 600;
+    padding:.5rem .75rem;
+    border-radius: .75rem;
+    background: color-mix(in srgb, var(--brand-500) 10%, transparent);
+    border:1px solid color-mix(in srgb, var(--brand-500) 16%, transparent);
+    backdrop-filter: blur(10px);
+    transition: all .35s var(--ease);
   }
+  .kvns-back:hover{
+    background: color-mix(in srgb, var(--brand-500) 16%, transparent);
+    transform: translateX(-2px);
+    box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--brand-500) 40%, transparent);
+  }
+
+  /* Header */
+  .kvns-header{
+    padding-top: 2.5rem;
+    padding-bottom: 1.25rem;
+  }
+  .kvns-article-title{
+    font-size: clamp(2rem, 2.8vw + 1.1rem, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    margin: 1rem 0 .5rem 0;
+    /* Editorial gold gradient (subtle) */
+    background: linear-gradient(105deg,
+      #b49c58 0%,
+      #d7c780 40%,
+      #e6dca2 60%,
+      #b49c58 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow: 0 0 24px rgba(230, 220, 162, .16);
+  }
+  html.dark .kvns-article-title{
+    text-shadow: 0 0 28px rgba(230, 220, 162, .22);
+  }
+  .kvns-article-date{
+    color: color-mix(in srgb, var(--brand-500) 70%, var(--text-muted));
+    font-size: .95rem; /* sm */
+    font-weight: 600;
+    letter-spacing:.01em;
+    margin-bottom: .25rem;
+    opacity: .9;
+  }
+
+  /* Body */
+  .kvns-article-body{
+    max-width: 68ch;
+    margin-inline: auto;
+    text-align: left;
+    color: var(--text-default);
+    background: var(--surface-1);
+    border: 1px solid var(--line-soft);
+    border-radius: 1.25rem;
+    padding: 2rem 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow:
+      0 10px 30px -12px color-mix(in srgb, var(--brand-500) 22%, transparent),
+      inset 0 -1px 0 color-mix(in srgb, var(--brand-500) 10%, transparent);
+    transition: background .35s var(--ease), border-color .35s var(--ease);
+  }
+  @media (min-width: 640px){
+    .kvns-article-body{ padding: 2.25rem 2rem; }
+  }
+
+  /* Prose adjustments */
+  .kvns-article-body a{
+    color: var(--brand-500);
+    text-decoration: underline; text-underline-offset: 3px;
+    transition: color .25s var(--ease), text-shadow .25s var(--ease);
+  }
+  .kvns-article-body a:hover{
+    color: var(--brand-300);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--brand-500) 35%, transparent);
+  }
+  .kvns-article-body h2, .kvns-article-body h3, .kvns-article-body h4{
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-top: 2rem;
+    margin-bottom: .85rem;
+    background: linear-gradient(120deg, var(--brand-500), var(--brand-300));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .kvns-article-body blockquote{
+    border-left: 4px solid var(--brand-500);
+    background: color-mix(in srgb, var(--brand-500) 10%, transparent);
+    padding: .9rem 1.25rem;
+    border-radius: .75rem;
+    color: var(--text-muted);
+  }
+  .kvns-article-body code{
+    background: color-mix(in srgb, var(--brand-500) 16%, transparent);
+    padding:.25rem .45rem; border-radius:.45rem;
+  }
+  .kvns-article-body pre{
+    background:#0c0f14; color:#e5e7eb; border-radius: .9rem;
+    padding: 1.25rem 1.4rem; overflow:auto;
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: 0 10px 28px -10px rgba(15,112,149,.25);
+  }
+
+  /* Related */
+  .kvns-related{ padding: 2.25rem 0 4rem; }
+  .kvns-related-top{
+    display:flex; gap:1rem; align-items:center; justify-content:space-between; margin-bottom:1rem;
+  }
+  .kvns-related-title{
+    font-size: clamp(1.35rem, 1.2vw + .8rem, 1.85rem);
+    font-weight: 800; letter-spacing:-.01em;
+    background: linear-gradient(120deg, var(--brand-500), var(--brand-300));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .kvns-related-more{
+    color: var(--brand-500); font-weight:600;
+    transition: color .25s var(--ease);
+  }
+  .kvns-related-more:hover{ color: var(--brand-300); }
+
+  .kvns-related-grid{
+    display:grid; gap:1rem;
+    grid-template-columns: repeat(1,minmax(0,1fr));
+  }
+  @media (min-width: 640px){ .kvns-related-grid{ grid-template-columns: repeat(2,1fr);} }
+  @media (min-width: 1024px){ .kvns-related-grid{ grid-template-columns: repeat(4,1fr);} }
+
+  .kvns-related-card{
+    display:block; border-radius:1rem; overflow:hidden; position:relative;
+    border:1px solid color-mix(in srgb, var(--brand-500) 14%, transparent);
+    background: color-mix(in srgb, var(--brand-500) 6%, transparent);
+    backdrop-filter: blur(8px);
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+  }
+  .kvns-related-card:hover{
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--brand-500) 26%, transparent);
+    box-shadow: 0 16px 36px -12px color-mix(in srgb, var(--brand-500) 38%, transparent);
+  }
+  .kvns-related-media{ aspect-ratio: 16/10; overflow:hidden; }
+  .kvns-related-media img{
+    width:100%; height:100%; object-fit:cover;
+    transition: transform .6s var(--ease), opacity .35s var(--ease);
+  }
+  .kvns-related-card:hover .kvns-related-media img{
+    transform: scale(1.04);
+    opacity: .92;
+  }
+  .kvns-related-content{ padding: .9rem 1rem 1.1rem; }
+  .kvns-related-name{
+    font-weight: 700; color: var(--text-default);
+    transition: color .25s var(--ease);
+  }
+  .kvns-related-card:hover .kvns-related-name{
+    color: var(--brand-500);
+  }
+
+  /* Prose width */
+  .prose { max-width: 60ch; }
 </style>
+
+<script>
+  // reading progress
+  document.addEventListener("astro:page-load", () => {
+    const bar = document.getElementById("read-progress");
+    if (!bar) return;
+
+    const onScroll = () => {
+      const h = document.documentElement;
+      const scrollTop = h.scrollTop || document.body.scrollTop;
+      const height = h.scrollHeight - h.clientHeight;
+      const p = height > 0 ? (scrollTop / height) * 100 : 0;
+      bar.style.width = p + "%";
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  });
+</script>
